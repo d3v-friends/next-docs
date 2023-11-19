@@ -1,5 +1,5 @@
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import fn from "@server/fn";
+import index from "@server/fn";
 
 abstract class MangoModel<DATA extends object> {
     private data?: DATA;
@@ -55,7 +55,7 @@ class Mango {
     static async startMigrate(col: Collection<MangoSystem>, ...forces: boolean[]): Promise<MangoSystem> {
         const filter = {
             _id: NullObjectId,
-            isTx: fn.param.boolean(forces),
+            isTx: index.param.boolean(forces),
         };
 
         const count = await col.countDocuments(filter);
@@ -107,10 +107,10 @@ const mongo = {
     connect: {
         byEnv: async (): Promise<Db> => {
             return mongo.connect.byValue({
-                host: fn.env.string("MG_HOST"),
-                username: fn.env.string("MG_USERNAME"),
-                password: fn.env.string("MG_PASSWORD"),
-                database: fn.env.string("MG_DATABASE"),
+                host: index.env.string("MG_HOST"),
+                username: index.env.string("MG_USERNAME"),
+                password: index.env.string("MG_PASSWORD"),
+                database: index.env.string("MG_DATABASE"),
             });
         },
         byValue: async (i: { host: string; username: string; password: string; database: string }): Promise<Db> => {
