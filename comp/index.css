@@ -1,0 +1,64 @@
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/xlight.ttf');
+    font-weight: 100;
+}
+
+
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/light.ttf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/text.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/medium.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/regular.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/semibold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: ibm_flex, sans-serif;
+    src: local("ibm_flex"), url('/asset/font/ibm-flex/bold.ttf');
+    font-weight: 700;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: ibm_flex, sans-serif;
+}
+
+body {
+    font-size: 18px;
+    background-color: rgb(31, 34, 42);
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    &:visited {
+        color: unset;
+    }
+}

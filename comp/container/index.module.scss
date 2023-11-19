@@ -1,0 +1,22 @@
+@import "@comp/variables";
+
+.container {
+  margin: 0 auto;
+  position: relative;
+
+  @include bp1 {
+    width: $bp1;
+  }
+
+  @include bp2 {
+    width: $bp2;
+  }
+  @include bp3 {
+    width: $bp3;
+  }
+
+  @include bp4 {
+    width: $bp4;
+  }
+}
+
