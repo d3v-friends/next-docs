@@ -1,4 +1,5 @@
-import { Model, Schema, Types } from "mongoose";
+import BizMongo from "@server/mongo";
+import { Schema, Types } from "mongoose";
 
 interface Session {
     isActivate: Boolean;
@@ -14,8 +15,9 @@ type History = {
     connAt: Date;
 };
 
-const schema = new Schema<Session>(
-    {
+const def: BizMongo.Schema<Session> = {
+    colNm: "sessions",
+    schema: {
         isActivate: {
             type: Boolean,
             default: true,
@@ -37,25 +39,25 @@ const schema = new Schema<Session>(
             default: [],
         },
     },
-    {
+    options: {
         timestamps: true,
     },
-);
+    indexes: [
+        {
+            fields: {
+                _id: -1,
+                isActivate: 1,
+            },
+            options: {
+                unique: true,
+            }
+        },
+        {
+            fields: {
+                accountId: 1,
+            }
+        }
+    ]
+};
 
-schema.index(
-    {
-        _id: -1,
-        isActivate: 1,
-    },
-    {
-        unique: true,
-    },
-);
-
-schema.index({
-    accountId: 1,
-});
-
-const Session = new Model("sessions", schema);
-
-export default Session;
+export default SchemaSession;

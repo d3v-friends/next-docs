@@ -1,5 +1,5 @@
+import BizMongo from "@server/mongo";
 import { Schema } from "mongoose";
-import mongo from "@server/mongo";
 
 interface Account {
     isActivate: Boolean;
@@ -16,48 +16,39 @@ export type Verifier = {
 
 export type VerifierMode = "compare" | "otp";
 
-const schema = new Schema<Account>(
-    {
-        isActivate: {
-            type: Boolean,
-            default: true,
-        },
-        identifier: {
-            type: Schema.Types.Map,
-            default: {},
-        },
-        verifier: {
-            type: Schema.Types.Map,
-            default: {},
-        },
-        property: {
-            type: Schema.Types.Map,
-            default: {},
-        },
+const def: BizMongo.Schema<Account> = {
+  colNm: "accounts",
+  schema: {
+    isActivate: {
+      type: Boolean,
+      default: true,
     },
-    {
-        timestamps: true,
+    identifier: {
+      type: Schema.Types.Map,
+      default: {},
     },
-);
-
-schema.index({
-    isActivate: 1,
-});
-
-schema.index(
+    verifier: {
+      type: Schema.Types.Map,
+      default: {},
+    },
+    property: {
+      type: Schema.Types.Map,
+      default: {},
+    },
+  },
+  options: {
+    timestamps: true,
+  },
+  indexes: [
     {
+      fields: {
         "identifier.username": 1,
-    },
-    {
+      },
+      options: {
         unique: true,
-    },
-);
+      }
+    }
+  ]
+}
 
-const FnAccount = {
-    create: async (i: {}): Account => {
-        const client = await mongo.connect.byEnv();
-        client.Model<Account>();
-    },
-};
-
-export default Account;
+export default SchemaAccount;
