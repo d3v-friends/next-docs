@@ -1,0 +1,94 @@
+// break point
+$bp1: 360px;
+$bp2: 720px;
+$bp3: 1080px;
+$bp4: 1440px;
+
+// sidebar width point
+$bp1Side: 80%;
+$bp2Side: 150px;
+$bp3Side: 170px;
+$bp4Side: 200px;
+
+
+// reactive template
+@mixin bp1 {
+  @media(min-width: $bp1) {
+    @content
+  }
+}
+
+@mixin bp2 {
+  @media(min-width: $bp2) {
+    @content
+  }
+}
+
+@mixin bp3 {
+  @media(min-width: $bp3) {
+    @content
+  }
+}
+
+@mixin bp4 {
+  @media(min-width: $bp4) {
+    @content
+  }
+}
+
+.widthContent {
+  @include bp1 {
+    width: 100%;
+    padding: 0 5px 0 5px;
+  }
+
+  @include bp2 {
+    width: calc(100% - #{$bp2Side});
+    padding: 0;
+  }
+
+  @include bp3 {
+    width: calc(100% - #{$bp3Side});
+  }
+
+  @include bp4 {
+    width: calc(100% - #{$bp4Side});
+  }
+}
+
+.widthSidebar {
+  @include bp1 {
+    width: $bp1Side;
+  }
+
+  @include bp2 {
+    width: $bp2Side;
+  }
+
+  @include bp3 {
+    width: $bp3Side;
+  }
+
+  @include bp4 {
+    width: $bp4Side;
+  }
+}
+
+.widthFull {
+  position: relative;
+  @include bp1 {
+    width: 100%;
+  }
+
+  @include bp2 {
+    width: 100%;
+  }
+
+  @include bp3 {
+    width: $bp3;
+  }
+
+  @include bp4 {
+    width: $bp4;
+  }
+}

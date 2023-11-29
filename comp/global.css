@@ -1,0 +1,91 @@
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/xlight.ttf');
+    font-weight: 100;
+}
+
+
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/light.ttf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/text.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/medium.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/regular.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/semibold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: ibm-flex, sans-serif;
+    src: local("ibm-flex"), url('/asset/font/ibm-flex/bold.ttf');
+    font-weight: 700;
+}
+
+
+body {
+    font-size: 18px;
+    position: relative;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
+    font-family: ibm-flex, sans-serif;
+
+
+    /* disable scroll bar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:visited {
+        color: inherit;
+    }
+
+    &:link {
+        color: inherit;
+    }
+
+    &:hover {
+        color: inherit;
+    }
+
+    &:active {
+        color: inherit;
+    }
+}
+

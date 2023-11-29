@@ -1,0 +1,18 @@
+@use "sass:map";
+@import "styles";
+
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.language {
+  color: map.get($colorPrimary, "active");
+  font-weight: 800;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}

@@ -1,9 +1,5 @@
-import type {Metadata, NextPageContext} from "next";
+import { redirect } from "next/navigation";
 
-type Props = {
-
-}
-
-export default async function Page(props: string) {
-    return <>index page</>;
+export default async function Page() {
+    redirect("/index.md");
 }

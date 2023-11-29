@@ -23,20 +23,23 @@
       }
     ],
     "paths": {
-      "@next/*": [
-        "./next/*"
-      ],
-      "@doc/*": [
-        "./doc/*"
-      ],
-      "@cli/*": [
-        "./cli/*"
+      "@app/*": [
+        "./app/*"
       ],
       "@comp/*": [
         "./comp/*"
       ],
-      "@server/*": [
-        "./server/*"
+      "@comby/*": [
+        "./comp/comby/*"
+      ],
+      "@pure/*": [
+        "./comp/pure/*"
+      ],
+      "@provider/*": [
+        "./comp/provider/*"
+      ],
+      "styles": [
+        "./comp/index.module.scss"
       ]
     }
   },

@@ -1,0 +1,44 @@
+@use "sass:map";
+
+$theme: dark !default;
+$colorBackground: (
+        "active": #1f222a,
+        "disabled": #15191e,
+) !default;
+$colorPanel: (
+        "bg": #2b2d38,
+        "activate": #2c3850,
+) !default;
+$colorPrimary: (
+        "active": #78e2a0,
+        "disabeld": #4db27b,
+) !default;
+$colorWarning: (
+        "active": #efaa2a,
+        "disabled": #a17514,
+) !default;
+$colorContent: (
+        "active": #dadada,
+        "disabled": #818181,
+);
+$filterPrimary: (
+        "active":invert(87%) sepia(10%) saturate(1861%) hue-rotate(81deg) brightness(96%) contrast(83%),
+        "disabled": invert(54%) sepia(12%) saturate(1781%) hue-rotate(94deg) brightness(113%) contrast(81%)
+) !default;
+
+
+.colorPrimary {
+  color: map.get($colorPrimary, "active");
+
+  &.disabled {
+    color: map.get($colorPrimary, "disabled")
+  }
+}
+
+.colorContent {
+  color: map.get($colorContent, "active");
+
+  &.disabled {
+    color: map.get($colorContent, "disabled")
+  }
+}
