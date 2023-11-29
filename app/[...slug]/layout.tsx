@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { JSX, ReactNode } from "react";
 import Layout from "@comby/layout";
 import Side from "@comby/sidebar";
+import Profile from "@comby/profile";
 
 type Params = {
     params: {
@@ -32,7 +33,9 @@ const layout = async ({ children, params: { slug } }: Props): Promise<JSX.Elemen
     return (
         <>
             <Layout>
-                <Side wd={wd} childDirList={childDirList} fileList={fileList} parentDir={parentDir}></Side>
+                <Side wd={wd} childDirList={childDirList} fileList={fileList} parentDir={parentDir}>
+                    <Profile />
+                </Side>
                 <>{children}</>
             </Layout>
         </>

@@ -28,7 +28,7 @@ const comp = async ({ children, wd, childDirList, fileList }: Props): Promise<JS
         return fn.url.glue(...parentDirs.slice(0, i + 1));
     };
     return (
-        <>
+        <div className={css.cont}>
             <div>{children}</div>
             <h3>Documents</h3>
             <Link className={css.link} href="/">
@@ -54,7 +54,7 @@ const comp = async ({ children, wd, childDirList, fileList }: Props): Promise<JS
                     </Link>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 

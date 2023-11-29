@@ -40,6 +40,9 @@
       ],
       "styles": [
         "./comp/index.module.scss"
+      ],
+      "@client/*": [
+        "./comp/client/*"
       ]
     }
   },

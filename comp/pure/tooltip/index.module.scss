@@ -1,0 +1,47 @@
+@import "../../index.module";
+
+.cont {
+  position: relative;
+  font-size: 0.8rem;
+
+  .tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    position: absolute;
+
+    height: 25px;
+
+  }
+
+  &:hover {
+    .tooltip {
+      visibility: visible;
+    }
+  }
+}
+
+.locTop {
+  bottom: 100%;
+  left: 50%;
+}
+
+.locBottom {
+  top: 100%;
+  left: 50%;
+}
+
+.locLeft {
+  top: -5px;
+  right: 105%;
+}
+
+.locRight {
+  top: -5px;
+  left: 105%;
+}
+

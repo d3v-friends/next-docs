@@ -1,4 +1,5 @@
-@import "@comp/index.scss";
+@use "sass:map";
+@import "styles";
 
 $size: 50px;
 
@@ -10,7 +11,7 @@ $size: 50px;
   right: 20px;
   bottom: 20px;
   border-radius: 30px;
-  background-color: $colorPrimaryDisabled;
+  background-color: map.get($colorPrimary, "disabled");
 
   display: flex;
   justify-content: center;
@@ -20,6 +21,6 @@ $size: 50px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: $colorPrimary;
+    background-color: map.get($colorPrimary, "active");
   }
 }

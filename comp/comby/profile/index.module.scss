@@ -1,0 +1,23 @@
+@import "styles";
+
+.cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+
+  border-radius: 50%;
+  background-color: white;
+}
+
+.info {
+  width: 100%;
+
+}

@@ -1,11 +1,13 @@
 import Top from "@comby/top";
-import Breadcrumb from "@pure/breadcrumb";
 import moment from "moment";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ReactNode } from "react";
 import Body from "@pure/body";
 import Footer from "@pure/footer";
+import OnTop from "@client/onTop";
 import css from "@comp/index.module.scss";
+import ToolTip from "@pure/tooltip";
 import "@comp/global.css";
 
 export const metadata: Metadata = {
@@ -29,10 +31,13 @@ export default async function Layout({ children }: Props) {
             <body className={css.body}>
                 <Body>
                     <Top title={"next-docs"}>
-                        <div>signIn</div>
+                        <ToolTip tooltip={"signIn"}>
+                            <Image src={"/asset/img/svg/account.svg"} alt={"account"} width={30} height={30} />
+                        </ToolTip>
                     </Top>
                     {children}
                     <Footer since={moment("1987-09-24").toDate()} name={"Ciao Lee"} />
+                    <OnTop />
                 </Body>
             </body>
         </html>
