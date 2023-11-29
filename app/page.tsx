@@ -1,9 +1,9 @@
-import type { Metadata, NextPageContext } from "next";
+import type {Metadata, NextPageContext} from "next";
 
-export const metadata: Metadata = {
-    title: "page",
-    description: "page template",
-};
-export default function Page(props: string) {
+type Props = {
+
+}
+
+export default async function Page(props: string) {
     return <>index page</>;
 }

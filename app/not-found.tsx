@@ -1,7 +1,7 @@
-export default function Comp() {
+export default async function NotFound() {
     return (
         <>
-            <h1>global error</h1>
+            <h1>Not Found</h1>
         </>
     );
 }

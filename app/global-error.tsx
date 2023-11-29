@@ -1,5 +1,4 @@
 "use client";
-import "@comp/index.css";
 export default function Comp() {
     return (
         <html lang="ko">
