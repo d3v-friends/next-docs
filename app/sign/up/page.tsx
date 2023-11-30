@@ -14,6 +14,7 @@ type Props = {};
 const Page = async ({}: Props): Promise<JSX.Element> => {
     const onSubmit = async (form: FormData) => {
         "use server";
+        console.log("username", form.get("username"));
     };
     return (
         <>
