@@ -1,33 +1,36 @@
-import fn from "@comp/index";
+import fnCss from "@pure/fnCss";
+import Breadcrumb from "@pure/breadcrumb";
+import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, JSX } from "react";
+import Tooltip from "@pure/tooltip";
+import { JSX } from "react";
 import css from "./index.module.scss";
 
 type Props = {
-    title?: ReactNode;
-    center?: ReactNode;
-    children?: ReactNode;
+    path?: string;
+    children?: {
+        src: string;
+        href: string;
+        tooltip: string;
+    }[];
 };
 
-const {
-    css: { merge },
-} = fn;
-
-const comp = async ({ children, center, title }: Props): Promise<JSX.Element> => {
+const comp = async ({ path, children }: Props): Promise<JSX.Element> => {
+    children = children || [];
     return (
-        <>
-            <div className={css.cont}>
-                <div className={merge(css.nav, css.widthFull)}>
-                    <div className={merge(css.title, css.widthSidebar)}>
-                        <Link href={"/"}>{title}</Link>
-                    </div>
-                    <div className={css.space}>{center}</div>
-                    <div>{children}</div>
+        <div className={css.cont}>
+            <Breadcrumb>{path}</Breadcrumb>
+            <div className={css.space}></div>
+            {children.map((v, i) => (
+                <div className={css.icon} key={i}>
+                    <Link href={v.href}>
+                        <Tooltip tooltip={v.tooltip}>
+                            <Image className={css.iconImg} src={v.src} alt={v.href} width={50} height={50} />
+                        </Tooltip>
+                    </Link>
                 </div>
-            </div>
-
-            <div className={css.boxMargin} />
-        </>
+            ))}
+        </div>
     );
 };
 

@@ -1,28 +1,24 @@
-import fn from "@comp/index";
-import { Metadata } from "next";
+import fnUrl from "@pure/fnUrl";
 import Link from "next/link";
 import { JSX } from "react";
 import css from "./index.module.scss";
 
-export const generateMetadata = async (): Promise<Metadata> => {
-    return {
-        title: "title",
-        description: "page",
-    };
-};
-
 type Props = {
-    children: string;
+    path?: string;
+    children?: string;
 };
 
-const comp = async ({ children }: Props): Promise<JSX.Element> => {
-    const pathLS = children
+const comp = async ({ children, path }: Props): Promise<JSX.Element> => {
+    const p = children || path || "";
+    if (p === "") return <></>;
+
+    const pathLS = p
         .split("/")
         .filter(v => v !== "")
         .map(v => `/${v}`);
 
     const getHref = (i: number): string => {
-        return fn.url.glue(...pathLS.slice(0, i));
+        return fnUrl.glue(...pathLS.slice(0, i));
     };
 
     return (

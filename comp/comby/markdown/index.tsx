@@ -1,3 +1,4 @@
+import fnCss from "@pure/fnCss";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { Components } from "react-markdown";
@@ -7,12 +8,11 @@ import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import OnCopy from "@comp/client/onCopy";
 import LangHeader from "./langHeader";
 import ImgText from "@pure/imgText";
-import fn from "@comp/index";
+import H from "@pure/tag-h";
+import P from "@pure/tag-p";
 import css from "./index.module.scss";
 
-const {
-    css: { merge },
-} = fn;
+const { merge } = fnCss;
 
 const MdComps: Components = {
     code: ({ children, className }) => {
@@ -76,7 +76,7 @@ const MdComps: Components = {
 
                 return (
                     <div className={css.input}>
-                        <Image className={merge(css.svgFilterSecondary, css.svg)} width={20} height={20} src={src} alt={"check"} />
+                        <Image className={merge(css.svgFilterSecondary, css.svg)} width={50} height={50} src={src} alt={"check"} />
                         <div>{children}</div>
                     </div>
                 );
@@ -89,21 +89,49 @@ const MdComps: Components = {
         }
     },
     pre: ({ children }) => <pre className={css.pre}>{children}</pre>,
-    h1: ({ children }) => <h1 className={merge(css.colorPrimary, css.h1)}>{children}</h1>,
-    h2: ({ children }) => <h2 className={merge(css.colorPrimary, css.h2)}>{children}</h2>,
-    h3: ({ children }) => <h3 className={merge(css.colorPrimary, css.h3)}>{children}</h3>,
-    h4: ({ children }) => <h4 className={merge(css.h4)}>{children}</h4>,
-    h5: ({ children }) => <h5 className={merge(css.h5)}>{children}</h5>,
-    h6: ({ children }) => <h6 className={merge(css.h6)}>{children}</h6>,
+    h1: ({ children }) => (
+        <H size="h1" className={merge(css.hBorderBottom, css.hLarge)}>
+            {children}
+        </H>
+    ),
+    h2: ({ children }) => (
+        <H size="h2" className={merge(css.hLarge)}>
+            {children}
+        </H>
+    ),
+    h3: ({ children }) => (
+        <H size="h3" className={merge(css.hLarge)}>
+            {children}
+        </H>
+    ),
+    h4: ({ children }) => (
+        <H size="h4" className={merge(css.hSmall)}>
+            {children}
+        </H>
+    ),
+    h5: ({ children }) => (
+        <H size="h5" className={merge(css.hSmall)}>
+            {children}
+        </H>
+    ),
+    h6: ({ children }) => (
+        <H size="h6" className={merge(css.hSmall)}>
+            {children}
+        </H>
+    ),
     del: ({ children }) => <del className={merge(css.del)}>{children}</del>,
-    p: ({ children }) => <div className={merge(css.p)}>{children}</div>,
+    p: ({ children }) => <P>{children}</P>,
     hr: () => <div className={css.hr} />,
 };
 
-export default async function Comp({ children }: { children: string }) {
-    return (
-        <Markdown components={MdComps} remarkPlugins={[gfm]}>
-            {children}
-        </Markdown>
-    );
-}
+type Props = {
+    children: string;
+};
+
+const Comp = async ({ children }: Props) => (
+    <Markdown components={MdComps} remarkPlugins={[gfm]}>
+        {children}
+    </Markdown>
+);
+
+export default Comp;

@@ -1,9 +1,7 @@
-import { redirect } from "next/navigation";
+import fn from "@comp/index";
+import Markdown from "@comby/markdown";
 
 export default async function Page() {
-    return (
-        <>
-            <h1>index.html</h1>
-        </>
-    );
+    const content = await fn.fileRw.readMd("/index.md");
+    return <Markdown>{content.content}</Markdown>;
 }

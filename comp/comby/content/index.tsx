@@ -1,6 +1,6 @@
 import fn from "@comp/index";
 import { JSX } from "react";
-import Markdown from "@pure/markdown";
+import Markdown from "@comby/markdown";
 
 type Props = {
     children: string;

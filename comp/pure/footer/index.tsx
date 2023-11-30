@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import css from "./index.module.scss";
 
 type Props = {
-    since: Date;
+    since: string;
     name: string;
 };
 

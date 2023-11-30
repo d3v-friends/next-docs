@@ -1,5 +1,5 @@
-import fn from "@comp/index";
 import { ReactNode } from "react";
+import fnCss from "@pure/fnCss";
 import css from "comp/pure/tooltip/index.module.scss";
 
 interface Props {
@@ -9,9 +9,7 @@ interface Props {
 }
 
 type Location = "top" | "bottom" | "left" | "right";
-const {
-    css: { merge },
-} = fn;
+const { merge } = fnCss;
 
 export default function Comp({ children, tooltip, loc }: Props) {
     const width = tooltip.length * 8;

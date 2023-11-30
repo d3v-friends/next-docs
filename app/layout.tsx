@@ -1,15 +1,11 @@
-import Top from "@comby/top";
-import moment from "moment";
+import fn from "@comp/index";
 import type { Metadata } from "next";
-import Image from "next/image";
-import { ReactNode } from "react";
-import Body from "@pure/body";
+import { ReactNode, JSX } from "react";
+import TopButton from "@client/onTop";
 import Footer from "@pure/footer";
-import OnTop from "@client/onTop";
-import ToolTip from "@pure/tooltip";
-import Divider from "@comby/layout";
-import Profile from "@comby/profile";
-import css from "@comp/index.module.scss";
+import Body from "@pure/body";
+import Top from "@comby/top";
+
 import "@comp/global.css";
 
 export const metadata: Metadata = {
@@ -25,28 +21,33 @@ type Props = {
 };
 
 const Layout = async ({ children }: Props): Promise<JSX.Element> => {
+    const fileList = await fn.indexMD.readList("all");
+
     return (
         <html lang="ko">
             <head>
                 <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
-            <body className={css.body}>
-                <Body>
-                    <Top title={"next-docs"}>
-                        <ToolTip tooltip={"signIn"}>
-                            <Image src={"/asset/img/svg/account.svg"} alt={"account"} width={30} height={30} />
-                        </ToolTip>
-                    </Top>
-
-                    <Divider>
-                        <Profile />
-                        <>{children}</>
-                    </Divider>
-
-                    <Footer since={moment("1987-09-24").toDate()} name={"Ciao Lee"} />
-                    <OnTop />
-                </Body>
-            </body>
+            <Body title={"next-docs"}>
+                <Top>
+                    {[
+                        {
+                            src: "/asset/img/svg/account.svg",
+                            tooltip: "sign up",
+                            href: "/sign/up",
+                        },
+                        {
+                            src: "/asset/img/svg/signin.svg",
+                            tooltip: "sign in",
+                            href: "/sign/in",
+                        },
+                    ]}
+                </Top>
+                <>side</>
+                {children}
+                <Footer name="Ciao Lee" since="1987-09-24" />
+            </Body>
+            <TopButton />
         </html>
     );
 };

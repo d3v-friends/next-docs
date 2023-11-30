@@ -6,8 +6,8 @@ $colorBackground: (
         "disabled": #15191e,
 ) !default;
 $colorPanel: (
-        "bg": #2b2d38,
-        "activate": #2c3850,
+        "active": #2c3850,
+        "disabled": #2b2d38,
 ) !default;
 $colorPrimary: (
         "active": #78e2a0,
@@ -24,6 +24,10 @@ $colorContent: (
 $filterPrimary: (
         "active":invert(87%) sepia(10%) saturate(1861%) hue-rotate(81deg) brightness(96%) contrast(83%),
         "disabled": invert(54%) sepia(12%) saturate(1781%) hue-rotate(94deg) brightness(113%) contrast(81%)
+) !default;
+$filterContent: (
+        "active": invert(91%) sepia(1%) saturate(4%) hue-rotate(314deg) brightness(98%) contrast(88%),
+        "disabled": invert(56%) sepia(9%) saturate(13%) hue-rotate(324deg) brightness(89%) contrast(91%),
 ) !default;
 
 

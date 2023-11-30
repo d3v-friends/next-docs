@@ -1,31 +1,43 @@
-@use "sass:map";
 @import "styles";
 
-// header = #
-.h1 {
-  border-bottom: 1px solid map.get($colorPrimary, "active");
-  margin-bottom: 20px;
-  margin-top: 10px;
+.hLarge {
+  @include bp1 {
+    margin-bottom: 10px;
+  }
+
+  @include bp2 {
+    margin-bottom: 10px;
+  }
+
+  @include bp3 {
+    margin-bottom: 20px;
+  }
+
+  @include bp4 {
+    margin-bottom: 20px;
+  }
 }
 
-.h2 {
-  margin-bottom: 20px;
+.hSmall {
+  @include bp1 {
+    margin-bottom: 5px;
+  }
+
+  @include bp2 {
+    margin-bottom: 5px;
+  }
+
+  @include bp3 {
+    margin-bottom: 10px;
+  }
+
+  @include bp4 {
+    margin-bottom: 10px;
+  }
 }
 
-.h3 {
-  margin-bottom: 10px;
-}
-
-.h4 {
-  margin-bottom: 10px;
-}
-
-.h5 {
-  margin-bottom: 10px;
-}
-
-.h6 {
-  margin-bottom: 10px;
+.hBorderBottom {
+  border-bottom: 1px solid map-get($colorPrimary, "active");
 }
 
 // hr = ---
@@ -40,7 +52,7 @@
     position: relative;
     padding: 20px 10px 20px 10px !important;
     border-radius: 5px;
-    background-color: map.get($colorPanel, "disabled") !important;
+    background-color: map-get($colorPanel, "disabled") !important;
   }
 }
 
@@ -50,16 +62,16 @@
   justify-content: flex-start;
   align-items: flex-end;
   text-decoration: none;
-  color: map.get($colorContent, "disabled") !important;
+  color: map-get($colorContent, "disabled") !important;
 
 
   .img {
     margin-right: 7px;
-    filter: map.get($filterPrimary, "disabled");
+    filter: map-get($filterPrimary, "disabled");
   }
 
   &:hover {
-    color: map.get($colorContent, "active") !important;
+    color: map-get($colorContent, "active") !important;
   }
 }
 
@@ -79,7 +91,7 @@
 
 // content
 .p {
-  color: map.get($colorContent, "active");
+  color: map-get($colorContent, "active");
 }
 
 
@@ -91,7 +103,9 @@
 
   .svg {
     margin-right: 5px;
-    filter: map.get($filterPrimary, "active")
+    filter: map-get($filterPrimary, "active");
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -102,7 +116,7 @@
   align-items: center;
 
   .title {
-    color: map.get($colorPrimary, "active");
+    color: map-get($colorPrimary, "active");
     font-weight: 800;
     padding-left: 10px;
     margin: 20px 0 10px 0;
@@ -120,16 +134,16 @@
 }
 
 .del {
-  color: map.get($colorContent, "disabled");
+  color: map-get($colorContent, "disabled");
 
   &:hover {
-    color: map.get($colorWarning, "active");
+    color: map-get($colorWarning, "active");
     text-decoration: none;
   }
 }
 
 .hr {
-  border-top: 1px solid map.get($colorContent, "disabled");
+  border-top: 1px solid map-get($colorContent, "disabled");
   margin-top: 30px;
   height: 30px;
 }

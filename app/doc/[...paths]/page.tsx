@@ -1,7 +1,7 @@
 import fn from "@comp/index";
+import fnUrl from "@pure/fnUrl";
 import { JSX } from "react";
-import Padding from "@pure/padding";
-import Markdown from "@pure/markdown";
+import Markdown from "@comby/markdown";
 
 type Props = {
     params: {
@@ -10,9 +10,9 @@ type Props = {
 };
 
 const Comp = async ({ params: { paths } }: Props): Promise<JSX.Element> => {
-    let filepath = fn.url.glue(...paths);
+    let filepath = fnUrl.glue(...paths);
     if (!filepath.endsWith(".md")) {
-        filepath = fn.url.glue(filepath, "index.md");
+        filepath = fnUrl.glue(filepath, "index.md");
     }
 
     const readable = await fn.session.getReadable();
