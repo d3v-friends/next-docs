@@ -21,7 +21,7 @@ dependencies:
     specifier: 14.0.3
     version: 14.0.3(@babel/core@7.23.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
   otplib:
-    specifier: ^12.0.1
+    specifier: 12.0.1
     version: 12.0.1
   react:
     specifier: 18.2.0

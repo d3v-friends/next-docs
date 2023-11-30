@@ -1,5 +1,9 @@
 import { redirect } from "next/navigation";
 
 export default async function Page() {
-    redirect("/index.md");
+    return (
+        <>
+            <h1>index.html</h1>
+        </>
+    );
 }

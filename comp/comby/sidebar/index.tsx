@@ -9,6 +9,7 @@ type Props = {
     fileList: string[];
     parentDir: string;
     childDirList: string[];
+    prefixUrl: string;
     children?: ReactNode;
 };
 
@@ -20,13 +21,15 @@ const srcParent = "/asset/img/svg/dir_parent.svg";
 const srcChild = "/asset/img/svg/dir_children.svg";
 const srcMd = "/asset/img/svg/file.svg";
 
-const comp = async ({ children, wd, childDirList, fileList }: Props): Promise<JSX.Element> => {
+const comp = async ({ children, wd, childDirList, fileList, prefixUrl }: Props): Promise<JSX.Element> => {
     const parentDirs = wd.split("/").filter(v => v !== "");
     const paddingLeft = 10;
     const wdPaddingLeft = parentDirs.length * paddingLeft;
     const getHref = (i: number): string => {
-        return fn.url.glue(...parentDirs.slice(0, i + 1));
+        return fn.url.glue(prefixUrl, ...parentDirs.slice(0, i + 1));
     };
+
+    const withPrefix = (v: string) => fn.url.glue(prefixUrl, v);
     return (
         <div className={css.cont}>
             <div>{children}</div>
@@ -43,13 +46,13 @@ const comp = async ({ children, wd, childDirList, fileList }: Props): Promise<JS
                 ))}
 
                 {childDirList.map((v, i) => (
-                    <Link className={css.link} href={v} key={i} style={{ paddingLeft: wdPaddingLeft }}>
+                    <Link className={css.link} href={withPrefix(v)} key={i} style={{ paddingLeft: wdPaddingLeft }}>
                         <ImgText src={srcChild}>{basename(v)}</ImgText>
                     </Link>
                 ))}
 
                 {fileList.map((v, i) => (
-                    <Link className={css.link} href={v} key={i} style={{ paddingLeft: wdPaddingLeft }}>
+                    <Link className={css.link} href={withPrefix(v)} key={i} style={{ paddingLeft: wdPaddingLeft }}>
                         <ImgText src={srcMd}>{basename(v)}</ImgText>
                     </Link>
                 ))}

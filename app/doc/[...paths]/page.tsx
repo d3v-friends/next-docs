@@ -1,15 +1,16 @@
 import fn from "@comp/index";
 import { JSX } from "react";
+import Padding from "@pure/padding";
 import Markdown from "@pure/markdown";
 
 type Props = {
     params: {
-        slug: string[];
+        paths: string[];
     };
 };
 
-const comp = async ({ params: { slug } }: Props): Promise<JSX.Element> => {
-    let filepath = fn.url.glue(...slug);
+const Comp = async ({ params: { paths } }: Props): Promise<JSX.Element> => {
+    let filepath = fn.url.glue(...paths);
     if (!filepath.endsWith(".md")) {
         filepath = fn.url.glue(filepath, "index.md");
     }
@@ -23,4 +24,4 @@ const comp = async ({ params: { slug } }: Props): Promise<JSX.Element> => {
     }
 };
 
-export default comp;
+export default Comp;

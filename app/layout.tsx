@@ -6,8 +6,10 @@ import { ReactNode } from "react";
 import Body from "@pure/body";
 import Footer from "@pure/footer";
 import OnTop from "@client/onTop";
-import css from "@comp/index.module.scss";
 import ToolTip from "@pure/tooltip";
+import Divider from "@comby/layout";
+import Profile from "@comby/profile";
+import css from "@comp/index.module.scss";
 import "@comp/global.css";
 
 export const metadata: Metadata = {
@@ -22,7 +24,7 @@ type Props = {
     };
 };
 
-export default async function Layout({ children }: Props) {
+const Layout = async ({ children }: Props): Promise<JSX.Element> => {
     return (
         <html lang="ko">
             <head>
@@ -35,11 +37,18 @@ export default async function Layout({ children }: Props) {
                             <Image src={"/asset/img/svg/account.svg"} alt={"account"} width={30} height={30} />
                         </ToolTip>
                     </Top>
-                    {children}
+
+                    <Divider>
+                        <Profile />
+                        <>{children}</>
+                    </Divider>
+
                     <Footer since={moment("1987-09-24").toDate()} name={"Ciao Lee"} />
                     <OnTop />
                 </Body>
             </body>
         </html>
     );
-}
+};
+
+export default Layout;
