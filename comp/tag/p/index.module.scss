@@ -1,0 +1,55 @@
+@import "../index";
+
+.p {
+  display: block;
+  color: map-get($colorContent, "disabled");
+}
+
+.hover {
+  color: map-get($colorContent, "active");
+}
+
+.p1 {
+  @include bp1 {
+    font-size: 0.8rem;
+  }
+  @include bp2 {
+    font-size: 0.85rem;
+  }
+  @include bp3 {
+    font-size: 0.9rem;
+  }
+  @include bp4 {
+    font-size: 0.9rem;
+  }
+}
+
+.p2 {
+  @include bp1 {
+    font-size: 0.85rem;
+  }
+  @include bp2 {
+    font-size: 0.9rem;
+  }
+  @include bp3 {
+    font-size: 0.95rem;
+  }
+  @include bp4 {
+    font-size: 1rem;
+  }
+}
+
+.p3 {
+  @include bp1 {
+    font-size: 0.9rem;
+  }
+  @include bp2 {
+    font-size: 0.95rem;
+  }
+  @include bp3 {
+    font-size: 1rem;
+  }
+  @include bp4 {
+    font-size: 1.5rem;
+  }
+}

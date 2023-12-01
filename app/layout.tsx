@@ -1,11 +1,9 @@
-import fn from "@comp/index";
 import type { Metadata } from "next";
 import { ReactNode, JSX } from "react";
 import TopButton from "@client/onTop";
 import Footer from "@pure/footer";
 import Body from "@pure/body";
 import Top from "@comby/top";
-
 import "@comp/global.css";
 
 export const metadata: Metadata = {
@@ -21,7 +19,7 @@ type Props = {
 };
 
 const Layout = async ({ children }: Props): Promise<JSX.Element> => {
-    const fileList = await fn.indexMD.readList("all");
+    // const fileList = await fn.indexMD.readList("all");
 
     return (
         <html lang="ko">

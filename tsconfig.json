@@ -46,6 +46,12 @@
       ],
       "@next/*": [
         "./next/*"
+      ],
+      "@tag/*": [
+        "./comp/tag/*"
+      ],
+      "@tag": [
+        "./comp/tag/index.tsx"
       ]
     }
   },

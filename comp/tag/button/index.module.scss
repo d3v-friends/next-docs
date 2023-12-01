@@ -1,0 +1,67 @@
+@import "../index";
+
+.button {
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  border: 2px solid;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+
+  @include bp1 {
+    font-size: 0.80rem;
+    height: 30px;
+  }
+
+  @include bp2 {
+    font-size: 0.85rem;
+    height: 30px;
+  }
+
+  @include bp3 {
+    font-size: 0.90rem;
+    height: 40px;
+  }
+
+  @include bp4 {
+    font-size: 0.95rem;
+    height: 40px;
+  }
+}
+
+// ------------------------------------------------------------
+// colors
+
+.primary {
+
+  &.fill {
+    border-color: map-get($colorPrimary, "disabled");
+    color: map-get($colorBackground, "disabled");
+    background-color: map-get($colorPrimary, "disabled");
+
+    &:hover {
+      border-color: map-get($colorPrimary, "active");
+      background-color: map-get($colorPrimary, "active");
+    }
+  }
+
+  &.outline {
+    color: map-get($colorPrimary, "disabled");
+    background-color: map-get($colorBackground, "active");
+    border-color: map-get($colorPrimary, "disabled");
+
+    &:hover {
+      color: map-get($colorBackground, "disabled");
+      border-color: map-get($colorPrimary, "active");
+      background-color: map-get($colorPrimary, "active");
+    }
+  }
+}
+

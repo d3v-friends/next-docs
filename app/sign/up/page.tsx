@@ -1,6 +1,8 @@
 import { Metadata } from "next";
-import { JSX, ReactNode } from "react";
-import Form from "@pure/form";
+import { JSX } from "react";
+import Tag from "@tag";
+
+const { Form, Input, H1, Button, Hr, Space, Link } = Tag;
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
@@ -12,21 +14,27 @@ export const generateMetadata = async (): Promise<Metadata> => {
 type Props = {};
 
 const Page = async ({}: Props): Promise<JSX.Element> => {
-    const onSubmit = async (form: FormData) => {
+    const onAction = async (form: FormData) => {
         "use server";
         console.log("username", form.get("username"));
+        console.log("password", form.get("password"));
     };
     return (
         <>
-            <Form submit={onSubmit}>
-                {[
-                    {
-                        name: "username",
-                        type: "text",
-                        placeholder: "username",
-                    },
-                ]}
+            <H1>SignUp</H1>
+            <Space height={30} />
+            <Form action={onAction}>
+                <Input type="text" name="username" label="username" />
+                <Input type="text" name="password" label="password" />
+                <Hr />
+
+                <Button type="submit">Sign Up</Button>
+                <Button type="button" style="outline"></Button>
             </Form>
+
+            <Link iconSrc="/asset/img/svg/account.svg" href={"/sign/in"}>
+                Sign in
+            </Link>
         </>
     );
 };

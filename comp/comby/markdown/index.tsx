@@ -5,14 +5,16 @@ import { Components } from "react-markdown";
 import gfm from "remark-gfm";
 import Code from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import OnCopy from "@comp/client/onCopy";
 import LangHeader from "./langHeader";
 import ImgText from "@pure/imgText";
-import H from "@pure/tag-h";
 import P from "@pure/tag-p";
 import css from "./index.module.scss";
+import OnCopy from "@client/onCopy";
+import Tag from "@tag";
 
 const { merge } = fnCss;
+
+const { H1, H2, H3, H4, H5, H6 } = Tag;
 
 const MdComps: Components = {
     code: ({ children, className }) => {
@@ -89,36 +91,12 @@ const MdComps: Components = {
         }
     },
     pre: ({ children }) => <pre className={css.pre}>{children}</pre>,
-    h1: ({ children }) => (
-        <H size="h1" className={merge(css.hBorderBottom, css.hLarge)}>
-            {children}
-        </H>
-    ),
-    h2: ({ children }) => (
-        <H size="h2" className={merge(css.hLarge)}>
-            {children}
-        </H>
-    ),
-    h3: ({ children }) => (
-        <H size="h3" className={merge(css.hLarge)}>
-            {children}
-        </H>
-    ),
-    h4: ({ children }) => (
-        <H size="h4" className={merge(css.hSmall)}>
-            {children}
-        </H>
-    ),
-    h5: ({ children }) => (
-        <H size="h5" className={merge(css.hSmall)}>
-            {children}
-        </H>
-    ),
-    h6: ({ children }) => (
-        <H size="h6" className={merge(css.hSmall)}>
-            {children}
-        </H>
-    ),
+    h1: ({ children }) => <Tag.H1 className={merge(css.hBorderBottom, css.hLarge)}>{children}</Tag.H1>,
+    h2: ({ children }) => <Tag.H2 className={merge(css.hLarge)}>{children}</Tag.H2>,
+    h3: ({ children }) => <Tag.H3 className={merge(css.hLarge)}>{children}</Tag.H3>,
+    h4: ({ children }) => <H4 className={merge(css.hSmall)}>{children}</H4>,
+    h5: ({ children }) => <H5 className={merge(css.hSmall)}>{children}</H5>,
+    h6: ({ children }) => <H6 className={merge(css.hSmall)}>{children}</H6>,
     del: ({ children }) => <del className={merge(css.del)}>{children}</del>,
     p: ({ children }) => <P>{children}</P>,
     hr: () => <div className={css.hr} />,
