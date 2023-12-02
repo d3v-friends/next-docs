@@ -12,9 +12,10 @@ type IArgs = {
     name: string;
     label?: string;
     placeholder?: string;
+    required?: boolean;
 };
 
-const Comp = async ({ type, name, placeholder, label }: IArgs): Promise<JSX.Element> => {
+const Comp = async ({ type, name, placeholder, label, required }: IArgs): Promise<JSX.Element> => {
     const id = v4();
     return (
         <>
@@ -30,6 +31,7 @@ const Comp = async ({ type, name, placeholder, label }: IArgs): Promise<JSX.Elem
                 name={name}
                 placeholder={placeholder}
                 autoComplete={"on"}
+                required={required}
             />
         </>
     );

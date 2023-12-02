@@ -1,5 +1,3 @@
-@use "sass:map";
-
 $theme: dark !default;
 $colorBackground: (
         "active": #1f222a,
@@ -41,17 +39,17 @@ $colorLink: (
 ) !default;
 
 .colorPrimary {
-  color: map.get($colorPrimary, "active");
+  color: map-get($colorPrimary, "active");
 
   &.disabled {
-    color: map.get($colorPrimary, "disabled")
+    color: map-get($colorPrimary, "disabled")
   }
 }
 
 .colorContent {
-  color: map.get($colorContent, "active");
+  color: map-get($colorContent, "active");
 
   &.disabled {
-    color: map.get($colorContent, "disabled")
+    color: map-get($colorContent, "disabled")
   }
 }

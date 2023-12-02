@@ -4,6 +4,8 @@ import path from "path";
 import readline from "readline";
 import fnUrl from "@pure/fnUrl";
 
+export type Nullable<T> = T | null | undefined;
+
 namespace fn {
     const url = fnUrl;
 

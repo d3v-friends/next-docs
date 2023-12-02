@@ -7,14 +7,13 @@ import Code from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import LangHeader from "./langHeader";
 import ImgText from "@pure/imgText";
-import P from "@pure/tag-p";
+import Tag from "@tag/index";
 import css from "./index.module.scss";
 import OnCopy from "@client/onCopy";
-import Tag from "@tag";
 
 const { merge } = fnCss;
 
-const { H1, H2, H3, H4, H5, H6 } = Tag;
+const { H1, H2, H3, H4, H5, H6, P1 } = Tag;
 
 const MdComps: Components = {
     code: ({ children, className }) => {
@@ -91,14 +90,14 @@ const MdComps: Components = {
         }
     },
     pre: ({ children }) => <pre className={css.pre}>{children}</pre>,
-    h1: ({ children }) => <Tag.H1 className={merge(css.hBorderBottom, css.hLarge)}>{children}</Tag.H1>,
-    h2: ({ children }) => <Tag.H2 className={merge(css.hLarge)}>{children}</Tag.H2>,
-    h3: ({ children }) => <Tag.H3 className={merge(css.hLarge)}>{children}</Tag.H3>,
-    h4: ({ children }) => <H4 className={merge(css.hSmall)}>{children}</H4>,
-    h5: ({ children }) => <H5 className={merge(css.hSmall)}>{children}</H5>,
-    h6: ({ children }) => <H6 className={merge(css.hSmall)}>{children}</H6>,
+    h1: ({ children }) => <H1 className={merge(css.large, css.hBorderBottom, css.colorPrimary)}>{children}</H1>,
+    h2: ({ children }) => <H2 className={merge(css.large, css.colorPrimary)}>{children}</H2>,
+    h3: ({ children }) => <H3 className={merge(css.medium)}>{children}</H3>,
+    h4: ({ children }) => <H4 className={merge(css.medium)}>{children}</H4>,
+    h5: ({ children }) => <H5 className={merge(css.small)}>{children}</H5>,
+    h6: ({ children }) => <H6 className={merge(css.small)}>{children}</H6>,
     del: ({ children }) => <del className={merge(css.del)}>{children}</del>,
-    p: ({ children }) => <P>{children}</P>,
+    p: ({ children }) => <P1>{children}</P1>,
     hr: () => <div className={css.hr} />,
 };
 

@@ -5,23 +5,7 @@
   text-decoration: none;
   color: map-get($colorLink, "normal");
   cursor: default;
-
-  @include bp1 {
-    font-weight: 400;
-    font-size: 0.8rem;
-  }
-  @include bp2 {
-    font-weight: 400;
-    font-size: 0.85rem;
-  }
-  @include bp3 {
-    font-weight: 500;
-    font-size: 0.9rem;
-  }
-  @include bp4 {
-    font-weight: 500;
-    font-size: 0.9rem;
-  }
+  font-size: 1rem;
 
   &.inline {
     display: inline-block;
@@ -51,14 +35,16 @@
 
 .cont {
   display: flex;
+  align-items: center;
 
   .icon {
     display: block;
     filter: map-get($filterPrimary, "disabled");
-    height: 0.9rem;
+    height: 1rem;
   }
 
   .children {
+    font-size: 1rem;
     text-decoration: underline;
     color: map-get($colorLink, "normal");
   }

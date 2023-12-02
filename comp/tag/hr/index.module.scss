@@ -4,21 +4,6 @@
 .hr {
   width: 100%;
   border-top: 2px solid map-get($colorBorder, "normal");
-
-  @include bp1 {
-    height: 20px;
-  }
-
-  @include bp2 {
-    height: 20px;
-  }
-
-  @include bp3 {
-    height: 40px;
-  }
-
-  @include bp4 {
-    height: 40px;
-  }
+  height: 2.5rem;
 }
 

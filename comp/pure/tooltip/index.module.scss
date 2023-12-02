@@ -1,4 +1,4 @@
-@import "styles";
+@import "../../index";
 
 .cont {
   position: relative;
@@ -15,7 +15,6 @@
     position: absolute;
 
     height: 25px;
-
   }
 
   &:hover {
@@ -25,23 +24,23 @@
   }
 }
 
-.locTop {
+.top {
   bottom: 100%;
   left: 50%;
 }
 
-.locBottom {
+.bottom {
   top: 100%;
   left: 50%;
 }
 
-.locLeft {
-  top: -5px;
-  right: 105%;
+.left {
+  top: calc((100% / 2) - 0.8rem);
+  right: 120%;
 }
 
-.locRight {
-  top: -5px;
-  left: 105%;
+.right {
+  top: calc((100% / 2) - 0.8rem);
+  left: 130%;
 }
 

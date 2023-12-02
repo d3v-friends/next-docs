@@ -119,18 +119,22 @@ $contentWidth: (
 
   @include bp1 {
     padding-top: calc(#{map-get($navHeight, "bp1")} + 5px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp1")});
   }
 
   @include bp2 {
     padding-top: calc(#{map-get($navHeight, "bp2")} + 5px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp2")});
   }
 
   @include bp3 {
     padding-top: calc(#{map-get($navHeight, "bp3")} + 10px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp3")});
   }
 
   @include bp4 {
     padding-top: calc(#{map-get($navHeight, "bp4")} + 10px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp4")});
   }
 
   .side {

@@ -14,9 +14,6 @@ namespace Next {
         update: Date;
     };
 
-
-
-
     type Verifier = {
         key: string;
         value: string;

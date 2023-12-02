@@ -1,5 +1,5 @@
 import merge from "../merge";
-import { ReactNode, JSX } from "react";
+import { JSX } from "react";
 import css from "./index.module.scss";
 
 const Comp = async (): Promise<JSX.Element> => {

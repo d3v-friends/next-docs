@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import H from "./h";
 import P from "./p";
-import Form from "./form";
 import Input from "./input";
 import Button from "./button";
 import Hr from "./hr";
 import Space from "./space";
 import Link from "./link";
+import Divider from "./divider";
 
 type HArgs = {
     align?: "left" | "center" | "right";
@@ -31,12 +31,12 @@ const Tag = {
     P1: ({ hover, children }: PArgs) => P({ hover, children, size: 1 }),
     P2: ({ hover, children }: PArgs) => P({ hover, children, size: 2 }),
     P3: ({ hover, children }: PArgs) => P({ hover, children, size: 3 }),
-    Form,
     Input,
     Button,
     Hr,
     Space,
     Link,
+    Divider,
 };
 
 export default Tag;
