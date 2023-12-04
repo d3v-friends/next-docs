@@ -4,9 +4,7 @@ import fnEnv from "@fn/env";
 import fnJson from "@fn/json";
 import fnPath from "@fn/path";
 import crypto from "crypto";
-import fs from "fs";
 import jsonwebtoken from "jsonwebtoken";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { v4 } from "uuid";
@@ -71,6 +69,8 @@ const NoVerifyToken: VerifyToken = {
 };
 
 function verifyToken(token: string): VerifyToken {
+    if (!token) return NoVerifyToken;
+
     const res = jsonwebtoken.verify(token, getSecret()) as TokenPayload;
 
     if (!res) return NoVerifyToken;
@@ -133,12 +133,15 @@ export async function getSession(): Promise<SessionStatus> {
     };
 }
 
-export async function signOut(): Promise<boolean> {
-    cookies().delete(keySession);
-    redirect("/sign/in")
-}
-
 /* -------------------------------------------------------------------------------------------------- */
+
+export async function SignOutAction(_: any, form: FormData) {
+    return FnFormAction(form, async data => {
+        cookies().delete(keySession);
+        redirect("/sign/in");
+        return;
+    });
+}
 
 // actions
 export async function SignUpAction(_: any, form: FormData) {
