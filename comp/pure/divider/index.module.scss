@@ -1,0 +1,11 @@
+@import "../../tag/index";
+
+.cont {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.space {
+  flex-grow: 1;
+}

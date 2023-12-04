@@ -26,20 +26,22 @@
       "@comp/*": [
         "./comp/*"
       ],
+      "@action/*": [
+        "./action/*"
+      ],
       "@app/*": [
         "./app/*"
       ],
-      "@fn": [
-        "./fn/index.ts"
-      ],
-      "@fnClient/*": [
-        "./fn/client/*"
-      ],
-      "@fnServer/*": [
-        "./fn/server/*"
+      "@fn/*": [
+        "./fn/*"
       ],
       "@comby/*": [
         "./comp/comby/*"
+      ],
+      "@page/*": [
+      ],
+      "@pure": [
+        "./comp/pure/index.ts"
       ],
       "@pure/*": [
         "./comp/pure/*"
@@ -52,6 +54,9 @@
       ],
       "@client/*": [
         "./comp/client/*"
+      ],
+      "@client": [
+        "./comp/client/index.ts"
       ],
       "@tag/*": [
         "./comp/tag/*"

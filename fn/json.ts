@@ -4,7 +4,7 @@ import fnPath from "./path";
 
 //--- 모든 path 는 상대주소로 입력 받는다.
 
-const read = async <DATA extends object>(fp: string): Promise<DATA> => {
+async function read<DATA extends object>(fp: string): Promise<DATA> {
     fp = fnPath.server(fp);
     const rl = readline.createInterface({
         input: fs.createReadStream(fp),
@@ -17,20 +17,35 @@ const read = async <DATA extends object>(fp: string): Promise<DATA> => {
     }
 
     return JSON.parse(res) as DATA;
-};
+}
 
-const write = async <DATA extends object>(fp: string, value: DATA): Promise<void> => {
+async function write<DATA extends object>(fp: string, value: DATA): Promise<void> {
     fp = fnPath.server(fp);
     if (fs.existsSync(fp)) {
         fs.rmSync(fp);
     }
     fs.writeFileSync(fp, JSON.stringify(value));
     return;
-};
+}
+
+function remove(fp: string) {
+    fp = fnPath.server(fp);
+    if (!fs.existsSync(fp)) {
+        return;
+    }
+    fs.rmSync(fp);
+}
+
+function isExist(fp: string): boolean {
+    fp = fnPath.server(fp);
+    return fs.existsSync(fp);
+}
 
 const fnJson = {
     read,
     write,
+    remove,
+    isExist,
 };
 
 export default fnJson;

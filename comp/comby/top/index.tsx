@@ -1,4 +1,3 @@
-import fnCss from "@pure/fnCss";
 import Breadcrumb from "@pure/breadcrumb";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,11 +7,13 @@ import css from "./index.module.scss";
 
 type Props = {
     path?: string;
-    children?: {
-        src: string;
-        href: string;
-        tooltip: string;
-    }[];
+    children: TopNavItem[];
+};
+
+export type TopNavItem = {
+    src: string;
+    href: string;
+    tooltip: string;
 };
 
 const comp = async ({ path, children }: Props): Promise<JSX.Element> => {

@@ -16,16 +16,15 @@ type IArgs = {
 };
 
 const Comp = async ({ type, name, placeholder, label, required }: IArgs): Promise<JSX.Element> => {
-    const id = v4();
     return (
         <>
             {label && (
-                <label htmlFor={id} className={merge(css.inputLabel, css.marginBottom)}>
+                <label htmlFor={name} className={merge(css.inputLabel, css.marginBottom)}>
                     {label}
                 </label>
             )}
             <input
-                id={id}
+                id={name}
                 className={merge(css.input, css.marginBottom)}
                 type={type}
                 name={name}

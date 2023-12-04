@@ -5,7 +5,8 @@
   text-decoration: none;
   color: map-get($colorLink, "normal");
   cursor: default;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
 
   &.inline {
     display: inline-block;
@@ -39,7 +40,6 @@
 
   .icon {
     display: block;
-    filter: map-get($filterPrimary, "disabled");
     height: 1rem;
   }
 

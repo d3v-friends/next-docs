@@ -1,41 +1,26 @@
-import CompClient from "@client/index";
-import { FormAction } from "@tag/form";
-import { Metadata } from "next";
+import Client from "@client";
 import { JSX } from "react";
+import Pure from "@comp/pure";
 import Tag from "@tag";
+import signIn from "./signin.svg";
 
-const { Input, H1, H6, Button, Hr, Space, Link, Divider, Form } = Tag;
-const { SignUp } = CompClient;
+const { H1, H6, Space, Link, P1 } = Tag;
+const { Inline } = Pure;
+const { SignUp } = Client;
 
-export const generateMetadata = async (): Promise<Metadata> => {
-    return {
-        title: "sign up",
-        description: "sign up",
-    };
-};
-
-type Props = {
-    params: {};
-    searchParams: {
-        alert: string;
-    };
-};
-
-const Page = async ({ searchParams: { alert } }: Props): Promise<JSX.Element> => {
+export default async function Page(): Promise<JSX.Element> {
     return (
         <>
             <H1>SignUp</H1>
             <Space height={"2rem"} />
             <SignUp />
 
-            <Divider>
-                <H6>if you already has account.</H6>
-                <Link iconSrc="/asset/img/svg/account.svg" href={"/sign/in"}>
+            <Inline>
+                <H6>if you already has account?</H6>
+                <Link iconSrc={signIn} href={"/sign/in"}>
                     Sign in
                 </Link>
-            </Divider>
+            </Inline>
         </>
     );
-};
-
-export default Page;
+}

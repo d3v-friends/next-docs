@@ -8,6 +8,12 @@ https://www.svgrepo.com/collection/dazzle-line-icons/
 https://change-svg-color.vercel.app/
 https://demo.bootstrapdash.com/corona/jquery/template/modern-vertical/index.html
 
+
+# debugger
+* win
+  - chrome://inspect
+* mac
+
 # markdown
 
 * @@@ info

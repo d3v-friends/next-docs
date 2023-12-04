@@ -21,9 +21,9 @@
 .iconImg {
   width: 30px;
   height: 30px;
-  filter: map-get($filterContent, "disabled");
+  filter: opacity(0.5);
 
   &:hover {
-    filter: map-get($filterContent, "active");
+    filter: opacity(1);
   }
 }

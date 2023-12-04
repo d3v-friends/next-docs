@@ -4,9 +4,13 @@ $colorBackground: (
         "disabled": #15191e,
 ) !default;
 $colorPanel: (
-        "active": #2c3850,
-        "disabled": #2b2d38,
+        "normal": #282828,
+        "disabled": #383838,
+        "active": #444444,
 ) !default;
+$colorPanelBorder: (
+        "normal": #4f4f4f,
+);
 $colorPrimary: (
         "active": #78e2a0,
         "disabled": #4db27b,

@@ -3,14 +3,14 @@ import fs from "fs";
 import path from "path";
 import readline from "readline";
 
-const string = (key: string, ...defaultValue: string[]): string => {
+export function string(key: string, ...defaultValue: string[]): string {
     const value = process.env[key] || fnParam.string(defaultValue);
     if (value == "") {
         console.log(`not found env: key=${key}`);
         process.exit(1);
     }
     return value;
-};
+}
 
 const boolean = (key: string): boolean => {
     return "true" === string(key);

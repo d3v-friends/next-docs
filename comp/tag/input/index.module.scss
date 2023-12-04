@@ -56,9 +56,10 @@
   -webkit-box-shadow: map-get($colorPanel, "active") !important;
 }
 
-input::selection,
-input:-webkit-autofill::selection {
-
+.input::selection,
+.input:-webkit-autofill::selection {
+  -webkit-text-fill-color: map-get($colorContent, "disabled");
+  -webkit-box-shadow: map-get($colorPanel, "disabled");
 }
 
 .inputLabel {

@@ -1,5 +1,5 @@
 import { ReactNode, JSX } from "react";
-import css from "./index.module.scss";
+import css from "comp/pure/divider/index.module.scss";
 
 interface Props {
     children: ReactNode[];

@@ -1,4 +1,3 @@
-import fn from "@comp/index";
 import fnUrl from "@pure/fnUrl";
 import Padding from "@pure/padding";
 import { Metadata } from "next";

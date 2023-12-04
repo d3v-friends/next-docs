@@ -1,16 +1,17 @@
+import { Metadata } from "next";
 import { JSX, ReactNode } from "react";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: "sign up",
+        description: "sign up",
+    };
+};
 
 type Props = {
     children?: ReactNode;
-    params: {};
 };
 
-const Layout = async ({ children, params }: Props): Promise<JSX.Element> => {
-    return (
-        <>
-            <div>{children}</div>
-        </>
-    );
-};
-
-export default Layout;
+export default async function Layout({ children }: Props): Promise<JSX.Element> {
+    return <>{children}</>;
+}

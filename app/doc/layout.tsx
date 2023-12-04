@@ -7,6 +7,8 @@ interface Props {
     };
 }
 
+
+
 export default function Comp({ children }: Props) {
     return <>{children}</>;
 }
