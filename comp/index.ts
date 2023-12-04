@@ -1,3 +1,6 @@
+// deprecated !!
+// 다른파일로 이동예정
+
 import fs from "fs";
 import moment from "moment";
 import path from "path";

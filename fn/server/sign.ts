@@ -10,7 +10,7 @@ import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
 
 type UUID = string;
-type Message = string | void;
+type Message = string | undefined | void;
 type Token = string;
 type SignValue = {
     username: string;
@@ -28,11 +28,6 @@ type Account = {
     };
 };
 
-type Session = {
-    isActivate: boolean;
-    signIn: Date;
-};
-
 type TokenPayload = {
     username: string;
     signAt: Date;
@@ -44,7 +39,7 @@ const regexUsername = new RegExp("^[a-z][a-z|0-9]{7,20}$");
 const regexPassword = new RegExp(`^[a-zA-Z0-9!@#$%^&*()_+|~{}\\\[\\];':",\.\/<>?\`]{8,30}$`);
 
 const signIn = async (form: FormData): Promise<Message> => {
-    const { username, password } = getData(form);
+    const { username, password } = getSignData(form);
     const account = await fnJson.read<Account>(`/account/${username}.json`);
 
     const { salt, saltedPasswd } = account.auth.password;
@@ -70,8 +65,7 @@ const signOut = async (): Promise<Message> => {
     return revalidatePath("/");
 };
 
-const signUp = async (form: FormData): Promise<Message> => {
-    const { username, password } = getData(form);
+const signUp = async ({ username, password }: { username: string; password: string }): Promise<Message> => {
     const fp = `/account/${username}.json`;
     if (fnPath.isExist(fp)) throw new Error("duplicated username");
 
@@ -90,7 +84,6 @@ const signUp = async (form: FormData): Promise<Message> => {
     };
 
     await fnJson.write(fp, account);
-    return revalidatePath("/");
 };
 
 const createToken = (payload: TokenPayload): Token => {
@@ -120,7 +113,7 @@ const salting = ({ salt, password }: { salt: string; password: string }): string
     return res.toString(encode);
 };
 
-const getData = (form: FormData): SignValue => {
+const getSignData = (form: FormData): SignValue => {
     const username = (form.get("username") || "") as string;
     if (!regexUsername.test(username)) throw new Error("invalid username");
 
@@ -137,6 +130,13 @@ const fnSign = {
     in: signIn,
     out: signOut,
     up: signUp,
+    form: {
+        getSignData,
+    },
+    regex: {
+        username: regexUsername,
+        password: regexPassword,
+    },
     verify,
 };
 

@@ -9,7 +9,7 @@ import LangHeader from "./langHeader";
 import ImgText from "@pure/imgText";
 import Tag from "@tag/index";
 import css from "./index.module.scss";
-import OnCopy from "@client/onCopy";
+import OnCopy from "@client/on-copy";
 
 const { merge } = fnCss;
 

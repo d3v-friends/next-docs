@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode, JSX } from "react";
-import TopButton from "@client/onTop";
+import TopButton from "../comp/client/on-top";
 import Footer from "@pure/footer";
 import Body from "@pure/body";
 import Top from "@comby/top";

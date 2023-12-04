@@ -7,6 +7,7 @@ import Hr from "./hr";
 import Space from "./space";
 import Link from "./link";
 import Divider from "./divider";
+import Form from "./form";
 
 type HArgs = {
     align?: "left" | "center" | "right";
@@ -37,6 +38,7 @@ const Tag = {
     Space,
     Link,
     Divider,
+    Form,
 };
 
 export default Tag;

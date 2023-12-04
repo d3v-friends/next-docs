@@ -23,11 +23,20 @@
       }
     ],
     "paths": {
+      "@comp/*": [
+        "./comp/*"
+      ],
       "@app/*": [
         "./app/*"
       ],
-      "@comp/*": [
-        "./comp/*"
+      "@fn": [
+        "./fn/index.ts"
+      ],
+      "@fnClient/*": [
+        "./fn/client/*"
+      ],
+      "@fnServer/*": [
+        "./fn/server/*"
       ],
       "@comby/*": [
         "./comp/comby/*"
@@ -43,9 +52,6 @@
       ],
       "@client/*": [
         "./comp/client/*"
-      ],
-      "@next/*": [
-        "./next/*"
       ],
       "@tag/*": [
         "./comp/tag/*"
