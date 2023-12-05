@@ -1,0 +1,127 @@
+@import "@style";
+
+.large {
+
+  margin-bottom: 20px;
+}
+
+.medium {
+  margin-bottom: 15px;
+}
+
+.small {
+  margin-bottom: 10px;
+}
+
+.hBorderBottom {
+  border-bottom: 1px solid map-get($colorPrimary, "active");
+}
+
+
+// hr = ---
+
+
+// code block = ~~~
+.pre {
+  margin: 10px 0 10px 0;
+  // todo 코드 부분은 선택 복사 할수 있게 하자!
+
+  pre {
+    position: relative;
+    padding: 20px 10px 20px 10px !important;
+    border-radius: 5px;
+    background-color: map-get($colorPanel, "disabled") !important;
+  }
+}
+
+// a link = []()
+.a {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  text-decoration: none;
+  color: map-get($colorContent, "disabled") !important;
+
+
+  .img {
+    margin-right: 7px;
+    filter: map-get($filterPrimary, "disabled");
+  }
+
+  &:hover {
+    color: map-get($colorContent, "active") !important;
+  }
+}
+
+
+// list = [tab] content
+.ul {
+  li {
+    padding-left: 10px;
+    margin-bottom: 5px;
+    display: flex;
+
+    ::marker {
+      content: unset !important;
+    }
+  }
+}
+
+// content
+.p {
+  color: map-get($colorContent, "active");
+}
+
+
+// checkbox = [x] []
+.input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  .svg {
+    margin-right: 5px;
+    filter: map-get($filterPrimary, "active");
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.divBox {
+  padding: 5px 0 5px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .title {
+    color: map-get($colorPrimary, "active");
+    font-weight: 800;
+    padding-left: 10px;
+    margin: 20px 0 10px 0;
+  }
+
+  .space {
+    flex-grow: 1;
+  }
+
+  .content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.del {
+  color: map-get($colorContent, "disabled");
+
+  &:hover {
+    color: map-get($colorWarning, "active");
+    text-decoration: none;
+  }
+}
+
+.hr {
+  border-top: 1px solid map-get($colorContent, "disabled");
+  margin-top: 30px;
+  height: 30px;
+}

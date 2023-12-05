@@ -7,6 +7,12 @@ import Hr from "./hr";
 import Space from "./space";
 import Link from "./link";
 import Form from "./form";
+import Divider from "./divider";
+import Tooltip from "./tooltip";
+import Inline from "./inline";
+import ImgText from "./imgText";
+import Debug from "./debug";
+import Padding from "./padding";
 
 type HArgs = {
     align?: "left" | "center" | "right";
@@ -43,6 +49,12 @@ const Tag = {
     Space,
     Link,
     Form,
+    Divider,
+    Tooltip,
+    Inline,
+    ImgText,
+    Debug,
+    Padding,
 };
 
 export default Tag;

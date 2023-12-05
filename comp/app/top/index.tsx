@@ -1,13 +1,11 @@
 "use server";
-import { getSession } from "@action/sign";
-import Pure from "@pure";
-import Breadcrumb from "@pure/breadcrumb";
 import { JSX } from "react";
+import Breadcrumb from "@block/breadcrumb";
+import fnSign from "@fn/sign";
+import IconPack from "@block/icon/svg";
 import IconBtn from "./btn";
 import OnReload from "./on-reload";
 import css from "./index.module.scss";
-
-type Props = {};
 
 export type TopNavItem = {
     src: string;
@@ -15,22 +13,23 @@ export type TopNavItem = {
     tooltip: string;
 };
 
-const { SvgPack } = Pure;
+const { getSession } = fnSign;
 
 const signInTopNav: TopNavItem[] = [];
-
 const signOutTopNav: TopNavItem[] = [
     {
-        src: SvgPack.Secondary.SignUp,
+        src: IconPack.Secondary.SignUp,
         tooltip: "sign up",
         href: "/sign/up",
     },
     {
-        src: SvgPack.Secondary.SignIn,
+        src: IconPack.Secondary.SignIn,
         tooltip: "sign in",
         href: "/sign/in",
     },
 ];
+
+type Props = {};
 
 export default async function Comp({}: Props): Promise<JSX.Element> {
     const session = await getSession();
@@ -45,7 +44,7 @@ export default async function Comp({}: Props): Promise<JSX.Element> {
             ))}
             {session.isSignIn && (
                 <OnReload>
-                    <IconBtn href={"/sign/out"} imgSrc={SvgPack.Secondary.SignOut} tooltip="Sign out" />
+                    <IconBtn href={"/sign/out"} imgSrc={IconPack.Secondary.SignOut} tooltip="Sign out" />
                 </OnReload>
             )}
         </div>

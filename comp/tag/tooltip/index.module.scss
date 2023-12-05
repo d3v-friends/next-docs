@@ -1,0 +1,46 @@
+@import "@style";
+
+.cont {
+  position: relative;
+  font-size: 0.8rem;
+
+  .tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    position: absolute;
+
+    height: 25px;
+  }
+
+  &:hover {
+    .tooltip {
+      visibility: visible;
+    }
+  }
+}
+
+.top {
+  bottom: 100%;
+  left: 50%;
+}
+
+.bottom {
+  top: 100%;
+  left: 50%;
+}
+
+.left {
+  top: calc((100% / 2) - 0.8rem);
+  right: 120%;
+}
+
+.right {
+  top: calc((100% / 2) - 0.8rem);
+  left: 130%;
+}
+

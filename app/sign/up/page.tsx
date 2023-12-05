@@ -1,12 +1,12 @@
-import Client from "@client";
-import { JSX } from "react";
-import Pure from "@comp/pure";
+import App from "@app";
 import Tag from "@tag";
+import { JSX } from "react";
 import signIn from "./signin.svg";
 
-const { H1, H6, Space, Link, P1 } = Tag;
-const { Inline } = Pure;
-const { SignUp } = Client;
+const { H1, H6, Space, Link, Inline } = Tag;
+const {
+    Sign: { SignUp },
+} = App;
 
 export default async function Page(): Promise<JSX.Element> {
     return (

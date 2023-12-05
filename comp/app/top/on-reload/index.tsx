@@ -1,5 +1,5 @@
 "use client";
-import fnCss from "@fn/css";
+import cutil from "@cutil";
 import { useRouter } from "next/navigation";
 import { JSX, ReactNode } from "react";
 
@@ -15,7 +15,7 @@ export default function Comp({ children, className }: Props): JSX.Element {
     };
 
     return (
-        <div className={fnCss.merge(className || "")} onClick={onClick}>
+        <div className={cutil.merge(className || "")} onClick={onClick}>
             {children}
         </div>
     );

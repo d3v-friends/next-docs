@@ -1,8 +1,10 @@
+import cutil from "@cutil";
 import Image from "next/image";
-import merge from "../merge";
 import css from "./index.module.scss";
 import Link from "next/link";
 import { ReactNode, JSX, HTMLAttributeAnchorTarget } from "react";
+
+const { merge } = cutil;
 
 interface Props {
     href: string;

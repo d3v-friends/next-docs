@@ -1,7 +1,8 @@
-import merge from "../merge";
+import cutil from "@cutil";
 import { ReactNode, JSX } from "react";
 import css from "./index.module.scss";
 
+const { merge } = cutil;
 export type PArgs = {
     size?: 1 | 2 | 3;
     hover?: boolean;

@@ -1,10 +1,6 @@
-import { getSession } from "@action/sign";
-import { Readable } from "@action/type";
-import Markdown from "@comby/markdown";
-import fnMD from "@fn/md";
-import { GetStaticProps } from "next";
+import { JSX } from "react";
 
-export default async function Page() {
-    const content = await fnMD.read("/content/index.md");
-    return <Markdown>{content.content}</Markdown>;
+export default async function Page(): Promise<JSX.Element> {
+    return <>Hello</>;
+    // return <Markdown>{content.content}</Markdown>;
 }

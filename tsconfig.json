@@ -23,49 +23,32 @@
       }
     ],
     "paths": {
-      "@comp/*": [
-        "./comp/*"
-      ],
-      "@action/*": [
-        "./action/*"
-      ],
-      "@app": [
-        "./comp/app/index.ts"
-      ],
       "@app/*": [
         "./comp/app/*"
+      ],
+      "@css": [
+        "./comp/global.css"
       ],
       "@fn/*": [
         "./fn/*"
       ],
-      "@comby/*": [
-        "./comp/comby/*"
+      "@cutil": [
+        "./comp/cutil.ts"
       ],
-      "@page/*": [
+      "@event/*": [
+        "./comp/event/*"
       ],
-      "@pure": [
-        "./comp/pure/index.ts"
-      ],
-      "@pure/*": [
-        "./comp/pure/*"
-      ],
-      "@provider/*": [
-        "./comp/provider/*"
-      ],
-      "styles": [
-        "./comp/index.scss"
-      ],
-      "@client/*": [
-        "./comp/client/*"
-      ],
-      "@client": [
-        "./comp/client/index.ts"
+      "@block/*": [
+        "./comp/block/*"
       ],
       "@tag/*": [
         "./comp/tag/*"
       ],
-      "@tag": [
-        "./comp/tag/index.tsx"
+      "@style": [
+        "./comp/scss/index.scss"
+      ],
+      "@style/*": [
+        "./comp/scss/*"
       ]
     }
   },

@@ -1,4 +1,4 @@
-import { getSession } from "@action/sign";
+import fn from "@fn";
 import { Metadata } from "next";
 import { ReactNode, JSX } from "react";
 
@@ -11,6 +11,10 @@ export const generateMetadata = async (): Promise<Metadata> => {
 interface Props {
     children?: ReactNode;
 }
+
+const {
+    sign: { getSession },
+} = fn;
 
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
     const session = await getSession();

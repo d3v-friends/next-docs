@@ -1,13 +1,12 @@
-"use server";
+import App from "@app";
+import Tag from "@tag";
 import iconSrc from "./signup.svg";
 import { JSX } from "react";
-import Pure from "@pure";
-import Tag from "@tag";
-import Client from "@client";
 
-const { H1, Space, H6, Link, P1 } = Tag;
-const { Inline } = Pure;
-const { SignIn } = Client;
+const { H1, Space, H6, Link, P1, Inline } = Tag;
+const {
+    Sign: { SignIn },
+} = App;
 
 export default async function Page(): Promise<JSX.Element> {
     return (

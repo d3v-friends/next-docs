@@ -5,7 +5,7 @@ import fnPath from "./path";
 //--- 모든 path 는 상대주소로 입력 받는다.
 
 async function read<DATA extends object>(fp: string): Promise<DATA> {
-    fp = fnPath.server(fp);
+    fp = fnPath.absolute(fp);
     const rl = readline.createInterface({
         input: fs.createReadStream(fp),
         crlfDelay: Infinity,
@@ -20,7 +20,7 @@ async function read<DATA extends object>(fp: string): Promise<DATA> {
 }
 
 async function write<DATA extends object>(fp: string, value: DATA): Promise<void> {
-    fp = fnPath.server(fp);
+    fp = fnPath.absolute(fp);
     if (fs.existsSync(fp)) {
         fs.rmSync(fp);
     }
@@ -29,7 +29,7 @@ async function write<DATA extends object>(fp: string, value: DATA): Promise<void
 }
 
 function remove(fp: string) {
-    fp = fnPath.server(fp);
+    fp = fnPath.absolute(fp);
     if (!fs.existsSync(fp)) {
         return;
     }
@@ -37,7 +37,7 @@ function remove(fp: string) {
 }
 
 function isExist(fp: string): boolean {
-    fp = fnPath.server(fp);
+    fp = fnPath.absolute(fp);
     return fs.existsSync(fp);
 }
 

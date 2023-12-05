@@ -1,10 +1,11 @@
-"use server";
+import { JSX } from "react";
+import fn from "@fn";
 
-import { getSession } from "@action/sign";
+const {
+    sign: { getSession },
+} = fn;
 
-type Props = {};
-
-export default async function Page() {
+export default async function Page(): Promise<JSX.Element> {
     const session = await getSession();
     const now = new Date();
     return (

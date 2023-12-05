@@ -1,4 +1,4 @@
-import merge from "../merge";
+import cutil from "@cutil";
 import { ReactNode, JSX } from "react";
 import css from "./index.module.scss";
 
@@ -15,6 +15,8 @@ interface Props {
         r?: number;
     };
 }
+
+const { merge } = cutil;
 
 export default function Comp({ children, size, className, align, color, padding }: Props): JSX.Element {
     className = className || "";

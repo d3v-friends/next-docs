@@ -1,0 +1,172 @@
+@import "@style";
+
+// nav height
+$navHeight: (
+        "bp1": 40px,
+        "bp2": 40px,
+        "bp3": 50px,
+        "bp4": 50px,
+);
+
+// side width
+$sideWidth: (
+        "bp1": 80%,
+        "bp2": 180px,
+        "bp3": 200px,
+        "bp4": 250px,
+);
+
+// content width
+$contentWidth: (
+        "bp1": 100%,
+        "bp2": calc(#{$bp2} - #{map-get($sideWidth, "bp2")}),
+        "bp3": calc(#{$bp3} - #{map-get($sideWidth, "bp3")}),
+        "bp4": calc(#{$bp4} - #{map-get($sideWidth, "bp4")})
+);
+
+@mixin sideWidth {
+  @media screen and (min-width: $bp2) {
+    width: map-get($sideWidth, "bp1");
+    @content
+  }
+  @media screen and (min-width: $bp2) {
+    width: map-get($sideWidth, "bp2");
+    @content
+  }
+  @media screen and (min-width: $bp3) {
+    width: map-get($sideWidth, "bp3");
+    @content
+  }
+  @media screen and (min-width: $bp4) {
+    width: map-get($sideWidth, "bp4");
+    @content
+  }
+}
+
+.contNav {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  backdrop-filter: blur(2px);
+
+  @include bp1 {
+    height: map-get($navHeight, "bp1");
+  }
+  @include bp2 {
+    height: map-get($navHeight, "bp2");
+  }
+  @include bp3 {
+    height: map-get($navHeight, "bp3");
+  }
+  @include bp4 {
+    height: map-get($navHeight, "bp4");
+  }
+
+  .nav {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    @include bpWidth {
+    }
+
+    .title {
+      height: 100%;
+      background-color: map-get($colorPrimary, "active");
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+
+
+      a {
+        color: map-get($colorBackground, "disabled");
+
+        &:hover {
+        }
+      }
+
+      @include sideWidth {
+      }
+    }
+
+    .navContent {
+      height: 100%;
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+}
+
+.contContent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  @include bp1 {
+    padding-top: calc(#{map-get($navHeight, "bp1")} + 5px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp1")});
+  }
+
+  @include bp2 {
+    padding-top: calc(#{map-get($navHeight, "bp2")} + 5px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp2")});
+  }
+
+  @include bp3 {
+    padding-top: calc(#{map-get($navHeight, "bp3")} + 10px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp3")});
+  }
+
+  @include bp4 {
+    padding-top: calc(#{map-get($navHeight, "bp4")} + 10px);
+    min-height: calc(100vh - #{map-get($navHeight, "bp4")});
+  }
+
+  .side {
+    min-height: 100%;
+    @include bp1 {
+      width: map-get($sideWidth, "bp1")
+    }
+    @include bp2 {
+      width: map-get($sideWidth, "bp2")
+    }
+    @include bp3 {
+      width: map-get($sideWidth, "bp3")
+    }
+    @include bp4 {
+      width: map-get($sideWidth, "bp4")
+    }
+  }
+
+  .content {
+    padding-left: 10px;
+
+    @include bp1 {
+      width: map-get($contentWidth, "bp1");
+    }
+    @include bp2 {
+      width: map-get($contentWidth, "bp2");
+    }
+    @include bp3 {
+      width: map-get($contentWidth, "bp3");
+    }
+    @include bp4 {
+      width: map-get($contentWidth, "bp4");
+    }
+  }
+}
+
+.footer {
+  margin: 50px auto;
+  @include bpWidth {
+  }
+}

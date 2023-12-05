@@ -1,5 +1,5 @@
-import fnUrl from "@pure/fnUrl";
-import Padding from "@pure/padding";
+import fn from "@fn";
+import Tag from "@tag";
 import { Metadata } from "next";
 import { JSX, ReactNode } from "react";
 
@@ -9,17 +9,19 @@ type Params = {
         paths: string[];
     };
 };
-
 export const generateMetadata = async ({ params: { paths } }: Params): Promise<Metadata> => {
     return {
-        title: `next-doc: ${fnUrl.glue(...paths)}`,
+        title: `next-doc: ${url.glue(...paths)}`,
     };
 };
 
-const layout = async ({ children, params: { paths } }: Props): Promise<JSX.Element> => {
-    let path = fnUrl.glue(...paths);
+const { url } = fn;
+const { Padding } = Tag;
+
+export default async function Layout({ children, params: { paths } }: Props): Promise<JSX.Element> {
+    let path = url.glue(...paths);
     if (!path.endsWith(".md")) {
-        path = fnUrl.glue(path, "index.md");
+        path = url.glue(path, "index.md");
     }
 
     return (
@@ -28,6 +30,4 @@ const layout = async ({ children, params: { paths } }: Props): Promise<JSX.Eleme
             {children}
         </Padding>
     );
-};
-
-export default layout;
+}

@@ -1,11 +1,6 @@
-import { v4 } from "uuid";
-import merge from "../merge";
-import { ReactNode, JSX, HTMLInputTypeAttribute } from "react";
+import cutil from "@cutil";
+import { JSX, HTMLInputTypeAttribute } from "react";
 import css from "./index.module.scss";
-
-interface Props {
-    children?: ReactNode;
-}
 
 type IArgs = {
     type: HTMLInputTypeAttribute;
@@ -14,6 +9,8 @@ type IArgs = {
     placeholder?: string;
     required?: boolean;
 };
+
+const { merge } = cutil;
 
 const Comp = async ({ type, name, placeholder, label, required }: IArgs): Promise<JSX.Element> => {
     return (

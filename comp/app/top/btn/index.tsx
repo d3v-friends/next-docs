@@ -1,8 +1,8 @@
-import Tooltip from "@pure/tooltip";
 import Image from "next/image";
 import Link from "next/link";
 import { JSX } from "react";
 import css from "./index.module.scss";
+import Tooltip from "@tag/tooltip";
 
 interface Props {
     imgSrc: string;
@@ -10,7 +10,7 @@ interface Props {
     tooltip: string;
 }
 
-export default function Comp({ imgSrc, href, tooltip }: Props): JSX.Element {
+export default async function Comp({ imgSrc, href, tooltip }: Props): Promise<JSX.Element> {
     return (
         <div className={css.icon}>
             <Link href={href}>

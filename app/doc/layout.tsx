@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, JSX } from "react";
 
 interface Props {
     children?: ReactNode;
@@ -7,8 +7,6 @@ interface Props {
     };
 }
 
-
-
-export default function Comp({ children }: Props) {
+export default async function Comp({ children }: Props): Promise<JSX.Element> {
     return <>{children}</>;
 }

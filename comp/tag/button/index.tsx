@@ -1,4 +1,4 @@
-import merge from "../merge";
+import cutil from "@cutil";
 import { ReactNode, JSX } from "react";
 import css from "./index.module.scss";
 
@@ -16,7 +16,7 @@ const Comp = async ({ children, type, color, style, ariaDisabled }: Props): Prom
     style = style || "fill";
 
     return (
-        <button aria-disabled={ariaDisabled} type={type} className={merge(css.button, css[color], css[style], css.marginBottom)}>
+        <button aria-disabled={ariaDisabled} type={type} className={cutil.merge(css.button, css[color], css[style], css.marginBottom)}>
             {children}
         </button>
     );
