@@ -6,6 +6,10 @@ const Action = {
         up: SignUpAction,
         out: SignOutAction,
     },
+    initAction: {
+        code: 200,
+        resAt: new Date(),
+    },
 };
 
 export default Action;

@@ -29,8 +29,11 @@
       "@action/*": [
         "./action/*"
       ],
+      "@app": [
+        "./comp/app/index.ts"
+      ],
       "@app/*": [
-        "./app/*"
+        "./comp/app/*"
       ],
       "@fn/*": [
         "./fn/*"

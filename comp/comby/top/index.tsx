@@ -1,3 +1,5 @@
+import { getSession } from "@action/sign";
+import Client from "@client";
 import Breadcrumb from "@pure/breadcrumb";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,8 +18,11 @@ export type TopNavItem = {
     tooltip: string;
 };
 
+
 const comp = async ({ path, children }: Props): Promise<JSX.Element> => {
     children = children || [];
+    const session = await getSession();
+
     return (
         <div className={css.cont}>
             <Breadcrumb>{path}</Breadcrumb>

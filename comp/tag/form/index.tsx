@@ -1,4 +1,3 @@
-import onShow from "@client/onShow";
 import { FormEvent, ReactNode } from "react";
 import css from "./index.module.scss";
 

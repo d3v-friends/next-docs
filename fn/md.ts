@@ -1,4 +1,3 @@
-import { Nullable } from "./type";
 import fs from "fs";
 import moment from "moment";
 import readline from "readline";
@@ -11,6 +10,7 @@ export type MD = {
     info: { [key: string]: string };
 };
 
+type Nullable<T> = T | null | undefined;
 export type InfoKey = "create" | "update" | "subscriber";
 export type Readable = "admin" | "maintainer" | "reader" | "all";
 const readableAll: Readable[] = ["admin", "maintainer", "reader", "all"];

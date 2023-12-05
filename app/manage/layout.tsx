@@ -1,22 +1,19 @@
-"use server";
 import { getSession } from "@action/sign";
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { JSX, ReactNode } from "react";
+import { ReactNode, JSX } from "react";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
-        title: "Sign in",
-        description: "sign in",
+        title: `title`,
     };
 };
 
-type Props = {
+interface Props {
     children?: ReactNode;
-};
+}
 
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
     const session = await getSession();
-    if (session.isSignIn) return redirect("/");
+    if (session.account.readable !== "admin") return <>no has permission</>;
     return <>{children}</>;
 }

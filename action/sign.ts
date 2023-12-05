@@ -5,6 +5,7 @@ import fnJson from "@fn/json";
 import fnPath from "@fn/path";
 import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { v4 } from "uuid";
@@ -135,15 +136,16 @@ export async function getSession(): Promise<SessionStatus> {
 
 /* -------------------------------------------------------------------------------------------------- */
 
+// actions
+
 export async function SignOutAction(_: any, form: FormData) {
     return FnFormAction(form, async data => {
         cookies().delete(keySession);
-        redirect("/sign/in");
-        return;
+        revalidatePath("/");
+        redirect("/");
     });
 }
 
-// actions
 export async function SignUpAction(_: any, form: FormData) {
     return FnFormAction(form, async data => {
         const { username, password } = getSignData(data);
@@ -197,6 +199,7 @@ export async function SignInAction(_: any, form: FormData) {
         };
 
         cookies().set(keySession, createToken(payload));
+        revalidatePath("*");
         redirect("/");
     });
 }

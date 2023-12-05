@@ -1,11 +1,15 @@
-import { ReactNode } from "react";
+"use server";
 
-interface Props {}
+import { getSession } from "@action/sign";
 
-export default function Comp({}: Props) {
+type Props = {};
+
+export default async function Page() {
+    const session = await getSession();
+    const now = new Date();
     return (
         <>
-            <h1>page</h1>
+            <p>{now.toISOString()}</p>
         </>
     );
 }
