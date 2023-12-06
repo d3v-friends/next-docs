@@ -1,5 +1,19 @@
 {
   "signIn": true,
   "signUp": true,
-  "reply": false
+  "reply": false,
+  "sideContent": [
+    {
+      "name": "sms-v3",
+      "type": "dir",
+      "href": "/doc/sms-v3/index.md",
+      "children": [
+        {
+          "name": "proposal",
+          "href": "/doc/sms-v3/proposal.md",
+          "type": "file"
+        }
+      ]
+    }
+  ]
 }

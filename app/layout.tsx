@@ -1,11 +1,11 @@
 import GoTop from "@app/goTop";
 import Top from "@app/top";
-import Side, { SideContent } from "@app/side";
+import Side from "@app/side";
 import Footer from "@block/footer";
 import Body from "@block/layout";
 import fnEnv from "@fn/env";
 import fnMd from "@fn/md";
-import { getSession } from "@fn/action";
+import { getConfig, getSession } from "@fn/action";
 import Tags from "@tag/index";
 import type { Metadata } from "next";
 import { ReactNode, JSX } from "react";
@@ -22,12 +22,6 @@ type Props = {
 };
 
 const { Debug } = Tags;
-const sideContent: SideContent[] = [
-    {
-        title: "sms-v3",
-        href: "/sms/index.md",
-    },
-];
 
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
     const debugMode = fnEnv.boolean("DEBUG_MODE", false);
@@ -35,6 +29,7 @@ export default async function Layout({ children }: Props): Promise<JSX.Element> 
     const fileList = await fnMd.index.filter({
         readable: session.account.readable,
     });
+    const config = await getConfig();
     return (
         <html lang="ko">
             <head>
@@ -43,7 +38,7 @@ export default async function Layout({ children }: Props): Promise<JSX.Element> 
             <body className={css.body}>
                 <Body title={"next-docs"}>
                     <Top />
-                    <Side fileList={fileList} sideContent={sideContent} />
+                    <Side fileList={fileList} sideContent={config.sideContent} />
                     <>{children}</>
                     <>
                         <Footer name="Ciao Lee" since="1987-09-24" />

@@ -1,6 +1,6 @@
 "use client";
 import Tag from "@tag/index";
-import { JSX, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { MDIndex } from "@fn/md";
 import css from "./index.module.scss";
 
@@ -18,11 +18,14 @@ export default function Comp({ children, fileList, onClick, initShow }: Props): 
     const [finder, setFinder] = useState("");
 
     const onEnter = () => {
+        if (finder === "") return;
+
         const found = fileList.filter(v => {
             if (v.name.includes(finder)) return true;
             if (v.path.includes(finder)) return true;
             return false;
         });
+
         setLs(found);
     };
 
@@ -63,7 +66,7 @@ export default function Comp({ children, fileList, onClick, initShow }: Props): 
                     </div>
                 </div>
             ))}
-            {ls.length === 0 && <div className={css.notFound}>not found files</div>}
+            {ls.length === 0 && <div className={css.notFound}>no files</div>}
         </>
     );
 }

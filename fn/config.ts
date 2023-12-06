@@ -6,6 +6,14 @@ export type Config = {
     signIn: boolean;
     signUp: boolean;
     reply: boolean;
+    sideContent: SideContent[];
+};
+
+export type SideContent = {
+    name: string;
+    type: "dir" | "file";
+    href?: string;
+    children?: SideContent[];
 };
 
 async function read(): Promise<Config> {
@@ -15,6 +23,7 @@ async function read(): Promise<Config> {
             signIn: true,
             signUp: true,
             reply: false,
+            sideContent: [],
         };
         await fnJson.write(fp, config);
     }

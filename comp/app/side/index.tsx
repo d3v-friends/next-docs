@@ -1,4 +1,5 @@
 "use server";
+import { SideContent } from "@fn/config";
 import Tags from "@tag/index";
 import Image from "next/image";
 import FileList from "./fileList";
@@ -9,12 +10,6 @@ import css from "./index.module.scss";
 type Props = {
     fileList: MDIndex[];
     sideContent: SideContent[];
-};
-
-export type SideContent = {
-    title: string;
-    href: string;
-    children?: SideContent[];
 };
 
 const { Space, H3, P1 } = Tags;
@@ -33,11 +28,10 @@ export default async function Comp({ fileList, sideContent }: Props): Promise<JS
 
             <H3>contents</H3>
             {sideContent.map((v, i) => (
-                <div key={i}>{v.title}</div>
+                <div key={i}>{v.name}</div>
             ))}
 
             <Space height="2rem" />
-            <H3>documents</H3>
             <FileList fileList={fileList} />
         </>
     );
