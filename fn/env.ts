@@ -12,9 +12,20 @@ export function string(key: string, ...defaultValue: string[]): string {
     return value;
 }
 
-const boolean = (key: string): boolean => {
-    return "true" === string(key);
+const boolean = (key: string, ...defaults: boolean[]): boolean => {
+    const value = process.env[key] || "";
+    if (value === "") {
+        if (defaults.length === 0) {
+            console.log(`not found env: key=${key}`);
+            process.exit(1);
+        } else {
+            return defaults[0];
+        }
+    }
+
+    return value === "true";
 };
+
 const readFile = async (...str: string[]) => {
     const fp = path.join(...str);
     const rl = readline.createInterface({

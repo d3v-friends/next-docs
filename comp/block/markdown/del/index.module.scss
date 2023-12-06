@@ -1,0 +1,11 @@
+@import "@style";
+
+.cont {
+  color: map-get($colorContent, "disabled");
+  text-decoration: line-through;
+
+  &:hover {
+    color: map-get($colorWarning, "active");
+    text-decoration: none;
+  }
+}

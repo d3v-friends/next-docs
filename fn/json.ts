@@ -1,13 +1,11 @@
 import fs from "fs";
 import readline from "readline";
-import fnPath from "./path";
 
-//--- 모든 path 는 상대주소로 입력 받는다.
+// 모든 주소는 절대 경로로 받는다
 
-async function read<DATA extends object>(fp: string): Promise<DATA> {
-    fp = fnPath.absolute(fp);
+async function read<DATA extends object>(abPath: string): Promise<DATA> {
     const rl = readline.createInterface({
-        input: fs.createReadStream(fp),
+        input: fs.createReadStream(abPath),
         crlfDelay: Infinity,
     });
 
@@ -19,26 +17,23 @@ async function read<DATA extends object>(fp: string): Promise<DATA> {
     return JSON.parse(res) as DATA;
 }
 
-async function write<DATA extends object>(fp: string, value: DATA): Promise<void> {
-    fp = fnPath.absolute(fp);
-    if (fs.existsSync(fp)) {
-        fs.rmSync(fp);
+async function write<DATA extends object>(abPath: string, value: DATA): Promise<void> {
+    if (fs.existsSync(abPath)) {
+        fs.rmSync(abPath);
     }
-    fs.writeFileSync(fp, JSON.stringify(value));
+    fs.writeFileSync(abPath, JSON.stringify(value));
     return;
 }
 
-function remove(fp: string) {
-    fp = fnPath.absolute(fp);
-    if (!fs.existsSync(fp)) {
+function remove(abPath: string) {
+    if (!fs.existsSync(abPath)) {
         return;
     }
-    fs.rmSync(fp);
+    fs.rmSync(abPath);
 }
 
-function isExist(fp: string): boolean {
-    fp = fnPath.absolute(fp);
-    return fs.existsSync(fp);
+function isExist(abPath: string): boolean {
+    return fs.existsSync(abPath);
 }
 
 const fnJson = {

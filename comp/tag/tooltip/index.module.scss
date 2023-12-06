@@ -3,6 +3,8 @@
 .cont {
   position: relative;
   font-size: 0.8rem;
+  width: 100%;
+
 
   .tooltip {
     display: flex;
@@ -11,10 +13,10 @@
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    min-width: 100px;
     color: #fff;
     position: absolute;
-
-    height: 25px;
+    padding: 0.5rem;
   }
 
   &:hover {
@@ -26,21 +28,21 @@
 
 .top {
   bottom: 100%;
-  left: 50%;
+  right: -100%;
 }
 
 .bottom {
   top: 100%;
-  left: 50%;
+  right: -100%;
 }
 
 .left {
-  top: calc((100% / 2) - 0.8rem);
+  top: calc((100% / 2) - 1.3rem);
   right: 120%;
 }
 
 .right {
-  top: calc((100% / 2) - 0.8rem);
-  left: 130%;
+  top: calc((100% / 2) - 1.3rem);
+  left: 110%;
 }
 

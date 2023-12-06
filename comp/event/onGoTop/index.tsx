@@ -1,8 +1,9 @@
 "use client";
+import fnCss from "@fn/css";
 import { JSX, MouseEventHandler } from "react";
 
 type Props = {
-    className: string;
+    className?: string;
     children?: JSX.Element;
 };
 
@@ -14,7 +15,7 @@ export default function Comp({ children, className }: Props): JSX.Element {
     };
 
     return (
-        <div className={className} onClick={onClick}>
+        <div className={fnCss.merge(className || "")} onClick={onClick}>
             {children}
         </div>
     );

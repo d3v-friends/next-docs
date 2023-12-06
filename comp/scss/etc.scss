@@ -1,6 +1,26 @@
 $zIndex: (
-        "modal": 110,
+        "modal": 1000,
         "nav": 100,
         "sidebar": 50,
         "content": 0,
+);
+
+.marginBottom {
+  margin-bottom: 0.5rem;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}
+
+$inputButtonHeight: (
+        "1": 2rem,
+        "2": 2.2rem,
+        "3": 2.5rem,
+);
+
+$inputButtonFontSize: (
+        "1": 0.8rem,
+        "2": 0.9rem,
+        "3": 0.95rem,
 );

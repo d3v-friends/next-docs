@@ -5,7 +5,7 @@ interface Props {
     height?: number | string;
 }
 
-const Comp = async ({ type, height }: Props): Promise<JSX.Element> => {
+export default function Comp({ type, height }: Props): JSX.Element {
     type = type || "margin";
     let style: any;
 
@@ -24,6 +24,4 @@ const Comp = async ({ type, height }: Props): Promise<JSX.Element> => {
     }
 
     return <div style={style} />;
-};
-
-export default Comp;
+}

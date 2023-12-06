@@ -49,6 +49,7 @@ $contentWidth: (
   justify-content: center;
   align-items: center;
   width: 100%;
+  z-index: map-get($zIndex, "nav");
 
   backdrop-filter: blur(2px);
 
@@ -111,6 +112,7 @@ $contentWidth: (
   justify-content: center;
   align-items: flex-start;
 
+
   @include bp1 {
     padding-top: calc(#{map-get($navHeight, "bp1")} + 5px);
     min-height: calc(100vh - #{map-get($navHeight, "bp1")});
@@ -148,8 +150,6 @@ $contentWidth: (
   }
 
   .content {
-    padding-left: 10px;
-
     @include bp1 {
       width: map-get($contentWidth, "bp1");
     }
@@ -167,6 +167,4 @@ $contentWidth: (
 
 .footer {
   margin: 50px auto;
-  @include bpWidth {
-  }
 }

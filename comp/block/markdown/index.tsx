@@ -1,5 +1,5 @@
 import cutil from "@cutil";
-import Tag from "@tag";
+import Tags from "@tag/index";
 import LangHeader from "./langHeader";
 import Image from "next/image";
 import Markdown from "react-markdown";
@@ -7,11 +7,17 @@ import { Components } from "react-markdown";
 import gfm from "remark-gfm";
 import Code from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import Events from "@event/index";
 import css from "./index.module.scss";
+import IconPrimary from "../icon/svg/primary";
+import Checkbox from "./checkbox";
+import Del from "./del";
 
-const { H1, H2, H3, H4, H5, H6, P1 } = Tag;
+// # todo: icon 모두 변경하기 -> 필터쓰지 않도록!!
 
+const { ImgText, H, P } = Tags;
 const { merge } = cutil;
+const { OnCopy } = Events;
 
 const MdComps: Components = {
     code: ({ children, className }) => {
@@ -24,7 +30,7 @@ const MdComps: Components = {
                 <div>
                     <LangHeader language={`${language.toUpperCase()} - unsupported highlight`}>
                         <OnCopy value={children as string}>
-                            <ImgText size={16} src="/asset/img/svg/copy.svg">
+                            <ImgText size={16} src={IconPrimary.Copy}>
                                 Copy
                             </ImgText>
                         </OnCopy>
@@ -39,7 +45,7 @@ const MdComps: Components = {
             <>
                 <LangHeader language={language.toUpperCase()}>
                     <OnCopy value={children as string}>
-                        <ImgText size={16} src="/asset/img/svg/copy.svg">
+                        <ImgText size={16} src={IconPrimary.Copy}>
                             Copy
                         </ImgText>
                     </OnCopy>
@@ -70,15 +76,7 @@ const MdComps: Components = {
     input: ({ children, disabled, type, checked }) => {
         switch (type) {
             case "checkbox":
-                let src = "/asset/img/svg/";
-                src += checked ? "check_true.svg" : "check_false.svg";
-
-                return (
-                    <div className={css.input}>
-                        <Image className={merge(css.svgFilterSecondary, css.svg)} width={50} height={50} src={src} alt={"check"} />
-                        <div>{children}</div>
-                    </div>
-                );
+                return <Checkbox checked={checked}>{children}</Checkbox>;
             default:
                 return (
                     <input type={type} disabled={disabled || false} checked={checked}>
@@ -88,14 +86,38 @@ const MdComps: Components = {
         }
     },
     pre: ({ children }) => <pre className={css.pre}>{children}</pre>,
-    h1: ({ children }) => <H1 className={merge(css.large, css.hBorderBottom, css.colorPrimary)}>{children}</H1>,
-    h2: ({ children }) => <H2 className={merge(css.large, css.colorPrimary)}>{children}</H2>,
-    h3: ({ children }) => <H3 className={merge(css.medium)}>{children}</H3>,
-    h4: ({ children }) => <H4 className={merge(css.medium)}>{children}</H4>,
-    h5: ({ children }) => <H5 className={merge(css.small)}>{children}</H5>,
-    h6: ({ children }) => <H6 className={merge(css.small)}>{children}</H6>,
-    del: ({ children }) => <del className={merge(css.del)}>{children}</del>,
-    p: ({ children }) => <P1>{children}</P1>,
+    h1: ({ children }) => (
+        <H size={1} className={merge(css.large, css.hBorderBottom, css.colorPrimary)}>
+            {children}
+        </H>
+    ),
+    h2: ({ children }) => (
+        <H size={2} className={merge(css.large, css.colorPrimary)}>
+            {children}
+        </H>
+    ),
+    h3: ({ children }) => (
+        <H size={3} className={merge(css.medium)}>
+            {children}
+        </H>
+    ),
+    h4: ({ children }) => (
+        <H size={4} className={merge(css.medium)}>
+            {children}
+        </H>
+    ),
+    h5: ({ children }) => (
+        <H size={5} className={merge(css.small)}>
+            {children}
+        </H>
+    ),
+    h6: ({ children }) => (
+        <H size={6} className={merge(css.small)}>
+            {children}
+        </H>
+    ),
+    del: ({ children }) => <Del>{children}</Del>,
+    p: ({ children }) => <P>{children}</P>,
     hr: () => <div className={css.hr} />,
 };
 
@@ -103,10 +125,10 @@ type Props = {
     children: string;
 };
 
-const Comp = async ({ children }: Props) => (
-    <Markdown components={MdComps} remarkPlugins={[gfm]}>
-        {children}
-    </Markdown>
-);
-
-export default Comp;
+export default async function Comp({ children }: Props) {
+    return (
+        <Markdown components={MdComps} remarkPlugins={[gfm]}>
+            {children}
+        </Markdown>
+    );
+}

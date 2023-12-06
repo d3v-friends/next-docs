@@ -7,6 +7,9 @@
   top: 0;
   left: 0;
   backdrop-filter: blur(5px) grayscale(0.6);
+  z-index: map-get($zIndex, "modal") !important;
+
+  touch-action: none;
 
   display: flex;
   justify-content: center;

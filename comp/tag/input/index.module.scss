@@ -5,7 +5,6 @@
   color: map-get($colorContent, "disabled") !important;
   border: 2px solid map-get($colorBorder, "normal") !important;
   background-color: transparent !important;
-  padding: 0 10px 0 10px;
 
 
   &:active {
@@ -30,6 +29,24 @@
     font-size: 1rem !important;
     height: 40px;
   }
+}
+
+.size1 {
+  padding: 0 0.5rem 0 0.5rem;
+  height: map-get($inputButtonHeight, "1");
+  font-size: map-get($inputButtonFontSize, "1") !important;
+}
+
+.size2 {
+  padding: 0 0.5rem 0 0.5rem;
+  height: map-get($inputButtonHeight, "2");
+  font-size: map-get($inputButtonFontSize, "2") !important;
+}
+
+.size3 {
+  padding: 0 0.5rem 0 0.5rem;
+  height: map-get($inputButtonHeight, "3");
+  font-size: map-get($inputButtonFontSize, "3") !important;
 }
 
 .input:active,
@@ -67,22 +84,5 @@
   width: 100%;
   color: map-get($colorPrimary, "active");
   margin-bottom: 5px;
-
-
-  @include bp1 {
-    padding-left: 2px;
-    font-size: 0.8rem;
-  }
-  @include bp2 {
-    padding-left: 2px;
-    font-size: 0.85rem;
-  }
-  @include bp3 {
-    padding-left: 5px;
-    font-size: 0.9rem;
-  }
-  @include bp4 {
-    padding-left: 5px;
-    font-size: 0.9rem;
-  }
+  font-size: 0.9rem;
 }

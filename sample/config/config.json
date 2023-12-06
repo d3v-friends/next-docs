@@ -1,21 +1,5 @@
 {
-  "account": {
-    "root": {
-      "isActivate": true,
-      "auth": {
-        "needInit": true,
-        "salt": "acff0fe4-5916-4f40-8db3-6f94d8b22a67",
-        "saltedPasswd": ""
-      },
-      "permission": [
-        "admin"
-      ],
-      "createdAt": "2023-11-27T03:30:44.269Z",
-      "updatedAt": "2023-11-27T03:30:44.269Z"
-    }
-  },
-  "sign": true,
-  "board": {
-    "reply": false
-  }
+  "signIn": true,
+  "signUp": true,
+  "reply": false
 }

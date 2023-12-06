@@ -1,5 +1,5 @@
 import cutil from "@cutil";
-import { ReactNode, JSX } from "react";
+import { ReactNode, JSX, MouseEventHandler } from "react";
 import css from "./index.module.scss";
 
 interface Props {
@@ -8,18 +8,25 @@ interface Props {
     style?: "fill" | "outline";
     ariaDisabled?: boolean;
     children?: ReactNode;
+    className?: string;
+    size?: 1 | 2 | 3;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Comp = async ({ children, type, color, style, ariaDisabled }: Props): Promise<JSX.Element> => {
+export default function Comp({ children, type, color, style, ariaDisabled, className, size, onClick }: Props): JSX.Element {
     type = type || "button";
     color = color || "primary";
     style = style || "fill";
+    className = className || "";
+    size = size || 1;
 
     return (
-        <button aria-disabled={ariaDisabled} type={type} className={cutil.merge(css.button, css[color], css[style], css.marginBottom)}>
+        <button
+            onClick={onClick}
+            aria-disabled={ariaDisabled}
+            type={type}
+            className={cutil.merge(css.button, css[color], css[style], css[`size${size}`], css.marginBottom, className)}>
             {children}
         </button>
     );
-};
-
-export default Comp;
+}

@@ -1,23 +1,44 @@
 "use server";
+import Tags from "@tag/index";
+import Image from "next/image";
+import FileList from "./fileList";
+import { MDIndex } from "@fn/md";
 import { JSX } from "react";
-import fnMd from "@fn/md";
-import fnSign from "@fn/sign";
 import css from "./index.module.scss";
 
 type Props = {
-    children?: JSX.Element;
+    fileList: MDIndex[];
+    sideContent: SideContent[];
 };
 
-export default async function Comp({ children }: Props): Promise<JSX.Element> {
-    const session = await fnSign.getSession();
-    const ls = await fnMd.index.filter({}, true);
+export type SideContent = {
+    title: string;
+    href: string;
+    children?: SideContent[];
+};
+
+const { Space, H3, P1 } = Tags;
+
+export default async function Comp({ fileList, sideContent }: Props): Promise<JSX.Element> {
     return (
-        <div>
-            <div>{children}</div>
-            {ls.map((v, i) => (
-                <div key={i}>{v.path}</div>
+        <>
+            <Image className={css.imgLogo} src={"/asset/img/png/dev-friends.png"} alt="dev_friends" width={200} height={200} />
+            <Space />
+            <H3>dev_friends</H3>
+            <Space height="0.4rem" />
+            <P1>Welcome my space</P1>
+            <Space height="0.2rem" />
+            <P1>working on software engineer, devops</P1>
+            <Space height="2rem" />
+
+            <H3>contents</H3>
+            {sideContent.map((v, i) => (
+                <div key={i}>{v.title}</div>
             ))}
-            <div></div>
-        </div>
+
+            <Space height="2rem" />
+            <H3>documents</H3>
+            <FileList fileList={fileList} />
+        </>
     );
 }

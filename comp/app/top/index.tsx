@@ -1,7 +1,7 @@
 "use server";
+import { getConfig, getSession } from "@fn/action";
 import { JSX } from "react";
 import Breadcrumb from "@block/breadcrumb";
-import fnSign from "@fn/sign";
 import IconPack from "@block/icon/svg";
 import IconBtn from "./btn";
 import OnReload from "./on-reload";
@@ -12,8 +12,6 @@ export type TopNavItem = {
     href: string;
     tooltip: string;
 };
-
-const { getSession } = fnSign;
 
 const signInTopNav: TopNavItem[] = [];
 const signOutTopNav: TopNavItem[] = [
@@ -29,12 +27,12 @@ const signOutTopNav: TopNavItem[] = [
     },
 ];
 
-type Props = {};
-
-export default async function Comp({}: Props): Promise<JSX.Element> {
+export default async function Comp(): Promise<JSX.Element> {
     const session = await getSession();
-    const ls = session.isSignIn ? signInTopNav : signOutTopNav;
 
+    const config = await getConfig();
+
+    const ls = session.isSignIn ? signInTopNav : signOutTopNav;
     return (
         <div className={css.cont}>
             <Breadcrumb></Breadcrumb>

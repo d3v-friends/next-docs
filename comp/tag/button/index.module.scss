@@ -15,26 +15,23 @@
     cursor: default;
   }
 
-  @include bp1 {
-    font-size: 0.80rem;
-    height: 30px;
-  }
-
-  @include bp2 {
-    font-size: 0.85rem;
-    height: 30px;
-  }
-
-  @include bp3 {
-    font-size: 0.90rem;
-    height: 40px;
-  }
-
-  @include bp4 {
-    font-size: 0.95rem;
-    height: 40px;
-  }
 }
+
+.size1 {
+  height: map-get($inputButtonHeight, "1");
+  font-size: map-get($inputButtonFontSize, "1");
+}
+
+.size2 {
+  height: map-get($inputButtonHeight, "2");
+  font-size: map-get($inputButtonFontSize, "2");
+}
+
+.size3 {
+  height: map-get($inputButtonHeight, "3");
+  font-size: map-get($inputButtonFontSize, "3");
+}
+
 
 // ------------------------------------------------------------
 // colors
@@ -58,9 +55,10 @@
     border-color: map-get($colorPrimary, "disabled");
 
     &:hover {
-      color: map-get($colorBackground, "disabled");
+      color: map-get($colorPrimary, "active");
       border-color: map-get($colorPrimary, "active");
-      background-color: map-get($colorPrimary, "active");
+      border-width: 4px;
+      //background-color: map-get($colorPrimary, "active");
     }
   }
 }

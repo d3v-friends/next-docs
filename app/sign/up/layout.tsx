@@ -1,3 +1,4 @@
+import { getConfig } from "@fn/action";
 import { Metadata } from "next";
 import { JSX, ReactNode } from "react";
 
@@ -13,5 +14,10 @@ type Props = {
 };
 
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
+    const config = await getConfig();
+    if (!config.signUp) {
+        return <>Sign up is not service</>;
+    }
+
     return <>{children}</>;
 }

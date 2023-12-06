@@ -1,7 +1,9 @@
-import OnClick from "./onClick";
+import OnCopy from "./onCopy";
+import OnGoTop from "./onGoTop";
 
-const Event = {
-    OnClick,
+const Events = {
+    OnCopy,
+    OnGoTop,
 };
 
-export default Event;
+export default Events;

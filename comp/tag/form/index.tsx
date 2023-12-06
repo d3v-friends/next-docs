@@ -2,6 +2,7 @@ import { FormEvent, ReactNode } from "react";
 import css from "./index.module.scss";
 
 export type FormAction = (formData: FormData) => void;
+export type FormSubmit = (ev: FormEvent<HTMLFormElement>) => void;
 
 type Props = {
     onAction?: FormAction;

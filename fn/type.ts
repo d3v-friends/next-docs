@@ -75,13 +75,52 @@ export function getFormString(form: FormData, key: string): string {
     return (form.get(key) || "") as string;
 }
 
+export function getForm(form: FormData, ...names: string[]): string[] {
+    const ls: string[] = [];
+
+    for (const name of names) {
+        const v = form.get(name);
+        if (!v) {
+            ls.push("");
+            continue;
+        }
+        if (typeof v !== "string") {
+            ls.push("");
+            continue;
+        }
+        ls.push(v);
+    }
+
+    return ls;
+}
+
+export function testRegex(v: string[], t: RegExp[]): boolean {
+    if (v.length != t.length) throw new Error("regex is not available");
+
+    for (let i = 0; i < v.length; i++) {
+        if (t[i].test(v[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 export type TokenPayload = {
     sessionId: UUID;
     username: string;
     signAt: Date;
 };
 
-export const InitFormActionRes: ActionResult<any> = {
+export const InitAction: ActionResult<any> = {
     code: 200,
     resAt: new Date(),
+};
+
+export const FormKey = {
+    sign: {
+        username: "username",
+        password: "password",
+        confirm: "confirm",
+    },
 };

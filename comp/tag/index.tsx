@@ -31,7 +31,7 @@ type PArgs = {
     children?: ReactNode;
 };
 
-const Tag = {
+const Tags = {
     H,
     H1: ({ align, children, className, padding }: HArgs) => H({ align, children, className, padding, size: 1 }),
     H2: ({ align, children, className, padding }: HArgs) => H({ align, children, className, padding, size: 2 }),
@@ -57,4 +57,4 @@ const Tag = {
     Padding,
 };
 
-export default Tag;
+export default Tags;

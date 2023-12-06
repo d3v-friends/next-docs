@@ -9,11 +9,13 @@ type Props = {
 };
 
 export default function Comp({ children, src, size }: Props): ReactNode {
-    size = size || 18;
+    size = size || 30;
     return (
         <div className={css.cont}>
-            <Image className={css.svgFilterPrimary} src={src} alt={src} width={size} height={size} />
-            <div style={{ fontSize: size * 0.9, height: size }}>{children}</div>
+            <Image src={src} alt={src} width={size} height={size} />
+            <div className={css.div} style={{ fontSize: size * 0.9, height: size }}>
+                {children}
+            </div>
         </div>
     );
 }

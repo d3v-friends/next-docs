@@ -4,16 +4,20 @@
   height: 100%;
   display: inline-flex;
   justify-content: flex-end;
-  align-items: flex-end;
-  color: map-get($colorContent, "disabled");
+  align-items: center;
+
 
   img {
-    margin-right: 4px;
     display: block;
-    filter: map-get($filterPrimary, "disabled")
+    margin-right: 4px;
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
   }
 
-  div {
+  .div {
+    color: map-get($colorContent, "disabled");
+
     &:hover {
       color: map-get($colorContent, "active");
       cursor: default;

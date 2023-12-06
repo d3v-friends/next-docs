@@ -1,10 +1,11 @@
+import fnPath from "@fn/path";
+import { Readable } from "@fn/type";
 import fs from "fs";
 import moment from "moment";
-import path from "path";
 import readline from "readline";
-import fnPath from "./path";
 import fnParam from "./param";
 import fnJson from "./json";
+import fnDir from "./dir";
 
 export type MD = {
     path: string;
@@ -14,18 +15,14 @@ export type MD = {
 
 type Nullable<T> = T | null | undefined;
 export type InfoKey = "create" | "update" | "readable" | "alias";
-export type Readable = "admin" | "maintainer" | "reader" | "all";
-const readableAll: Readable[] = ["admin", "maintainer", "reader", "all"];
-
+const readableAll: Readable[] = ["admin", "maintainer", "subscriber", "all"];
 const prefixInfo = "@@@";
 
-const isExist = (fp: string): boolean => {
-    return fs.existsSync(fp);
-};
+// fp 는 상대경로이다.
 
 const read = async (fp: string): Promise<MD> => {
-    const sfp = fnPath.absolute(fp);
-    if (!isExist(sfp)) throw new Error(`not found file: filename=${fp}`);
+    const sfp = fnDir.getAbsolutePath("content", fp);
+    if (!fs.existsSync(sfp)) throw new Error(`not found file: filename=${fp}`);
 
     const rl = readline.createInterface({
         input: fs.createReadStream(sfp),
@@ -96,16 +93,15 @@ const isReadable = (ls: Readable[], value: Readable): boolean => {
     return false;
 };
 
-type MDIndex = {
+export type MDIndex = {
     path: string;
     name: string;
     readable: Readable[];
 };
 
-const configIndexFp = "/config/index.json";
-
-const setIndex = async (): Promise<MDIndex[]> => {
-    const mdList = await getMdList();
+const getIndexFp = () => fnDir.getAbsolutePath("config", "index.json");
+const createIndex = async (): Promise<MDIndex[]> => {
+    const mdList = fnDir.getFileList("content", "md");
     const res: MDIndex[] = [];
     for (const mdPath of mdList) {
         const md = await read(mdPath);
@@ -116,7 +112,7 @@ const setIndex = async (): Promise<MDIndex[]> => {
         });
     }
 
-    await fnJson.write(configIndexFp, res);
+    await fnJson.write(getIndexFp(), res);
 
     return res;
 };
@@ -126,41 +122,32 @@ type OptIndex = {
 };
 
 const getIndexByFilter = async (opt: OptIndex, ...reindexes: boolean[]): Promise<MDIndex[]> => {
-    const ls = await getIndex(...reindexes);
+    let ls = await getIndex(...reindexes);
 
-    return ls.filter(v => {
-        let filtered = true;
-        if (opt.readable) {
-            filtered = isReadable(v.readable, opt.readable);
-        }
-        return filtered;
-    });
+    if (opt.readable && opt.readable != "admin") {
+        ls = ls.filter(v => {
+            let filtered = true;
+            if (opt.readable) {
+                filtered = isReadable(v.readable, opt.readable);
+            }
+            return filtered;
+        });
+    }
+
+    return ls;
 };
 const getIndex = async (...reindexes: boolean[]): Promise<MDIndex[]> => {
-    const isExist = !fnPath.isExist(configIndexFp);
+    const isExist = fnPath.isExist(getIndexFp());
     let reindex = false;
     if (reindexes.length !== 0) {
         reindex = reindexes[0];
     }
 
     if (isExist || reindex) {
-        return setIndex();
+        return createIndex();
     }
 
-    return fnJson.read(configIndexFp);
-};
-
-const getMdList = async (): Promise<string[]> => {
-    const cfp = fnPath.absolute("/content");
-    return fs
-        .readdirSync(cfp, {
-            recursive: true,
-            encoding: "utf8",
-        })
-        .filter(v => {
-            return path.extname(v) === ".md";
-        })
-        .map(v => `/content/${fnPath.relative(v)}`);
+    return fnJson.read(getIndexFp());
 };
 
 const getName = (md: MD): string => {
@@ -168,18 +155,19 @@ const getName = (md: MD): string => {
     if (alias) return alias;
     return fnPath.basename(md.path);
 };
+
 const fnMD = {
     read,
     info: {
         name: getName,
         create: (md: MD): Nullable<Date> => getDate(md, "create"),
         update: (md: MD): Nullable<Date> => getDate(md, "create"),
-        subscriber: getReadable,
+        readable: getReadable,
         isReadable,
     },
     index: {
         get: getIndex,
-        set: setIndex,
+        set: createIndex,
         filter: getIndexByFilter,
     },
 };

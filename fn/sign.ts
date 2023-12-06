@@ -1,40 +1,26 @@
-"use server";
 import crypto from "crypto";
+import fs from "fs";
 import jsonwebtoken from "jsonwebtoken";
-import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { v4 } from "uuid";
 import fnEnv from "./env";
 import fnJson from "./json";
 import fnPath from "./path";
-
-import { Account, SessionToken, TokenPayload, FnFormAction, getFormString, NewUUID } from "./type";
+import fnDir from "./dir";
+import { Account, SessionToken, TokenPayload, NewUUID } from "./type";
 
 const getSecret = () => fnEnv.string("JWT_SECRET", "123e4567-e89b-12d3-a456-426614174000");
-const keySession = "session";
 const regex = {
     username: new RegExp("^[a-z][a-z|0-9]{7,20}$"),
     password: new RegExp(`^[a-zA-Z0-9!@#$%^&*()_+|~{}\\\[\\];':",\.\/<>?\`]{8,30}$`),
 };
+const getUserFilepath = (username: string) => fnDir.getAbsolutePath("config", `/account/${username}.json`);
 
 type SignData = {
     username: string;
     password: string;
 };
 
-function getSignData(form: FormData): SignData {
-    const username = getFormString(form, "username");
-    if (!regex.username.test(username)) throw new Error("invalid username");
-
-    const password = getFormString(form, "password");
-    if (!regex.password.test(password)) throw new Error("invalid password");
-
-    return {
-        username,
-        password,
-    };
-}
+type Token = string;
 
 type ISalting = {
     salt: string;
@@ -106,12 +92,10 @@ const NoSessionStatus: SessionStatus = {
     },
 };
 
-export async function GetSession(): Promise<SessionStatus> {
-    const token = cookies().get(keySession);
-
+const signVerify = async (token: string): Promise<SessionStatus> => {
     if (!token) return NoSessionStatus;
 
-    const { isVerified, payload } = verifyToken(token.value);
+    const { isVerified, payload } = verifyToken(token);
 
     if (!isVerified) {
         return NoSessionStatus;
@@ -120,7 +104,7 @@ export async function GetSession(): Promise<SessionStatus> {
     if (!payload) return NoSessionStatus;
 
     const { username } = payload;
-    const fp = `/config/account/${username}.json`;
+    const fp = getUserFilepath(username);
 
     if (!fnJson.isExist(fp)) {
         return NoSessionStatus;
@@ -132,82 +116,81 @@ export async function GetSession(): Promise<SessionStatus> {
         isSignIn: true,
         account,
     };
-}
+};
 
-/* -------------------------------------------------------------------------------------------------- */
+type SignUpArgs = {
+    username: string;
+    password: string;
+    confirm: string;
+};
 
-// actions
-export async function SignOutAction(_: any, form: FormData) {
-    return FnFormAction(form, async data => {
-        cookies().delete(keySession);
-        revalidatePath("/");
-        redirect("/");
-    });
-}
+const signUp = async ({ username, password, confirm }: SignUpArgs): Promise<Account> => {
+    const fp = getUserFilepath(username);
+    if (fnPath.isExist(fp)) {
+        throw new Error("duplicated username");
+    }
 
-export async function SignUpAction(_: any, form: FormData) {
-    return FnFormAction(form, async data => {
-        const { username, password } = getSignData(data);
+    if (password !== confirm) {
+        throw new Error("not matched password and confirm");
+    }
 
-        const fp = `/config/account/${username}.json`;
-        if (fnPath.isExist(fp)) throw new Error("duplicated username");
+    const salt = crypto.randomBytes(64).toString("base64");
+    const saltedPasswd = salting({ salt, password });
 
-        const confirm = getFormString(data, "confirm");
-        if (password !== confirm) throw new Error("not matched password and confirm");
-
-        const salt = crypto.randomBytes(64).toString("base64");
-        const saltedPasswd = salting({ salt, password });
-
-        const account: Account = {
-            id: v4(),
-            isActivate: true,
-            readable: "subscriber",
-            username,
-            auth: {
-                password: {
-                    salt,
-                    saltedPasswd,
-                },
+    const account: Account = {
+        id: v4(),
+        isActivate: true,
+        readable: "subscriber",
+        username,
+        auth: {
+            password: {
+                salt,
+                saltedPasswd,
             },
-        };
+        },
+    };
 
-        await fnJson.write(fp, account);
+    await fnJson.write(fp, account);
 
-        redirect("/");
+    return account;
+};
+
+type SignInArgs = {
+    username: string;
+    password: string;
+};
+
+const signIn = async ({ username, password }: SignInArgs): Promise<Token> => {
+    const fp = getUserFilepath(username);
+
+    if (!fs.existsSync(fp)) throw new Error("not found account");
+
+    const account = await fnJson.read<Account>(getUserFilepath(username));
+    if (!account.isActivate) {
+        throw new Error("rejected sign up");
+    }
+
+    const saltedPasswd = salting({
+        salt: account.auth.password.salt,
+        password,
     });
-}
 
-export async function SignInAction(_: any, form: FormData) {
-    return FnFormAction(form, async data => {
-        const { username, password } = getSignData(form);
-        const account = await fnJson.read<Account>(`/config/account/${username}.json`);
+    if (saltedPasswd !== account.auth.password.saltedPasswd) throw new Error("invalid sign data");
 
-        if (!account.isActivate) throw new Error("rejected sign up");
+    const payload: TokenPayload = {
+        username,
+        sessionId: NewUUID(),
+        signAt: new Date(),
+    };
 
-        const saltedPasswd = salting({
-            salt: account.auth.password.salt,
-            password,
-        });
-
-        if (saltedPasswd !== account.auth.password.saltedPasswd) throw new Error("invalid sign data");
-
-        const payload: TokenPayload = {
-            username,
-            sessionId: NewUUID(),
-            signAt: new Date(),
-        };
-
-        cookies().set(keySession, createToken(payload));
-        revalidatePath("*");
-        redirect("/");
-    });
-}
+    return createToken(payload);
+};
 
 const fnSign = {
-    getSession: GetSession,
-    inAction: SignInAction,
-    upAction: SignUpAction,
-    outAction: SignOutAction,
+    signIn,
+    signUp,
+    signVerify,
+    regex,
 };
 
 export default fnSign;

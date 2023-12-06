@@ -1,0 +1,30 @@
+[
+  {
+    "path": "index.md",
+    "name": "index.md",
+    "readable": [
+      "all"
+    ]
+  },
+  {
+    "path": "project/index.md",
+    "name": "index.md",
+    "readable": [
+      "all"
+    ]
+  },
+  {
+    "path": "schedule/index.md",
+    "name": "index.md",
+    "readable": [
+      "all"
+    ]
+  },
+  {
+    "path": "project/sms/index.md",
+    "name": "index.md",
+    "readable": [
+      "all"
+    ]
+  }
+]

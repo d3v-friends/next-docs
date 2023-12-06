@@ -1,0 +1,9 @@
+@import "@style";
+
+.imgLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 0.3rem solid map-get($colorPrimary, "disabled");
+  //border: 0.3rem solid map-get($colorBorder, "hover");
+}

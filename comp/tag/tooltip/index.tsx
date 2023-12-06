@@ -1,4 +1,4 @@
-import fn from "@fn";
+import fnCss from "@fn/css";
 import { ReactNode } from "react";
 import css from "./index.module.scss";
 
@@ -6,25 +6,19 @@ interface Props {
     tooltip: string;
     children?: ReactNode;
     loc?: Location;
+    className?: string;
 }
 
 type Location = "top" | "bottom" | "left" | "right";
 
-const {
-    css: { merge },
-} = fn;
-
-export default function Comp({ children, tooltip, loc }: Props) {
-    const width = tooltip.length * 8;
-    const marginLeft = -width / 2;
+export default function Comp({ children, tooltip, loc, className }: Props) {
     loc = loc || "bottom";
+    className = className || "";
 
     return (
         <div className={css.cont}>
-            {children}
-            <div className={merge(css.tooltip, css[loc])} style={{ width, marginLeft }}>
-                {tooltip}
-            </div>
+            <span className={className}>{children}</span>
+            <div className={fnCss.merge(css.tooltip, css[loc])}>{tooltip}</div>
         </div>
     );
 }

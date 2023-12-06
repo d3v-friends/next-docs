@@ -1,0 +1,30 @@
+@import "@style";
+
+.contButton {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    width: 48%;
+  }
+}
+
+.inlineBlock {
+  display: inline-block;
+}
+
+.filename {
+  font-size: 0.9rem;
+  color: map-get($colorContent, "disabled");
+}
+
+.filename:hover {
+  color: map-get($colorContent, "active");
+}
+
+.notFound {
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: map-get($colorContent, "disabled");
+}

@@ -11,7 +11,7 @@ export default function Comp({ children, language }: Props): ReactNode {
         <div className={css.cont}>
             <div className={css.language}>{language}</div>
             <div className={css.flexGrow} />
-            <div>{children}</div>
+            {children}
         </div>
     );
 }

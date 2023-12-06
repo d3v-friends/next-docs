@@ -1,7 +1,10 @@
 "use client";
+import Events from "@event/index";
 import Image from "next/image";
 import { ReactNode, useEffect, useState } from "react";
 import css from "./index.module.scss";
+
+const { OnGoTop } = Events;
 
 export default function Comp(): ReactNode {
     const handler = () => {
@@ -24,9 +27,11 @@ export default function Comp(): ReactNode {
     return (
         <>
             {isShow && (
-                <div className={css.cont} onClick={handler}>
-                    <Image width={30} height={30} className={css.svgFilterBg} src={"/asset/img/svg/up.svg"} alt={"top"} />
-                </div>
+                <OnGoTop className={""}>
+                    <div className={css.cont} onClick={handler}>
+                        <Image width={30} height={30} className={css.svgFilterBg} src={"/asset/img/svg/up.svg"} alt={"top"} />
+                    </div>
+                </OnGoTop>
             )}
         </>
     );
