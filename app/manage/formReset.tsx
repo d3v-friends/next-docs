@@ -4,13 +4,14 @@ import { resetIndexAction } from "@fn/action";
 import { InitAction } from "@fn/type";
 import Tags from "@tag/index";
 import { JSX, useEffect, useState } from "react";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 const { Form, Button, Divider, Inline } = Tags;
 const { Modal } = Blocks;
 export default function Comp(): JSX.Element {
     const [modal, setModal] = useState(false);
     const [state, onAction] = useFormState(resetIndexAction, InitAction());
+    const { pending } = useFormStatus();
 
     useEffect(() => {
         if (!state.message) return;
@@ -22,7 +23,7 @@ export default function Comp(): JSX.Element {
             <Inline>
                 <div style={{ width: "4rem" }}>
                     <Form onAction={onAction}>
-                        <Button type="submit" noMarginBottom>
+                        <Button type="submit" ariaDisabled={pending} noMarginBottom>
                             Reset
                         </Button>
                     </Form>
