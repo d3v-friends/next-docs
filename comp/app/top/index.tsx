@@ -1,7 +1,6 @@
 "use server";
 import { getConfig, getSession } from "@fn/action";
 import { JSX } from "react";
-import Breadcrumb from "@block/breadcrumb";
 import IconPack from "@block/icon/svg";
 import IconBtn from "./btn";
 import OnReload from "./on-reload";
