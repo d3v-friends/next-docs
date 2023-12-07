@@ -1,21 +1,20 @@
+import fnCss from "@fn/css";
 import Image from "next/image";
 import { ReactNode } from "react";
 import css from "./index.module.scss";
 
 type Props = {
     src: string;
-    size?: number;
+    className?: string;
     children?: ReactNode;
 };
 
-export default function Comp({ children, src, size }: Props): ReactNode {
-    size = size || 30;
+export default function Comp({ children, src, className }: Props): ReactNode {
+    className = className || "";
     return (
         <div className={css.cont}>
-            <Image src={src} alt={src} width={size} height={size} />
-            <div className={css.div} style={{ fontSize: size * 0.9, height: size }}>
-                {children}
-            </div>
+            <Image className={css.img} src={src} alt={src} width={50} height={50} />
+            <div className={fnCss.merge(css.content, className)}>{children}</div>
         </div>
     );
 }

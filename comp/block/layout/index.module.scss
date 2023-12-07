@@ -73,6 +73,13 @@ $contentWidth: (
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    @include bp1 {
+      padding: 0 0.5rem 0 0.5rem;
+    }
+
+    @include bp2 {
+      padding: 0;
+    }
 
     @include bpWidth {
     }
@@ -160,20 +167,26 @@ $contentWidth: (
 
   .content {
     @include bp1 {
+      padding: 0 0.5rem 0 0.5rem;
       width: 100%
     }
     @include bp2 {
       width: map-get($contentWidth, "bp2");
+      padding-left: 1rem;
     }
     @include bp3 {
       width: map-get($contentWidth, "bp3");
+      padding-left: 1.5rem;
     }
     @include bp4 {
       width: map-get($contentWidth, "bp4");
+      padding-left: 2rem;
     }
   }
 }
 
 .footer {
   margin: 50px auto;
+  @include bpWidth {
+  }
 }

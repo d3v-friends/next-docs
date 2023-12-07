@@ -31,7 +31,15 @@ export default async function Comp(): Promise<JSX.Element> {
     const nav: TopNavItem[] = [];
     const session = await getSession();
     const config = await getConfig();
-    if (!session.isSignIn) {
+    if (session.isSignIn) {
+        if (session.account.readable === "admin") {
+            nav.push({
+                src: IconPack.Secondary.Manage,
+                tooltip: "manage",
+                href: "/manage",
+            });
+        }
+    } else {
         if (config.signUp) {
             nav.push({
                 src: IconPack.Secondary.SignUp,

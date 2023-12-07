@@ -1,8 +1,8 @@
 "use server";
 import fnConfig, { Config } from "@fn/config";
-import fnMD, { MD } from "@fn/md";
-import { FnFormAction, getForm, FormKey, testRegex } from "@fn/type";
-import { revalidateTag } from "next/cache";
+import fnMD from "@fn/md";
+import { FnFormAction, getForm, FormKey, testRegex, MD } from "@fn/type";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import fnSign, { SessionStatus } from "./sign";
@@ -51,6 +51,16 @@ export async function signUpAction(_: any, form: FormData) {
     });
 }
 
+export async function resetIndexAction(_: any, form: FormData) {
+    return FnFormAction(form, async _ => {
+        revalidatePath(".", "page");
+        await fnMD.idx.create();
+        return {
+            message: "Reset index success",
+        };
+    });
+}
+
 export async function getSession(): Promise<SessionStatus> {
     const c = cookies().get(cookie.session);
     let token = "";
@@ -59,7 +69,7 @@ export async function getSession(): Promise<SessionStatus> {
 }
 
 export async function readMD(fp: string): Promise<MD> {
-    return fnMD.read(fp);
+    return fnMD.reader.read(fp);
 }
 
 export async function getConfig(): Promise<Config> {

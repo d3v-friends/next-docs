@@ -1,5 +1,5 @@
 import Tags from "@tag/index";
-import Inputs from "./inputs";
+import FormSignUp from "./formSignUp";
 import { JSX } from "react";
 import IconPack from "@block/icon/svg";
 
@@ -9,7 +9,7 @@ export default async function Page(): Promise<JSX.Element> {
         <>
             <H1>SignUp</H1>
             <Space height={"2rem"} />
-            <Inputs />
+            <FormSignUp />
 
             <Inline>
                 <H6>if you already has account?</H6>

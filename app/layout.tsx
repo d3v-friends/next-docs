@@ -4,8 +4,7 @@ import Side from "@app/side";
 import Footer from "@block/footer";
 import Body from "@block/layout";
 import fnEnv from "@fn/env";
-import fnMd from "@fn/md";
-import { getConfig, getSession } from "@fn/action";
+import { getSession } from "@fn/action";
 import Tags from "@tag/index";
 import type { Metadata } from "next";
 import { ReactNode, JSX } from "react";
@@ -26,10 +25,8 @@ const { Debug } = Tags;
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
     const debugMode = fnEnv.boolean("DEBUG_MODE", false);
     const session = await getSession();
-    const fileList = await fnMd.index.filter({
-        readable: session.account.readable,
-    });
-    const config = await getConfig();
+
+
     return (
         <html lang="ko">
             <head>
@@ -38,7 +35,7 @@ export default async function Layout({ children }: Props): Promise<JSX.Element> 
             <body className={css.body}>
                 <Body title={"next-docs"}>
                     <Top />
-                    <Side fileList={fileList} sideContent={config.sideContent} />
+                    <Side />
                     <>{children}</>
                     <>
                         <Footer name="Ciao Lee" since="1987-09-24" />

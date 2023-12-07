@@ -18,6 +18,7 @@ const strComma = (keys: string[], suffix: string): string => {
 
 const commaToArray = (str: string): string[] => {
     return str
+        .replaceAll(" ", "")
         .split(",")
         .filter(v => v !== "")
         .map(v => v.trim());

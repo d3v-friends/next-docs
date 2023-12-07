@@ -7,6 +7,7 @@ export function NewUUID(): UUID {
 }
 
 export type Readable = "admin" | "maintainer" | "subscriber" | "all";
+export const ReadableAll: Readable[] = ["admin", "maintainer", "subscriber", "all"];
 
 export function GetReadableIndex(v: Readable): number {
     switch (v) {
@@ -49,12 +50,23 @@ export const ARCode: Record<ARCodeKey, ActionResultCode> = {
     error: 500,
 };
 
-export async function FnFormAction<T>(formData: FormData, fn: (data: FormData) => Promise<T>): Promise<ActionResult<T>> {
+export async function FnFormAction<T>(
+    formData: FormData,
+    fn: (data: FormData) => Promise<
+        Nullable<
+            Partial<{
+                message: string;
+                value: T;
+            }>
+        >
+    >,
+): Promise<ActionResult<T>> {
     try {
         let res = await fn(formData);
         return {
             code: 200,
-            value: res,
+            message: res?.message,
+            value: res?.value,
             resAt: (() => new Date())(),
         };
     } catch (err) {
@@ -112,10 +124,10 @@ export type TokenPayload = {
     signAt: Date;
 };
 
-export const InitAction: ActionResult<any> = {
+export const InitAction = <DATA>(): ActionResult<DATA> => ({
     code: 200,
     resAt: new Date(),
-};
+});
 
 export const FormKey = {
     sign: {
@@ -124,3 +136,31 @@ export const FormKey = {
         confirm: "confirm",
     },
 };
+
+export type Nullable<T> = T | null | undefined;
+
+export type MD = {
+    path: string;
+    content: string;
+    info: {
+        [key: string]: string;
+    };
+};
+
+export const MDInfoPrefix = "@@@";
+
+export type IndexTree = {
+    path: string;
+    basename: string;
+    fileList: {
+        path: string;
+        alias: string;
+        tags: string[];
+        readable: Readable[];
+    }[];
+    children: {
+        [key: string]: IndexTree;
+    };
+};
+
+export type InfoKey = "alias" | "create" | "update" | "readable" | "tags";

@@ -1,5 +1,6 @@
 import cutil from "@cutil";
 import Tags from "@tag/index";
+import { v4 } from "uuid";
 import LangHeader from "./langHeader";
 import Image from "next/image";
 import Markdown from "react-markdown";
@@ -12,10 +13,12 @@ import css from "./index.module.scss";
 import IconPrimary from "../icon/svg/primary";
 import Checkbox from "./checkbox";
 import Del from "./del";
+import { JSX } from "react";
+import Mermaid from "./mermaid";
 
 // # todo: icon 모두 변경하기 -> 필터쓰지 않도록!!
 
-const { ImgText, H, P } = Tags;
+const { ImgText, H, P, Hr } = Tags;
 const { merge } = cutil;
 const { OnCopy } = Events;
 
@@ -26,28 +29,38 @@ const MdComps: Components = {
 
         const language = langLs[1];
         if (Code.supportedLanguages.findIndex(v => v === language) === -1) {
-            return (
-                <div>
-                    <LangHeader language={`${language.toUpperCase()} - unsupported highlight`}>
-                        <OnCopy value={children as string}>
-                            <ImgText size={16} src={IconPrimary.Copy}>
-                                Copy
-                            </ImgText>
-                        </OnCopy>
-                    </LangHeader>
-                    <Code wrapLines={true} showLineNumbers={true} style={obsidian} language={language}>
-                        {children as string}
-                    </Code>
-                </div>
-            );
+            switch (language) {
+                case "mermaid":
+                    return (
+                        <>
+                            <LangHeader language={`${language.toUpperCase()}`}>
+                                <OnCopy value={children as string}>
+                                    <ImgText src={IconPrimary.Copy}>Copy</ImgText>
+                                </OnCopy>
+                            </LangHeader>
+                            <Mermaid>{children as string}</Mermaid>
+                        </>
+                    );
+                default:
+                    return (
+                        <div>
+                            <LangHeader language={`${language.toUpperCase()} - unsupported highlight`}>
+                                <OnCopy value={children as string}>
+                                    <ImgText src={IconPrimary.Copy}>Copy</ImgText>
+                                </OnCopy>
+                            </LangHeader>
+                            <Code wrapLines={true} showLineNumbers={true} style={obsidian} language={language}>
+                                {children as string}
+                            </Code>
+                        </div>
+                    );
+            }
         }
         return (
             <>
                 <LangHeader language={language.toUpperCase()}>
                     <OnCopy value={children as string}>
-                        <ImgText size={16} src={IconPrimary.Copy}>
-                            Copy
-                        </ImgText>
+                        <ImgText src={IconPrimary.Copy}>Copy</ImgText>
                     </OnCopy>
                 </LangHeader>
                 <Code wrapLines={true} showLineNumbers={true} style={obsidian} language={language}>
@@ -118,14 +131,14 @@ const MdComps: Components = {
     ),
     del: ({ children }) => <Del>{children}</Del>,
     p: ({ children }) => <P>{children}</P>,
-    hr: () => <div className={css.hr} />,
+    hr: () => <Hr />,
 };
 
 type Props = {
     children: string;
 };
 
-export default async function Comp({ children }: Props) {
+export default async function Comp({ children }: Props): Promise<JSX.Element> {
     return (
         <Markdown components={MdComps} remarkPlugins={[gfm]}>
             {children}

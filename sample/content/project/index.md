@@ -1,4 +1,4 @@
 @@@readable=all
-@@@menu=sms-v3
+@@@alias=문자 서비스
 
 # Project index
