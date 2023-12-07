@@ -1,0 +1,104 @@
+@import "@style";
+
+.cont {
+  position: fixed;
+  backdrop-filter: blur(2px);
+  z-index: map-get($zIndex, "nav");
+  width: 100%;
+
+  @include bp1 {
+    height: $nav1;
+  }
+
+  @include bp2 {
+    height: $nav2;
+  }
+
+  @include bp3 {
+    height: $nav3;
+  }
+
+  @include bp4 {
+    height: $nav4;
+  }
+}
+
+.inner {
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include bp1 {
+    width: 100%;
+    padding-right: 1rem;
+  }
+
+  @include bp2 {
+    width: $bp2;
+  }
+
+  @include bp3 {
+    width: $bp3;
+  }
+
+  @include bp4 {
+    width: $bp4;
+  }
+}
+
+
+.title {
+  display: block;
+  padding: 0.5rem;
+  height: 100%;
+  color: map-get($colorBackground, "active") !important;
+  background-color: map-get($colorPrimary, "active");
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+
+  @include bp1 {
+    padding: 0 1rem 0 1rem;
+  }
+
+  @include bp2 {
+    width: $side2;
+  }
+
+  @include bp3 {
+    width: $side3;
+  }
+
+  @include bp4 {
+    width: $side4;
+  }
+}
+
+.menu {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  margin-right: 0.3rem;
+}
+
+.titleMobile {
+  @include bp1 {
+    display: flex;
+  }
+
+  @include bp2 {
+    display: none;
+  }
+}
+
+.titlePc {
+  @include bp1 {
+    display: none;
+  }
+
+  @include bp2 {
+    display: flex;
+  }
+}

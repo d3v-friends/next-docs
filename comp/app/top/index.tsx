@@ -44,7 +44,9 @@ export default async function Comp(): Promise<JSX.Element> {
 
     return (
         <div className={css.cont}>
-            <DocPath />
+            <div className={css.breadcrumb}>
+                <DocPath />
+            </div>
             <div className={css.space}></div>
             {nav.map((v, i) => (
                 <IconBtn key={i} href={v.href} imgSrc={v.src} tooltip={v.tooltip} />

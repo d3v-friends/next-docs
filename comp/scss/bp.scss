@@ -84,3 +84,36 @@ $bp: (
     @content
   }
 }
+
+
+// nav height
+$nav1: 35px;
+$nav2: 40px;
+$nav3: 45px;
+$nav4: 50px;
+
+$navs: (
+        "bp1": $nav1,
+        "bp2": $nav2,
+        "bp3": $nav3,
+        "bp4": $nav4,
+);
+
+// side width
+$side1: inherit;
+$side2: 180px;
+$side3: 200px;
+$side4: 250px;
+
+$sides: (
+        "bp1": $side1,
+        "bp2": $side2,
+        "bp3": $side3,
+        "bp4": $side4,
+);
+
+// content width
+$cont1: 100%;
+$cont2: calc(#{$bp2} - $side2);
+$cont3: calc(#{$bp3} - $side3);
+$cont4: calc(#{$bp4} - $side4);

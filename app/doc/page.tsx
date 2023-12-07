@@ -1,10 +1,10 @@
 "use server";
+import fnEnv from "@fn/env";
 import { Metadata } from "next";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
-        title: "title",
-        description: "page",
+        title: `${fnEnv.string("MT_PREFIX")}:Doc`,
     };
 };
 

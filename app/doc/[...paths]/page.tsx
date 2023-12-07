@@ -1,7 +1,15 @@
 import Blocks from "@block/index";
 import { getSession, readMD } from "@fn/action";
+import fnEnv from "@fn/env";
 import fnUrl from "@fn/url";
+import { Metadata } from "next";
 import { JSX } from "react";
+
+export const generateMetadata = async ({ params: { paths } }: Props): Promise<Metadata> => {
+    return {
+        title: `${fnEnv.string("MT_PREFIX")}:${fnUrl.glue(...paths)}`,
+    };
+};
 
 type Props = {
     params: {

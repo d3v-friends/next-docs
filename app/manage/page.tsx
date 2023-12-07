@@ -1,16 +1,22 @@
+import fnEnv from "@fn/env";
 import Tags from "@tag/index";
+import { Metadata } from "next";
 import { JSX } from "react";
 import FormReset from "./formReset";
 
-type Props = {};
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: `${fnEnv.string("MT_PREFIX")}:Manage`,
+    };
+};
 
 const { H3, Space } = Tags;
 
-export default async function Page({}: Props): Promise<JSX.Element> {
+export default async function Page(): Promise<JSX.Element> {
     return (
         <>
             <H3>Manage</H3>
-            <Space/>
+            <Space />
             <FormReset />
         </>
     );

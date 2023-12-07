@@ -1,12 +1,5 @@
 import { getSession } from "@fn/action";
-import { Metadata } from "next";
 import { ReactNode, JSX } from "react";
-
-export const generateMetadata = async (): Promise<Metadata> => {
-    return {
-        title: `title`,
-    };
-};
 
 interface Props {
     children?: ReactNode;

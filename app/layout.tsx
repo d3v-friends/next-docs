@@ -5,27 +5,37 @@ import Footer from "@block/footer";
 import Body from "@block/layout";
 import fnEnv from "@fn/env";
 import { getSession } from "@fn/action";
-import Tags from "@tag/index";
+import fnMD from "@fn/md";
 import type { Metadata } from "next";
 import { ReactNode, JSX } from "react";
 import css from "@style/body.module.scss";
 import "@css";
 
-export const metadata: Metadata = {
-    title: "next-docs",
-    description: "index.html",
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: `${fnEnv.string("MT_PREFIX", "next-docs")}:Home`,
+    };
 };
 
 type Props = {
     children?: ReactNode;
 };
 
-const { Debug } = Tags;
-
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
-    const debugMode = fnEnv.boolean("DEBUG_MODE", false);
     const session = await getSession();
+    const logo = fnEnv.string("MT_PREFIX", "next-docs");
 
+    const idxContent = await fnMD.idx.readWithOpt({
+        readable: session.account.readable,
+        tags: {
+            tags: ["contents"],
+            isCorrect: true,
+        },
+    });
+
+    const idxDoc = await fnMD.idx.readWithOpt({
+        readable: session.account.readable,
+    });
 
     return (
         <html lang="ko">
@@ -33,22 +43,13 @@ export default async function Layout({ children }: Props): Promise<JSX.Element> 
                 <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
             <body className={css.body}>
-                <Body title={"next-docs"}>
+                <Body title={logo}>
                     <Top />
-                    <Side />
+                    <Side idxDoc={idxDoc} idxContent={idxContent} />
                     <>{children}</>
                     <>
                         <Footer name="Ciao Lee" since="1987-09-24" />
                         <GoTop />
-                        {debugMode && (
-                            <Debug
-                                data={[
-                                    { key: "session", value: session.isSignIn ? "signIn" : "signOut" },
-                                    { key: "readable", value: session.account.readable },
-                                    { key: "username", value: session.account.username },
-                                ]}
-                            />
-                        )}
                     </>
                 </Body>
             </body>

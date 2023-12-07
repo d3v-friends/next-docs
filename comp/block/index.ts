@@ -6,6 +6,7 @@ import IconPack from "./icon/svg";
 import Layout from "./layout";
 import Markdown from "./markdown";
 import Modal from "./modal";
+import IsMobile from "./isMobile";
 
 const Blocks = {
     Breadcrumb,
@@ -18,6 +19,7 @@ const Blocks = {
     Layout,
     Markdown,
     Modal,
+    IsMobile,
 };
 
 export default Blocks;
