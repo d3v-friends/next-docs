@@ -80,7 +80,6 @@ $contentWidth: (
     .title {
       height: 100%;
       background-color: map-get($colorPrimary, "active");
-      display: flex;
       justify-content: center;
       align-items: center;
       font-weight: 600;
@@ -95,6 +94,14 @@ $contentWidth: (
 
       @include sideWidth {
       }
+
+      @include bp1 {
+        display: none;
+      }
+
+      @include bp2 {
+        display: flex;
+      }
     }
 
     .navContent {
@@ -108,9 +115,9 @@ $contentWidth: (
 }
 
 .contContent {
-  display: flex;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
+  display: flex;
 
 
   @include bp1 {
@@ -136,9 +143,11 @@ $contentWidth: (
   .side {
     min-height: 100%;
     @include bp1 {
+      display: none;
       width: map-get($sideWidth, "bp1")
     }
     @include bp2 {
+      display: block;
       width: map-get($sideWidth, "bp2")
     }
     @include bp3 {
@@ -151,7 +160,7 @@ $contentWidth: (
 
   .content {
     @include bp1 {
-      width: map-get($contentWidth, "bp1");
+      width: 100%
     }
     @include bp2 {
       width: map-get($contentWidth, "bp2");

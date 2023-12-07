@@ -1,6 +1,6 @@
 {
   "signIn": true,
-  "signUp": true,
+  "signUp": false,
   "reply": false,
   "sideContent": [
     {

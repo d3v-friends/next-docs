@@ -28,16 +28,31 @@ const signOutTopNav: TopNavItem[] = [
 ];
 
 export default async function Comp(): Promise<JSX.Element> {
+    const nav: TopNavItem[] = [];
     const session = await getSession();
-
     const config = await getConfig();
+    if (!session.isSignIn) {
+        if (config.signUp) {
+            nav.push({
+                src: IconPack.Secondary.SignUp,
+                tooltip: "sign up",
+                href: "/sign/up",
+            });
+        }
+        if (config.signIn) {
+            nav.push({
+                src: IconPack.Secondary.SignIn,
+                tooltip: "sign in",
+                href: "/sign/in",
+            });
+        }
+    }
 
-    const ls = session.isSignIn ? signInTopNav : signOutTopNav;
     return (
         <div className={css.cont}>
             <Breadcrumb></Breadcrumb>
             <div className={css.space}></div>
-            {ls.map((v, i) => (
+            {nav.map((v, i) => (
                 <IconBtn key={i} href={v.href} imgSrc={v.src} tooltip={v.tooltip} />
             ))}
             {session.isSignIn && (

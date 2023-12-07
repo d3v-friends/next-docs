@@ -19,7 +19,9 @@ function getFileList(dir: Dir, ext: string): string[] {
                 encoding: "utf8",
             })
             .filter(v => {
-                return path.extname(v) === ext;
+                const isExt = path.extname(v) === ext;
+                const isDir = path.extname(v) === "";
+                return isExt || isDir;
             })
             // 상대 주소로 변경
             .map(v => v.replaceAll(targetPath, ""))

@@ -16,7 +16,7 @@ type Props = {
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
     const config = await getConfig();
     if (!config.signUp) {
-        return <>Sign up is not service</>;
+        return <>Sign up is not service. now</>;
     }
 
     return <>{children}</>;

@@ -2,6 +2,7 @@ import fnPath from "@fn/path";
 import { Readable } from "@fn/type";
 import fs from "fs";
 import moment from "moment";
+import path from "path";
 import readline from "readline";
 import fnParam from "./param";
 import fnJson from "./json";
@@ -14,7 +15,7 @@ export type MD = {
 };
 
 type Nullable<T> = T | null | undefined;
-export type InfoKey = "create" | "update" | "readable" | "alias";
+export type InfoKey = "create" | "update" | "readable" | "alias" | "title" | "describe";
 const readableAll: Readable[] = ["admin", "maintainer", "subscriber", "all"];
 const prefixInfo = "@@@";
 
@@ -156,6 +157,41 @@ const getName = (md: MD): string => {
     return fnPath.basename(md.path);
 };
 
+/* -------------------------------------------------------------------------------------------------- */
+// indexing
+
+type Index = {
+    path: string;
+    alias: string;
+    children: Index[];
+};
+
+const reindexing = async (): Promise<Index[]> => {
+    const all = fnDir.getMDList();
+    const res: Index[] = [];
+    for (const filepath of all) {
+        const split = filepath.split("/");
+    }
+
+    return res;
+};
+
+const appendIdx = (parent: Index, filepath: string): Index => {
+    // todo 여기부터 다시 만들기
+
+    const split = filepath.split("/");
+    for (const elem of split) {
+        if (elem.endsWith(".md")) {
+            parent.children.push({
+                path: filepath,
+                alias: "",
+                children: [],
+            });
+        }
+    }
+};
+
+/* -------------------------------------------------------------------------------------------------- */
 const fnMD = {
     read,
     info: {
