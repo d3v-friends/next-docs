@@ -3,12 +3,11 @@ import { JSX } from "react";
 import css from "./index.module.scss";
 
 type Props = {
-    path?: string;
     children?: string;
 };
 
-const comp = async ({ children, path }: Props): Promise<JSX.Element> => {
-    const p = children || path || "";
+const comp = async ({ children }: Props): Promise<JSX.Element> => {
+    const p = children || "";
     if (p === "") return <></>;
 
     const pathLS = p
@@ -17,9 +16,9 @@ const comp = async ({ children, path }: Props): Promise<JSX.Element> => {
         .map(v => `/${v}`);
 
     const getHref = (i: number): string => {
-        let res = "";
-        for (const str of pathLS) {
-            res += `/${str}`;
+        let res = "/doc";
+        for (let j = 0; j < i; j++) {
+            res += `${pathLS[i]}`;
         }
         return res;
     };

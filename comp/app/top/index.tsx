@@ -5,6 +5,7 @@ import Breadcrumb from "@block/breadcrumb";
 import IconPack from "@block/icon/svg";
 import IconBtn from "./btn";
 import OnReload from "./on-reload";
+import DocPath from "./docPath";
 import css from "./index.module.scss";
 
 export type TopNavItem = {
@@ -12,20 +13,6 @@ export type TopNavItem = {
     href: string;
     tooltip: string;
 };
-
-const signInTopNav: TopNavItem[] = [];
-const signOutTopNav: TopNavItem[] = [
-    {
-        src: IconPack.Secondary.SignUp,
-        tooltip: "sign up",
-        href: "/sign/up",
-    },
-    {
-        src: IconPack.Secondary.SignIn,
-        tooltip: "sign in",
-        href: "/sign/in",
-    },
-];
 
 export default async function Comp(): Promise<JSX.Element> {
     const nav: TopNavItem[] = [];
@@ -58,7 +45,7 @@ export default async function Comp(): Promise<JSX.Element> {
 
     return (
         <div className={css.cont}>
-            <Breadcrumb></Breadcrumb>
+            <DocPath />
             <div className={css.space}></div>
             {nav.map((v, i) => (
                 <IconBtn key={i} href={v.href} imgSrc={v.src} tooltip={v.tooltip} />
