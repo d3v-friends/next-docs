@@ -1,23 +1,32 @@
 FROM node:20.10.0
 
-WORKDIR src
-
-RUN apt update -y;
-RUN apt install vim -y;
-
-# next-doc pull
-RUN git clone https://github.com/d3v-friends/next-docs .
-RUN git pull
-RUN npm i -g pnpm
-RUN pnpm install
-
-
-# next build
-RUN pnpm run build
-
 # vscode install
 COPY ./docker/create/ins_vscode.sh .
 RUN sh ins_vscode.sh
 
+# gh install
+COPY ./docker/create/ins_gh.sh .
+RUN sh ins_gh.sh
 
+# install vim
+RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+RUN apt install vim -y;
+
+# next-doc pull
+RUN rm -rf /root/next-doc
+RUN {\
+  cd $HOME;\
+  git clone https://github.com/d3v-friends/next-docs; \
+  cd $HOME/next-docs; \
+  npm i -g pnpm; \
+  pnpm install; \
+};
+
+# next build
+WORKDIR /root/next-docs
+
+RUN {\
+  cd /root/next-docs; \
+  pnpm run build; \
+}
 ENTRYPOINT [ "pnpm", "run", "start" ]
