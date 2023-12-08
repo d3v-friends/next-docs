@@ -23,6 +23,7 @@
     "react-syntax-highlighter": "15.5.0",
     "remark-gfm": "4.0.0",
     "sass": "1.69.5",
+    "sharp": "0.33.0",
     "uuid": "9.0.1"
   },
   "devDependencies": {
@@ -42,6 +43,6 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": "20.9.0"
+    "node": "20.10.0"
   }
 }
