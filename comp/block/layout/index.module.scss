@@ -1,0 +1,86 @@
+@import "@style";
+
+.cont {
+  align-items: flex-start;
+  justify-content: center;
+  display: flex;
+
+
+  @include bp1 {
+    padding-top: calc(#{$nav1} + 1rem);
+    min-height: calc(100vh - #{$nav1});
+  }
+
+  @include bp2 {
+    padding-top: calc(#{$nav2} + 1rem);
+    min-height: calc(100vh - #{$nav2});
+  }
+
+  @include bp3 {
+    padding-top: calc(#{$nav3} + 1rem);
+    min-height: calc(100vh - #{$nav3});
+  }
+
+  @include bp4 {
+    padding-top: calc(#{$nav4} + 1rem);
+    min-height: calc(100vh - #{$nav4});
+  }
+
+}
+
+.side {
+  min-height: 100%;
+  @include bp1 {
+    display: none;
+    width: $side1;
+  }
+  @include bp2 {
+    display: block;
+    width: $side2;
+  }
+  @include bp3 {
+    width: $side3;
+  }
+  @include bp4 {
+    width: $side4;
+  }
+}
+
+.content {
+  @include bp1 {
+    padding: 0 1rem 0 1rem;
+    width: $cont1;
+  }
+  @include bp2 {
+    width: $cont2;
+    padding-left: 1rem;
+  }
+  @include bp3 {
+    width: $cont3;
+    padding-left: 1.5rem;
+  }
+  @include bp4 {
+    width: $cont4;
+    padding-left: 2rem;
+  }
+}
+
+.footer {
+  margin: auto;
+  padding-top: 2rem;
+
+  @include bp1 {
+    width: 100%;
+  }
+
+  @include bp2 {
+    width: $bp2
+  }
+
+  @include bp3 {
+    width: $bp3;
+  }
+  @include bp4 {
+    width: $bp4;
+  }
+}

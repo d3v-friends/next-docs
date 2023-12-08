@@ -1,5 +1,6 @@
 @@@create=2023-11-27
 @@@readable=all
+@@@tags=contents
 
 # GFM
 
@@ -25,6 +26,8 @@ contact@example.com
 
 * [ ] to do
 * [x] done
+
+---
 
 ~~~mermaid
 flowchart TD

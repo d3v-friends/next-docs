@@ -1,0 +1,61 @@
+@import "@style";
+
+.a {
+  display: inline-block;
+  text-decoration: none;
+  color: map-get($colorLink, "normal");
+  cursor: default;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &.inline {
+    display: inline-block;
+  }
+
+  &.block {
+    display: block;
+  }
+}
+
+.a:link {
+  color: map-get($colorLink, "normal");
+}
+
+.a:visited {
+  color: map-get($colorLink, "normal");
+}
+
+.a:hover {
+  color: map-get($colorLink, "hover");
+}
+
+.a:active {
+  color: map-get($colorLink, "active");
+}
+
+
+.cont {
+  display: flex;
+  align-items: center;
+
+  .icon {
+    display: block;
+    height: 1rem;
+  }
+
+  .children {
+    font-size: 1rem;
+    text-decoration: underline;
+    color: map-get($colorLink, "normal");
+  }
+
+  .children:hover {
+    color: map-get($colorLink, "hover");
+  }
+
+  .children:active {
+    color: map-get($colorLink, "active");
+  }
+}
+
+

@@ -24,22 +24,31 @@
     ],
     "paths": {
       "@app/*": [
-        "./app/*"
+        "./comp/app/*"
       ],
-      "@comp/*": [
-        "./comp/*"
+      "@css": [
+        "./comp/global.css"
       ],
-      "@comby/*": [
-        "./comp/comby/*"
+      "@fn/*": [
+        "./fn/*"
       ],
-      "@pure/*": [
-        "./comp/pure/*"
+      "@cutil": [
+        "./comp/cutil.ts"
       ],
-      "@provider/*": [
-        "./comp/provider/*"
+      "@event/*": [
+        "./comp/event/*"
       ],
-      "styles": [
-        "./comp/index.module.scss"
+      "@block/*": [
+        "./comp/block/*"
+      ],
+      "@tag/*": [
+        "./comp/tag/*"
+      ],
+      "@style": [
+        "./comp/scss/index.scss"
+      ],
+      "@style/*": [
+        "./comp/scss/*"
       ]
     }
   },

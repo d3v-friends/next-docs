@@ -1,0 +1,88 @@
+@import "@style";
+
+.input {
+  width: 100%;
+  color: map-get($colorContent, "disabled") !important;
+  border: 2px solid map-get($colorBorder, "normal") !important;
+  background-color: transparent !important;
+
+
+  &:active {
+    background-color: transparent !important;
+  }
+
+
+  @include bp1 {
+    font-size: 0.8rem !important;
+    height: 30px;
+  }
+
+  @include bp2 {
+    font-size: 0.8rem !important;
+    height: 30px;
+  }
+  @include bp3 {
+    font-size: 1rem !important;
+    height: 40px;
+  }
+  @include bp4 {
+    font-size: 1rem !important;
+    height: 40px;
+  }
+}
+
+.size1 {
+  padding: 0 0.5rem 0 0.5rem;
+  height: map-get($inputButtonHeight, "1");
+  font-size: map-get($inputButtonFontSize, "1") !important;
+}
+
+.size2 {
+  padding: 0 0.5rem 0 0.5rem;
+  height: map-get($inputButtonHeight, "2");
+  font-size: map-get($inputButtonFontSize, "2") !important;
+}
+
+.size3 {
+  padding: 0 0.5rem 0 0.5rem;
+  height: map-get($inputButtonHeight, "3");
+  font-size: map-get($inputButtonFontSize, "3") !important;
+}
+
+.input:active,
+.input:focus,
+.input:active,
+.input:-webkit-autofill,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  outline: none;
+  -webkit-text-fill-color: map-get($colorContent, "disabled");
+  -webkit-box-shadow: map-get($colorPanel, "disabled");
+}
+
+.input:-webkit-autofill:hover,
+.input:hover {
+  border-color: map-get($colorBorder, "hover") !important;
+}
+
+.input:focus,
+.input:-webkit-autofill:focus {
+  border-color: map-get($colorBorder, "focus") !important;
+  -webkit-text-fill-color: map-get($colorContent, "active");
+  -webkit-box-shadow: map-get($colorPanel, "active") !important;
+}
+
+.input::selection,
+.input:-webkit-autofill::selection {
+  -webkit-text-fill-color: map-get($colorContent, "disabled");
+  -webkit-box-shadow: map-get($colorPanel, "disabled");
+}
+
+.inputLabel {
+  display: block;
+  width: 100%;
+  color: map-get($colorPrimary, "active");
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}

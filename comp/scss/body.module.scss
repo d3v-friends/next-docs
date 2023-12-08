@@ -1,0 +1,6 @@
+@import "./index";
+
+.body {
+  position: relative;
+  background-color: map-get($colorBackground, "active");
+}

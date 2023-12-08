@@ -1,5 +1,7 @@
 "use client";
-export default function Comp() {
+import { JSX } from "react";
+
+export default function Comp(): JSX.Element {
     return (
         <html lang="ko">
             <body>

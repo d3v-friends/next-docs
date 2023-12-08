@@ -1,0 +1,65 @@
+@import "@style";
+
+.button {
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  border: 2px solid;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+
+}
+
+.size1 {
+  height: map-get($inputButtonHeight, "1");
+  font-size: map-get($inputButtonFontSize, "1");
+}
+
+.size2 {
+  height: map-get($inputButtonHeight, "2");
+  font-size: map-get($inputButtonFontSize, "2");
+}
+
+.size3 {
+  height: map-get($inputButtonHeight, "3");
+  font-size: map-get($inputButtonFontSize, "3");
+}
+
+
+// ------------------------------------------------------------
+// colors
+
+.primary {
+
+  &.fill {
+    border-color: map-get($colorPrimary, "disabled");
+    color: map-get($colorBackground, "disabled");
+    background-color: map-get($colorPrimary, "disabled");
+
+    &:hover {
+      border-color: map-get($colorPrimary, "active");
+      background-color: map-get($colorPrimary, "active");
+    }
+  }
+
+  &.outline {
+    color: map-get($colorPrimary, "disabled");
+    background-color: map-get($colorBackground, "active");
+    border-color: map-get($colorPrimary, "disabled");
+
+    &:hover {
+      color: map-get($colorPrimary, "active");
+      border-color: map-get($colorPrimary, "active");
+      border-width: 4px;
+      //background-color: map-get($colorPrimary, "active");
+    }
+  }
+}
+

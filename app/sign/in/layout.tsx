@@ -1,26 +1,21 @@
+import { getSession } from "@fn/action";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { JSX, ReactNode } from "react";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
-        title: "title",
-        description: "page",
+        title: "Sign in",
+        description: "sign in",
     };
 };
 
 type Props = {
     children?: ReactNode;
-    params: {
-        slug: string[],
-    }
 };
 
-const layout = async ({ children }: Props): Promise<JSX.Element> => {
-    return (
-        <>
-            <div>{children}</div>
-        </>
-    );
-};
-
-export default layout;
+export default async function Layout({ children }: Props): Promise<JSX.Element> {
+    const session = await getSession();
+    if (session.isSignIn) return redirect("/");
+    return <>{children}</>;
+}

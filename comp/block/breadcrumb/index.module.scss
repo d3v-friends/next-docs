@@ -1,0 +1,14 @@
+@import "@style";
+
+
+.cont {
+  padding-left: 10px;
+}
+
+.link {
+  color: map-get($colorContent, "disabled") !important;
+
+  &:hover {
+    color: map-get($colorPrimary, "active") !important;
+  }
+}

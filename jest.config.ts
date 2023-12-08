@@ -5,7 +5,7 @@ const config: JestConfigWithTsJest = {
     testEnvironment: "node",
     testRegex: "^.+_test.(ts|tsx|js)$",
     moduleNameMapper: {
-        "^@comp/(.*)$": "<rootDir>/comp/$1",
+        "^@fn/(.*)$": "<rootDir>/fn/$1",
     },
 };
 
