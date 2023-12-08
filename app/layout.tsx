@@ -7,16 +7,9 @@ import fnConfig from "@fn/config";
 import fnEnv from "@fn/env";
 import { getSession } from "@fn/action";
 import fnMD from "@fn/md";
-import type { Metadata } from "next";
 import { ReactNode, JSX } from "react";
 import css from "@style/body.module.scss";
 import "@css";
-
-export const generateMetadata = async (): Promise<Metadata> => {
-    return {
-        title: `${fnEnv.string("MT_PREFIX", "next-docs")}:Home`,
-    };
-};
 
 type Props = {
     children?: ReactNode;

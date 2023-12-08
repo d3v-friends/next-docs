@@ -17,12 +17,6 @@ type ICredentialFile = {
     username: string;
     accessKey: string;
 };
-const getCredentialFile = ({ username, accessKey }: ICredentialFile) => `
-protocol=https
-host=https://github.com
-username=${username}
-password=${accessKey}
-`;
 
 function getConfig(): Config {
     return {

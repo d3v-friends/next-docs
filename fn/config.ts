@@ -4,6 +4,7 @@ import fs from "fs";
 
 export type Config = {
     initAt: Date;
+    git: boolean;
     signIn: boolean;
     signUp: boolean;
     reply: boolean;
@@ -41,6 +42,7 @@ async function init(): Promise<Config> {
 
     const config: Config = {
         initAt: new Date(),
+        git: false,
         signIn: true,
         signUp: true,
         reply: false,
@@ -49,6 +51,12 @@ async function init(): Promise<Config> {
     await fnJson.write(fp, config);
 
     return config;
+}
+
+async function update(i: Partial<Config>): Promise<Config> {
+    const prev = await read();
+    throw new Error("todo");
+    //todo
 }
 
 async function read(): Promise<Config> {

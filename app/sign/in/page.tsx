@@ -7,6 +7,7 @@ import { JSX } from "react";
 
 const { H1, Space, H6, Link, P1, Inline } = Tags;
 const { IconPrimary } = Blocks;
+
 export default async function Page(): Promise<JSX.Element> {
     const config = await getConfig();
 

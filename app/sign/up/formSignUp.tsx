@@ -8,6 +8,7 @@ import Modal from "@block/modal";
 
 const { Input, Button, Hr, Form } = Tags;
 const { sign } = FormKey;
+
 export default function SignUp(): JSX.Element {
     const { pending } = useFormStatus();
     const [state, onAction] = useFormState(signUpAction, InitAction());

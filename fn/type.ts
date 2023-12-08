@@ -164,3 +164,11 @@ export type IndexTree = {
 };
 
 export type InfoKey = "alias" | "create" | "update" | "readable" | "tags";
+
+export type Bool = "true" | "false";
+
+export const getBool = (v?: Bool): Nullable<boolean> => {
+    if (v === "false") return false;
+    if (v === "true") return true;
+    return null;
+};

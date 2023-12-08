@@ -1,20 +1,12 @@
 "use server";
 import Blocks from "@block/index";
 import { getSession } from "@fn/action";
-import fnEnv from "@fn/env";
 import fnMD from "@fn/md";
-import { Metadata } from "next";
 import Side from "@app/side";
 
 type Props = {
     params: {};
     searchParams: {};
-};
-
-export const generateMetadata = async ({}: Props): Promise<Metadata> => {
-    return {
-        title: `${fnEnv.string("MT_PREFIX")}:Menu`,
-    };
 };
 
 const { IsMobile } = Blocks;
