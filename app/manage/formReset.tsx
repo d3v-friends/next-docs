@@ -6,7 +6,7 @@ import Tags from "@tag/index";
 import { JSX, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
-const { Form, Button, Divider, Inline } = Tags;
+const { Form, Button, Inline } = Tags;
 const { Modal } = Blocks;
 export default function Comp(): JSX.Element {
     const [modal, setModal] = useState(false);
