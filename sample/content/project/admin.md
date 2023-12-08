@@ -1,4 +1,0 @@
-@@@readable=admin
-
-
-# admin only

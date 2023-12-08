@@ -37,14 +37,16 @@
 .a {
   display: inline-flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   text-decoration: none;
   color: map-get($colorContent, "disabled") !important;
 
 
   .img {
-    margin-right: 7px;
-    filter: map-get($filterPrimary, "disabled");
+    margin-right: 0.3rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    object-fit: contain;
   }
 
   &:hover {

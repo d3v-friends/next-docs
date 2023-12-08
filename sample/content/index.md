@@ -2,27 +2,19 @@
 @@@readable=all
 @@@tags=contents
 
-# GFM
+# next-docs
 
-## Autolink literals
+### primary tools
 
-Hello world!!
+* next.js
+* markdown
+* vscode
 
-www.example.com  
-https://example.com  
-contact@example.com
+---
 
-## Strikethrough
+### Tasklist
 
-~one~ or ~~two~~ tildes.
-
-## Table
-
-| a | b | c | d |
-|---|:--|--:|:-:|
-| a | b | c | d |
-
-## Tasklist
+Hello world
 
 * [ ] to do
 * [x] done
@@ -43,7 +35,6 @@ int main() {
     sin << "hello world" << sout;
     return 0;
 }
-
 ~~~
 
 ---

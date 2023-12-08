@@ -1,6 +1,5 @@
 import cutil from "@cutil";
 import Tags from "@tag/index";
-import { v4 } from "uuid";
 import LangHeader from "./langHeader";
 import Image from "next/image";
 import Markdown from "react-markdown";
@@ -10,12 +9,11 @@ import Code from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import Events from "@event/index";
 import css from "./index.module.scss";
-import IconPrimary from "../icon/svg/primary";
 import Checkbox from "./checkbox";
 import Del from "./del";
 import { JSX } from "react";
 import Mermaid from "./mermaid";
-
+import IconPrimary from "@block/icon/svg/primary";
 // # todo: icon 모두 변경하기 -> 필터쓰지 않도록!!
 
 const { ImgText, H, P, Hr } = Tags;
@@ -70,15 +68,15 @@ const MdComps: Components = {
         );
     },
     a: ({ href, content, children }) => {
-        let src = "/asset/img/svg/link.svg";
+        let src = IconPrimary.Link;
 
         if ((href || "").startsWith("mail")) {
-            src = "/asset/img/svg/mail.svg";
+            src = IconPrimary.Mail;
         }
 
         return (
             <a className={css.a} href={href} target="_blank">
-                <Image className={merge(css.svgFilterSecondary, css.img)} src={src} alt={"link"} width={20} height={20} />
+                <Image className={merge(css.img)} src={src} alt={"link"} width={20} height={20} />
                 {children}
             </a>
         );

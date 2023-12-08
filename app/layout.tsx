@@ -3,6 +3,7 @@ import Top from "@app/top";
 import Side from "@app/side";
 import Footer from "@block/footer";
 import Body from "@block/layout";
+import fnConfig from "@fn/config";
 import fnEnv from "@fn/env";
 import { getSession } from "@fn/action";
 import fnMD from "@fn/md";
@@ -22,6 +23,7 @@ type Props = {
 };
 
 export default async function Layout({ children }: Props): Promise<JSX.Element> {
+    await fnConfig.init();
     const session = await getSession();
     const logo = fnEnv.string("MT_PREFIX", "next-docs");
 

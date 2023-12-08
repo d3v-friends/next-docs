@@ -8,6 +8,8 @@ import Dir from "./dir.svg";
 import DirUp from "./dirUp.svg";
 import DirDown from "./dirDown.svg";
 import NotFound from "./notFound.svg";
+import Link from "./link.svg";
+import Mail from "./mail.svg";
 
 const Primary = {
     SignIn,
@@ -20,6 +22,8 @@ const Primary = {
     DirUp,
     DirDown,
     NotFound,
+    Link,
+    Mail,
 };
 
 export default Primary;
