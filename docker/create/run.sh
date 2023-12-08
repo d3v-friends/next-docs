@@ -8,3 +8,6 @@ docker build \
     -t "$TAG" \
     -t "$LATEST" \
     -f ./docker/create/dockerfile .
+
+docker push "$TAG"
+docker push "$LATEST"

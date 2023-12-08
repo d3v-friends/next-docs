@@ -4,6 +4,7 @@ WORKDIR src
 
 # next-doc pull
 RUN git clone https://github.com/d3v-friends/next-docs .
+RUN git pull
 RUN npm i -g pnpm
 RUN pnpm install
 
