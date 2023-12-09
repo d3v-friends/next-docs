@@ -9,16 +9,8 @@ import fnDir from "./dir";
 import { Account, SessionToken, TokenPayload, NewUUID } from "./type";
 
 const getSecret = () => fnEnv.string("JWT_SECRET", "123e4567-e89b-12d3-a456-426614174000");
-const regex = {
-    username: new RegExp("^[a-z][a-z|0-9]{7,20}$"),
-    password: new RegExp(`^[a-zA-Z0-9!@#$%^&*()_+|~{}\\\[\\];':",\.\/<>?\`]{8,30}$`),
-};
-const getUserFilepath = (username: string) => fnDir.getAbsolutePath("config", `/account/${username}.json`);
 
-type SignData = {
-    username: string;
-    password: string;
-};
+const getUserFilepath = (username: string) => fnDir.getAbsolutePath("config", `/account/${username}.json`);
 
 type Token = string;
 
@@ -190,7 +182,6 @@ const fnSign = {
     signIn,
     signUp,
     signVerify,
-    regex,
 };
 
 export default fnSign;

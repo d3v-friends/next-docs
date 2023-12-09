@@ -1,7 +1,9 @@
 "use server";
+import fnAct from "@fn/act";
 import fnConfig, { Config } from "@fn/config";
 import fnMD from "@fn/md";
-import { FnFormAction, getForm, FormKey, testRegex, MD } from "@fn/type";
+import regexp from "@fn/regexp";
+import { getForm, FormKey, testRegex, MD } from "@fn/type";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -12,9 +14,9 @@ const cookie = {
 };
 
 export async function signInAction(_: any, form: FormData) {
-    return FnFormAction(form, async data => {
+    return fnAct.wrapAction(form, async data => {
         const [username, password] = getForm(data, FormKey.sign.username, FormKey.sign.password);
-        if (!testRegex([username, password], [fnSign.regex.username, fnSign.regex.password])) {
+        if (!testRegex([username, password], [regexp.username, regexp.password])) {
             revalidateTag(FormKey.sign.username);
             revalidateTag(FormKey.sign.password);
         }
@@ -26,9 +28,11 @@ export async function signInAction(_: any, form: FormData) {
 }
 
 export async function signUpAction(_: any, form: FormData) {
-    return FnFormAction(form, async data => {
+    return fnAct.wrapAction(form, async data => {
         const [username, password, confirm] = getForm(data, FormKey.sign.username, FormKey.sign.password, FormKey.sign.confirm);
-        if (!testRegex([username, password], [fnSign.regex.username, fnSign.regex.password])) {
+        console.log(username, password, confirm);
+
+        if (!testRegex([username, password], [regexp.username, regexp.password])) {
             revalidateTag(FormKey.sign.username);
             revalidateTag(FormKey.sign.password);
             revalidateTag(FormKey.sign.confirm);
@@ -47,17 +51,24 @@ export async function signUpAction(_: any, form: FormData) {
             password,
             confirm,
         });
-        redirect("/sign/in");
+
+        return () => {
+            redirect("/sign/in");
+        };
     });
 }
 
 export async function resetIndexAction(_: any, form: FormData) {
-    return FnFormAction(form, async _ => {
+    return fnAct.wrapAction(form, async _ => {
         revalidatePath(".", "page");
         await fnMD.idx.create();
-        return {
-            message: "Reset index success",
-        };
+        return;
+    });
+}
+
+export async function gitInitAction(_: any, form: FormData) {
+    return fnAct.wrapAction(form, async data => {
+        throw new Error("not impl");
     });
 }
 

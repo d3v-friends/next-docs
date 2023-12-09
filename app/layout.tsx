@@ -8,7 +8,6 @@ import fnEnv from "@fn/env";
 import { getSession } from "@fn/action";
 import fnMD from "@fn/md";
 import { ReactNode, JSX } from "react";
-import css from "@style/body.module.scss";
 import "@css";
 
 type Props = {
@@ -37,7 +36,7 @@ export default async function Layout({ children }: Props): Promise<JSX.Element> 
             <head>
                 <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
-            <body className={css.body}>
+            <body>
                 <Body title={logo}>
                     <Top />
                     <Side idxDoc={idxDoc} idxContent={idxContent} />

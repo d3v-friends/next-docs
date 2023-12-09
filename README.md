@@ -2,6 +2,10 @@
 
 * simple documents manager with next.js and markdown
 
+
+# typescript
+* call signatures [docs](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures)
+
 # todo
 * git 초기화 및 클론 기능
 

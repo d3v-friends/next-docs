@@ -27,7 +27,7 @@
         "./comp/app/*"
       ],
       "@css": [
-        "./comp/global.css"
+        "./comp/global.scss"
       ],
       "@fn/*": [
         "./fn/*"

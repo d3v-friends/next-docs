@@ -36,52 +36,6 @@ export type Account = {
 };
 
 export type SessionToken = string;
-export type ActionResult<T> = {
-    code: ActionResultCode;
-    resAt: Date;
-    value?: T;
-    message?: string;
-};
-
-export type ActionResultCode = number;
-type ARCodeKey = "success" | "error";
-export const ARCode: Record<ARCodeKey, ActionResultCode> = {
-    success: 200,
-    error: 500,
-};
-
-export async function FnFormAction<T>(
-    formData: FormData,
-    fn: (data: FormData) => Promise<
-        Nullable<
-            Partial<{
-                message: string;
-                value: T;
-            }>
-        >
-    >,
-): Promise<ActionResult<T>> {
-    try {
-        let res = await fn(formData);
-        return {
-            code: 200,
-            message: res?.message,
-            value: res?.value,
-            resAt: (() => new Date())(),
-        };
-    } catch (err) {
-        let message = JSON.stringify(err);
-        if (err instanceof Error) {
-            message = err.message;
-        }
-
-        return {
-            code: 500,
-            message,
-            resAt: (() => new Date())(),
-        };
-    }
-}
 
 export function getFormString(form: FormData, key: string): string {
     return (form.get(key) || "") as string;
@@ -110,7 +64,7 @@ export function testRegex(v: string[], t: RegExp[]): boolean {
     if (v.length != t.length) throw new Error("regex is not available");
 
     for (let i = 0; i < v.length; i++) {
-        if (t[i].test(v[i])) {
+        if (!t[i].test(v[i])) {
             return false;
         }
     }
@@ -123,11 +77,6 @@ export type TokenPayload = {
     username: string;
     signAt: Date;
 };
-
-export const InitAction = <DATA>(): ActionResult<DATA> => ({
-    code: 200,
-    resAt: new Date(),
-});
 
 export const FormKey = {
     sign: {

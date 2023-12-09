@@ -1,0 +1,113 @@
+@import "./scss/color";
+
+
+// ------------------------------------------------------------
+// font
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/xlight.ttf');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/light.ttf');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/text.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/medium.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/regular.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/semibold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: ibm-flex, sans-serif;
+  src: local("ibm-flex"), url('/asset/font/ibm-flex/bold.ttf');
+  font-weight: 700;
+}
+
+// ------------------------------------------------------------
+// break point
+@media (min-width: 360px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 720px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1080px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+
+// ------------------------------------------------------------
+// default tags styles
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: white;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-drag: none;
+  font-family: ibm-flex, sans-serif;
+
+
+  /* disable scroll bar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: #2b2d38;
+}
+
+body {
+  position: relative;
+  background-color: map-get($colorBackground, "active");
+}
+
+p {
+  font-size: 1rem;
+  display: block;
+  color: map-get($colorContent, "disabled");
+}
+

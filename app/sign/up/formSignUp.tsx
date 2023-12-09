@@ -1,6 +1,7 @@
 "use client";
+import fnAct from "@fn/act";
 import { signUpAction } from "@fn/action";
-import { InitAction, FormKey } from "@fn/type";
+import { FormKey } from "@fn/type";
 import Tags from "@tag/index";
 import { JSX, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -11,13 +12,13 @@ const { sign } = FormKey;
 
 export default function SignUp(): JSX.Element {
     const { pending } = useFormStatus();
-    const [state, onAction] = useFormState(signUpAction, InitAction());
+    const [state, onAction] = useFormState(signUpAction, fnAct.initAction());
     const [show, onShow] = useState(false);
 
     useEffect(() => {
-        if (state.code === 200) return;
+        if (state.status === 200) return;
         onShow(true);
-    }, [state.resAt]);
+    }, [state.responseAt]);
 
     return (
         <>
