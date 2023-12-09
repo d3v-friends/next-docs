@@ -1,4 +1,5 @@
-@import "./scss/color";
+@import "./color";
+@import "./bp";
 
 
 // ------------------------------------------------------------
@@ -111,3 +112,45 @@ p {
   color: map-get($colorContent, "disabled");
 }
 
+
+button {
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  border: 2px solid;
+
+  @include bp1 {
+
+  }
+
+  @include bp2 {
+
+  }
+}
+
+button.primary {
+
+
+  &.fill {
+    border-color: map-get($colorPrimary, "disabled");
+    color: map-get($colorBackground, "disabled");
+    background-color: map-get($colorPrimary, "disabled");
+  }
+
+  &.fill:hover {
+    border-color: map-get($colorPrimary, "active");
+    background-color: map-get($colorPrimary, "active");
+  }
+
+  &.outline {
+    color: map-get($colorPrimary, "disabled");
+    background-color: map-get($colorBackground, "active");
+    border-color: map-get($colorPrimary, "disabled");
+  }
+
+  &.outline:hover {
+    color: map-get($colorPrimary, "active");
+    border-color: map-get($colorPrimary, "active");
+    border-width: 4px;
+  }
+}
