@@ -1,0 +1,41 @@
+@import "@scss/color";
+
+input {
+  display: block;
+  width: 100%;
+  color: map-get($cContent, "normal");
+  border-width: 2px;
+  border-style: solid;
+  border-color: map-get($cBorder, "normal");
+  background-color: map-get($cBackground, "normal") !important;
+  padding: 0.5rem 0.3rem 0.5rem 0.3rem;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+input:hover {
+  border-color: map-get($cBorder, "hover");
+}
+
+input:focus {
+  border-color: map-get($cBorder, "active");
+}
+
+input:focus-visible {
+  outline: none;
+  outline-offset: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: map-get($cContent, "normal");
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: map-get($cBackground, "normal") !important;
+
+  // transition 이 크롬에서 자동완성시 배경 색상 변경을 막아준다
+  transition: background-color 5000s ease-in-out 0s;
+}
+

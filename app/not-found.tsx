@@ -1,7 +1,3 @@
-export default async function NotFound() {
-    return (
-        <>
-            <h1>Not Found</h1>
-        </>
-    );
+export default async function Comp() {
+    return <>Not Found</>;
 }

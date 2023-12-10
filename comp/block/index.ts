@@ -1,25 +1,19 @@
-import Breadcrumb from "./breadcrumb";
-import Footer from "./footer";
-import GoToTop from "@app/goTop";
+import Tooltip from "./tooltip";
+import Padding from "./padding";
+import Spacer from "./spacer";
 import Icon from "./icon";
-import IconPack from "./icon/svg";
-import Layout from "./layout";
-import Markdown from "./markdown";
 import Modal from "./modal";
-import IsMobile from "./isMobile";
+import CheckBox from "./checkbox";
+import Markdown from "./markdown";
 
-const Blocks = {
-    Breadcrumb,
-    Footer,
-    GoToTop,
+const blocks = {
+    Tooltip,
+    Padding,
+    Spacer,
     Icon,
-    IconPack,
-    IconPrimary: IconPack.Primary,
-    IconSecondary: IconPack.Secondary,
-    Layout,
-    Markdown,
     Modal,
-    IsMobile,
+    CheckBox,
+    Markdown,
 };
 
-export default Blocks;
+export default blocks;

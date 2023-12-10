@@ -1,123 +1,44 @@
-// break point
 $bp1: 360px;
 $bp2: 720px;
 $bp3: 1080px;
 $bp4: 1440px;
 
-$bp: (
-        "bp1": $bp1,
-        "bp2": $bp2,
-        "bp3": $bp3,
-        "bp4": $bp4,
-);
-
-// reactive template
 @mixin bp1 {
   @media screen and (min-width: $bp1) {
-    @content
+    @content;
   }
 }
 
 @mixin bp2 {
   @media screen and (min-width: $bp2) {
-    @content
+    @content;
   }
 }
 
 @mixin bp3 {
   @media screen and (min-width: $bp3) {
-    @content
+    @content;
   }
 }
+
 
 @mixin bp4 {
   @media screen and (min-width: $bp4) {
-    @content
+    @content;
   }
 }
 
-// full width template
-@mixin bp1Width {
-  @media screen and (min-width: $bp1) {
-    width: $bp1;
-    @content
-  }
-}
 
-@mixin bp2Width {
+// sbp 기준
+@mixin sbp1 {
   @media screen and (min-width: $bp2) {
-    width: $bp2;
-    @content
+    @content;
   }
 }
 
-@mixin bp3Width {
-  @media screen and (min-width: $bp3) {
-    width: $bp3;
-    @content
-  }
-}
-
-@mixin bp4Width {
+@mixin sbp2 {
   @media screen and (min-width: $bp4) {
-    width: $bp4;
-    @content
+    @content;
   }
 }
 
-
-@mixin bpWidth {
-  @media screen and (min-width: $bp2) {
-    width: $bp2;
-    @content
-  }
-  @media screen and (min-width: $bp2) {
-    width: $bp2;
-    @content
-  }
-  @media screen and (min-width: $bp3) {
-    width: $bp3;
-    @content
-  }
-  @media screen and (min-width: $bp4) {
-    width: $bp4;
-    @content
-  }
-}
-
-// input, button height
-$formChildHeight1: 2rem;
-
-
-
-// nav height
-$nav1: 35px;
-$nav2: 40px;
-$nav3: 45px;
-$nav4: 50px;
-
-$navs: (
-        "bp1": $nav1,
-        "bp2": $nav2,
-        "bp3": $nav3,
-        "bp4": $nav4,
-);
-
-// side width
-$side1: inherit;
-$side2: 180px;
-$side3: 200px;
-$side4: 250px;
-
-$sides: (
-        "bp1": $side1,
-        "bp2": $side2,
-        "bp3": $side3,
-        "bp4": $side4,
-);
-
-// content width
-$cont1: 100%;
-$cont2: calc(#{$bp2} - $side2);
-$cont3: calc(#{$bp3} - $side3);
-$cont4: calc(#{$bp4} - $side4);

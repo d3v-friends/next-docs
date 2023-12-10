@@ -1,12 +1,11 @@
 "use client";
-import { JSX } from "react";
 
-export default function Comp(): JSX.Element {
+export default function Comp() {
     return (
         <html lang="ko">
-            <body>
-                L<h1>global error</h1>
-            </body>
+        <body>
+        <>global error</>
+        </body>
         </html>
     );
 }

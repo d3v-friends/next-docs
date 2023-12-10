@@ -1,14 +1,39 @@
-import cutil from "@cutil";
+import blockUtil from "@block/blockUtil";
+import { Location } from "@block/type";
 import Image from "next/image";
-import { JSX } from "react";
+import { ReactNode } from "react";
+import css from "./index.module.scss";
+import Tooltip from "@block/tooltip";
 
-interface Props {
+type Props = {
     src: string;
-    className?: string;
+    hover?: boolean;
     width?: number;
     height?: number;
-}
+    children?: ReactNode;
+    isText?: boolean;
+    tooltip?: string;
+    tooltipLoc?: Location;
+};
 
-export default function Comp({ src, width, height, className }: Props): JSX.Element {
-    return <Image src={src} className={cutil.merge(className || "")} width={width || 50} height={height || 50} alt={src} />;
+export default function Comp({ children, src, width, height, hover, isText, tooltip, tooltipLoc }: Props) {
+    const hoverCss = hover ? css.hover : "";
+    const textCss = isText ? css.text : "";
+    width = width || 50;
+    height = height || 50;
+
+    const Content = () => (
+        <div className={blockUtil.merge(css.cont, textCss, hoverCss)}>
+            <Image className={blockUtil.merge(css.img)} src={src} alt={src} width={width} height={height} />
+            {children}
+        </div>
+    );
+
+    return tooltip ? (
+        <Tooltip tooltip={tooltip} loc={tooltipLoc}>
+            <Content />
+        </Tooltip>
+    ) : (
+        <Content />
+    );
 }

@@ -1,59 +1,48 @@
-$theme: dark !default;
-$colorBackground: (
-        "active": #1f222a,
-        "disabled": #15191e,
-) !default;
-$colorPanel: (
-        "normal": #282828,
-        "disabled": #383838,
-        "active": #444444,
-) !default;
-$colorPanelBorder: (
-        "normal": #4f4f4f,
-);
-$colorPrimary: (
+$cPrimary: (
+        "normal": #78e2a0,
         "active": #78e2a0,
+        "hover": #78e2a0,
         "disabled": #4db27b,
-) !default;
-$colorWarning: (
+);
+
+$cBackground: (
+        "normal": #1f222a,
+        "active": #1f222a,
+        "hover": #1f222a,
+        "disabled": #15191e,
+);
+
+$cWarning: (
+        "normal": #efaa2a,
         "active": #efaa2a,
+        "hover": #efaa2a,
         "disabled": #a17514,
-) !default;
-$colorContent: (
+);
+
+$cContent: (
+        "normal": #dadada,
         "active": #dadada,
+        "hover": #dadada,
         "disabled": #818181,
-) !default;
-$filterPrimary: (
-        "active":invert(87%) sepia(10%) saturate(1861%) hue-rotate(81deg) brightness(96%) contrast(83%),
-        "disabled": invert(54%) sepia(12%) saturate(1781%) hue-rotate(94deg) brightness(113%) contrast(81%)
-) !default;
-$filterContent: (
-        "active": invert(91%) sepia(1%) saturate(4%) hue-rotate(314deg) brightness(98%) contrast(88%),
-        "disabled": invert(56%) sepia(9%) saturate(13%) hue-rotate(324deg) brightness(89%) contrast(91%),
-) !default;
-$colorBorder: (
+);
+
+$cBorder: (
         "normal": #2b2d38,
+        "active": #4c5183,
         "hover": #313654,
-        "focus": #4c5183,
-) !default;
-$colorLink: (
+        "disabled": #2b2d38,
+);
+
+$cLink: (
         "normal":#488661,
-        "hover": #4db27b,
         "active": #78e2a0,
-) !default;
+        "hover": #4db27b,
+        "disabled": #3c7051,
+);
 
-.colorPrimary {
-  color: map-get($colorPrimary, "active");
-
-  &.disabled {
-    color: map-get($colorPrimary, "disabled")
-  }
-}
-
-.colorContent {
-  color: map-get($colorContent, "active");
-
-  &.disabled {
-    color: map-get($colorContent, "disabled")
-  }
-}
+$cPanel: (
+        "normal": #282828,
+        "active": #444444,
+        "hover": #282828,
+        "disabled": #383838,
+);

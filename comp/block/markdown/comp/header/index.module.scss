@@ -1,0 +1,21 @@
+@import "@scss/color";
+
+
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.language {
+  color: map-get($cPrimary, "active");
+  font-weight: 800;
+}
+
+.children {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+}

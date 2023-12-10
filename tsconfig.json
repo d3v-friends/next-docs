@@ -23,32 +23,17 @@
       }
     ],
     "paths": {
-      "@app/*": [
-        "./comp/app/*"
-      ],
-      "@css": [
-        "./comp/scss/global.scss"
-      ],
       "@fn/*": [
         "./fn/*"
       ],
-      "@cutil": [
-        "./comp/cutil.ts"
-      ],
-      "@event/*": [
-        "./comp/event/*"
+      "@scss/*": [
+        "./comp/scss/*"
       ],
       "@block/*": [
         "./comp/block/*"
       ],
-      "@tag/*": [
-        "./comp/tag/*"
-      ],
-      "@style": [
-        "./comp/scss/index.scss"
-      ],
-      "@style/*": [
-        "./comp/scss/*"
+      "@svg/*": [
+        "./comp/svg/*"
       ]
     }
   },
