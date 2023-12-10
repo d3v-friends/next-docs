@@ -20,5 +20,5 @@ export default function Comp({ children }: Props): JSX.Element {
             })
             .catch(res => console.log(`mermaid comp: ${JSON.stringify(res)}`));
     }, []);
-    return <pre className="mermaid">{children}</pre>;
+    return <div className="mermaid">{children}</div>;
 }

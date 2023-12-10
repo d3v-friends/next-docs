@@ -23,10 +23,10 @@ export default function Comp({ children, src, width, height, hover, isText, tool
     height = height || 50;
 
     const Content = () => (
-        <div className={blockUtil.merge(css.cont, textCss, hoverCss)}>
+        <span className={blockUtil.merge(css.cont, textCss, hoverCss)}>
             <Image className={blockUtil.merge(css.img)} src={src} alt={src} width={width} height={height} />
-            {children}
-        </div>
+            <span>{children}</span>
+        </span>
     );
 
     return tooltip ? (

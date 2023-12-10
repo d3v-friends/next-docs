@@ -1,4 +1,4 @@
-@import "@scss/color";
+@import "../../../../../scss/color";
 
 
 .cont {
@@ -11,11 +11,26 @@
 .language {
   color: map-get($cPrimary, "active");
   font-weight: 800;
+  flex-grow: 1;
 }
 
-.children {
+.copy {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  flex-grow: 1;
+  font-size: 0.8rem;
+  color: map-get($cContent, "disabled");
+
+  .img {
+    opacity: 50%;
+  }
+}
+
+
+.copy:hover {
+  color: map-get($cContent, "normal");
+
+  .img {
+    opacity: 100%;
+  }
 }

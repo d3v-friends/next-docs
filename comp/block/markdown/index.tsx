@@ -8,9 +8,5 @@ type Props = {
 };
 
 export default async function Comp({ children }: Props) {
-    return (
-        <Markdown rehypePlugins={[gfm]} components={comp}>
-            {children}
-        </Markdown>
-    );
+    return <Markdown rehypePlugins={[gfm]} components={comp} children={children} />;
 }

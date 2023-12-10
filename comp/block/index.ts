@@ -3,8 +3,8 @@ import Padding from "./padding";
 import Spacer from "./spacer";
 import Icon from "./icon";
 import Modal from "./modal";
-import CheckBox from "./checkbox";
 import Markdown from "./markdown";
+import Layout1 from "../app/layout1";
 
 const blocks = {
     Tooltip,
@@ -12,8 +12,8 @@ const blocks = {
     Spacer,
     Icon,
     Modal,
-    CheckBox,
     Markdown,
+    Layout1,
 };
 
 export default blocks;

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { JSX } from "react";
 import svg from "@svg/index";
 
-const { Tooltip, Icon, Modal, CheckBox, Markdown } = blocks;
+const { Tooltip, Icon, Markdown } = blocks;
 
 export default async function Comp(): Promise<JSX.Element> {
     return (
@@ -44,37 +44,58 @@ export default async function Comp(): Promise<JSX.Element> {
                 Icon
             </Icon>
 
-            <CheckBox checked={true}>checkbox</CheckBox>
-            <Markdown>
-                {`
-                 # GFM
-
-                ## Autolink literals
-
-                www.example.com, https://example.com, and contact@example.com.
-
-                ## Footnote
-
-                A note[^1]
-
-                [^1]: Big note.
-
-                ## Strikethrough
-
-                ~one~ or ~~two~~ tildes.
-
-                ## Table
-
-                | a | b  |  c |  d  |
-                | - | :- | -: | :-: |
-
-                ## Tasklist
-
-                * [ ] to do
-                * [x] done
-                `}
-            </Markdown>
+            <Markdown>{md}</Markdown>
             {/*<Modal>modal</Modal>*/}
         </>
     );
 }
+
+const md = `
+# GFM
+
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+## Footnote
+
+A note[^1]
+
+[^1]: Big note.
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+
+## Tasklist
+
+* [ ] to do
+* [x] done
+
+
+## code
+
+~~~cpp
+#include<iostream>
+
+using namespace std;
+
+int main() {
+    sin << "hello world" << sout;
+    return 0;
+}
+~~~
+
+---
+
+~~~mermaid
+flowchart TB
+
+a --> b
+~~~
+`;

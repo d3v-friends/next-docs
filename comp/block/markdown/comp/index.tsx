@@ -1,67 +1,41 @@
-import svg from "@svg/index";
 import { Components } from "react-markdown";
-import Code from "react-syntax-highlighter";
-import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import Header from "./header";
-import Mermaid from "./mermaid";
-import CheckBox from "@block/checkbox";
-import Icon from "@block/icon";
+import css from "./index.module.scss";
+import Code from "./code";
+import CheckBox from "./checkbox";
+import Li from "./li";
+import Ul from "./ul";
 
 const Comp: Components = {
     code: ({ children, className }) => {
         const code = children as string;
         const language = getLanguage(className || "");
-
-        if (!Code.supportedLanguages.includes(language)) {
-            switch (language) {
-                case "mermaid":
-                    return (
-                        <>
-                            <Header code={code}>{language}</Header>
-                            <Mermaid>{code}</Mermaid>
-                        </>
-                    );
-                default:
-                    break;
-            }
-        }
-
-        return (
-            <>
-                <Header code={code}>{language}</Header>
-                <Code wrapLines={true} showLineNumbers={true} style={obsidian} language={language}>
-                    {code}
-                </Code>
-            </>
-        );
+        return <Code language={language}>{code}</Code>;
     },
-    a: ({ href, content, children }) => {
-        let src = svg.primary.link;
-        if ((href || "").startsWith("mail")) {
-            src = svg.primary.mail;
-        }
-        return (
-            <a href={href} target="_blank">
-                <Icon src={src}>{content}</Icon>
-            </a>
-        );
-    },
-    input: ({ children, disabled, type, checked }) => {
+    a: ({ href, children }) => (
+        <a href={href} target="_blank">
+            {children}
+        </a>
+    ),
+    input: ({ children, type, checked }) => {
         switch (type) {
             case "checkbox":
-                return <CheckBox checked={checked}>{children}</CheckBox>;
+                return <CheckBox checked={checked} />;
             default:
-                return (
-                    <input type={type} disabled={disabled || false} checked={checked}>
-                        {children}
-                    </input>
-                );
+                return <input type={type} checked={checked} children={children} />;
         }
     },
     ul: ({ children }) => {
-        return <ul>{children}</ul>;
+        return <Ul>{children}</Ul>;
     },
-    h1: ({ children }) => <h1>{children}</h1>,
+    li: ({ children }) => {
+        return <Li>{children}</Li>;
+    },
+    h1: ({ children }) => {
+        return <h1 className={css.h1}>{children}</h1>;
+    },
+    h2: ({ children }) => {
+        return <h2 className={css.h2}>{children}</h2>;
+    },
 };
 
 const getLanguage = (str: string): string => {

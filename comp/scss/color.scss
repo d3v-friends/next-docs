@@ -46,3 +46,8 @@ $cPanel: (
         "hover": #282828,
         "disabled": #383838,
 );
+
+
+.primary {
+  color: map-get($cPrimary, "normal");
+}
