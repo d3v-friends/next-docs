@@ -37,6 +37,9 @@
       ],
       "@app/*": [
         "./comp/app/*"
+      ],
+      "@event/*": [
+        "./comp/event/*",
       ]
     }
   },

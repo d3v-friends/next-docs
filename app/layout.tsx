@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Layout from "@app/layout1";
+import Layout from "@app/layout";
 import "@scss/global.scss";
 
 type Props = {
@@ -13,9 +13,7 @@ export default async function Comp({ children }: Props) {
                 <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
             <body>
-                <Layout top={"top"} side={"side"}>
-                    {children}
-                </Layout>
+                <Layout logo={"next-dev"}>{children}</Layout>
             </body>
         </html>
     );

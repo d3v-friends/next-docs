@@ -4,7 +4,6 @@ import jsonwebtoken from "jsonwebtoken";
 import { v4 } from "uuid";
 import fnEnv from "./env";
 import fnJson from "./json";
-import fnPath from "./path";
 import fnDir from "./dir";
 import { Account, SessionToken, TokenPayload, NewUUID } from "./type";
 
@@ -113,17 +112,12 @@ const signVerify = async (token: string): Promise<SessionStatus> => {
 type SignUpArgs = {
     username: string;
     password: string;
-    confirm: string;
 };
 
-const signUp = async ({ username, password, confirm }: SignUpArgs): Promise<Account> => {
+const signUp = async ({ username, password }: SignUpArgs): Promise<Account> => {
     const fp = getUserFilepath(username);
-    if (fnPath.isExist(fp)) {
+    if (fs.existsSync(fp)) {
         throw new Error("duplicated username");
-    }
-
-    if (password !== confirm) {
-        throw new Error("not matched password and confirm");
     }
 
     const salt = crypto.randomBytes(64).toString("base64");

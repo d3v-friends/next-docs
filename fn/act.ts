@@ -1,7 +1,9 @@
-type ServerAction = <T extends object>(prev: any, form: FormData) => Promise<ActionResult<T>>;
+// type ServerAction = <T extends object>(prev: any, form: FormData) => Promise<ActionResult<T>>;
+import { redirect } from "next/navigation";
+
 type ActionStatus = 200 | 500;
 
-type ActionResult<T> = {
+export type ActionResult<T> = {
     status: ActionStatus;
     responseAt: Date;
     message?: string;
@@ -23,18 +25,23 @@ async function wrapAction<T>(data: FormData, fn: Handler<T>): Promise<ActionResu
         const res = await fn(data);
         switch (typeof res) {
             case "string":
-                return {
-                    status: 200,
-                    responseAt: new Date(),
-                    message: res,
-                };
-            case "function":
-                res();
-                return {
-                    status: 200,
-                    responseAt: new Date(),
-                };
+                return redirect(res);
             case "object":
+                if (!res) {
+                    return {
+                        status: 200,
+                        responseAt: new Date(),
+                    };
+                }
+
+                if (res.hasOwnProperty("message")) {
+                    return {
+                        status: 200,
+                        message: (res as any)["message"],
+                        responseAt: new Date(),
+                    };
+                }
+
                 return {
                     status: 200,
                     responseAt: new Date(),
@@ -47,19 +54,25 @@ async function wrapAction<T>(data: FormData, fn: Handler<T>): Promise<ActionResu
                 };
         }
     } catch (e) {
-        if (e instanceof Error) {
+        if (!(e instanceof Error)) {
             return {
                 status: 500,
-                message: e.message,
+                message: JSON.stringify(e),
                 responseAt: new Date(),
             };
         }
 
-        return {
-            status: 500,
-            message: JSON.stringify(e),
-            responseAt: new Date(),
-        };
+        switch (e.message) {
+            case "NEXT_REDIRECT":
+                const url = (e as any).digest.split(";")[2];
+                redirect(url);
+            default:
+                return {
+                    status: 500,
+                    message: e.message,
+                    responseAt: new Date(),
+                };
+        }
     }
 }
 

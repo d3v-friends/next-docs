@@ -2,6 +2,7 @@
 @import "font";
 @import "color";
 @import "zindex";
+@import "space";
 @import "tags/a";
 @import "tags/h";
 @import "tags/p";
@@ -9,6 +10,7 @@
 @import "tags/label";
 @import "tags/hr";
 @import "tags/button";
+@import "tags/table";
 
 html {
   @include bp1 {

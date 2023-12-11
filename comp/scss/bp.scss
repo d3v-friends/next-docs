@@ -42,3 +42,22 @@ $bp4: 1440px;
   }
 }
 
+
+
+// side menu width
+$side1: 100%;
+$side2: 100%;
+$side3: 200px;
+$side4: 250px;
+
+
+// nav height
+$nav1: 40px;
+$nav2: 50px;
+$nav3: 55px;
+$nav4: 60px;
+
+$navP1: calc(#{$nav1} + 0.5rem);
+$navP2: calc(#{$nav2} + 0.5rem);
+$navP3: calc(#{$nav3} + 0.5rem);
+$navP4: calc(#{$nav4} + 0.5rem);

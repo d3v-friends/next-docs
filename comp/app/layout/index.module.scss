@@ -1,9 +1,8 @@
-@import "../../scss/bp";
+@import "@scss/bp";
 
 
 .cont {
   width: 100%;
-  min-height: 100%;
 }
 
 .content {
@@ -12,26 +11,27 @@
   justify-content: center;
   align-items: flex-start;
 
+
   @include bp1 {
     width: 100%;
+    min-height: calc(100vh - $navP1);
   }
 
   @include bp2 {
     width: 100%;
+    min-height: calc(100vh - $navP2);
   }
 
   @include bp3 {
     width: $bp3;
+    min-height: calc(100vh - $navP3);
   }
 
   @include bp4 {
     width: $bp4;
+    min-height: calc(100vh - $navP4);
   }
 }
-
-
-$side3: 200px;
-$side4: 250px;
 
 .side {
   @include bp1 {
@@ -53,16 +53,20 @@ $side4: 250px;
 }
 
 .children {
+  height: 100%;
   @include bp1 {
-    padding: 0 0.5rem 0 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     width: 100%;
   }
   @include bp2 {
-    padding: 0 0.5rem 0 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     width: 100%;
   }
   @include bp3 {
     padding-left: 1rem;
+    padding-right: 0;
     width: calc(100% - #{$side3});
   }
   @include bp4 {

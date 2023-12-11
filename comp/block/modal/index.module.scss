@@ -24,6 +24,8 @@
   overflow: hidden;
   border: 2px solid map-get($cPanel, "disabled");
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  min-width: 10rem;
+  max-width: 80%;
 }
 
 .content {

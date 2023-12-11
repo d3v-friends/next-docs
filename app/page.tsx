@@ -1,7 +1,14 @@
 import blocks from "@block/index";
+import { Metadata } from "next";
 import Link from "next/link";
 import { JSX } from "react";
 import svg from "@svg/index";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: "home",
+    };
+};
 
 const { Tooltip, Icon, Markdown } = blocks;
 

@@ -4,7 +4,7 @@ import Spacer from "./spacer";
 import Icon from "./icon";
 import Modal from "./modal";
 import Markdown from "./markdown";
-import Layout1 from "../app/layout1";
+import Layout1 from "../app/layout";
 
 const blocks = {
     Tooltip,
