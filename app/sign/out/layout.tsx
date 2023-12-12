@@ -5,8 +5,6 @@ import { ReactNode } from "react";
 
 type Props = {
     children?: ReactNode;
-    params: {};
-    searchParams: {};
 };
 
 export const generateMetadata = async (): Promise<Metadata> => {

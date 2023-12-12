@@ -6,7 +6,6 @@ type Props = {
     params: {
         paths: string[];
     };
-    searchParams: {};
 };
 
 export default async function Comp({ children }: Props) {

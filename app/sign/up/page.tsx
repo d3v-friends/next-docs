@@ -1,7 +1,7 @@
 "use server";
 import fnMeta from "@fn/meta";
 import { Metadata } from "next";
-import Form from "./formSignUp";
+import Form from "@form/signUp";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
@@ -9,12 +9,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     };
 };
 
-type Props = {
-    params: {};
-    searchParams: {};
-};
-
-export default async function Comp({}: Props) {
+export default async function Comp() {
     return (
         <>
             <h3 className="mb-100">Sign up</h3>

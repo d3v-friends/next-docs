@@ -2,7 +2,6 @@
 import { getConfig, getSession } from "@fn/action";
 import Button from "./button";
 import Breadcrumb from "./breadcrumb";
-import OnReload from "@event/onReload";
 import css from "./index.module.scss";
 import svg from "@svg/secondary";
 

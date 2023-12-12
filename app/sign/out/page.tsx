@@ -3,12 +3,7 @@ import { signOutAction } from "@fn/action";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-type Props = {
-    params: {};
-    searchParams: {};
-};
-
-export default function Comp({}: Props) {
+export default function Comp() {
     const router = useRouter();
     useEffect(() => {
         const deleteSession = async () => {

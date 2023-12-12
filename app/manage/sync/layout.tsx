@@ -1,4 +1,5 @@
 "use server";
+import Tab from "@app/manageTab";
 import { ReactNode } from "react";
 
 type Props = {
@@ -6,5 +7,10 @@ type Props = {
 };
 
 export default async function Comp({ children }: Props) {
-    return <>{children}</>;
+    return (
+        <>
+            <Tab activeName="sync" />
+            {children}
+        </>
+    );
 }

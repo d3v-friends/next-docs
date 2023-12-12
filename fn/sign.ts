@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import fs from "fs";
-import jsonwebtoken from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { v4 } from "uuid";
 import fnEnv from "./env";
 import fnJson from "./json";
@@ -27,7 +27,7 @@ function salting({ salt, password }: ISalting): string {
 }
 
 const createToken = (payload: TokenPayload): SessionToken => {
-    return jsonwebtoken.sign(payload, getSecret(), {
+    return jwt.sign(payload, getSecret(), {
         algorithm: "HS512",
     });
 };
@@ -47,16 +47,19 @@ const NoVerifyToken: VerifyToken = {
 };
 
 function verifyToken(token: string): VerifyToken {
-    if (!token) return NoVerifyToken;
+    try {
+        if (!token) return NoVerifyToken;
+        const res = jwt.verify(token, getSecret()) as TokenPayload;
 
-    const res = jsonwebtoken.verify(token, getSecret()) as TokenPayload;
+        if (!res) return NoVerifyToken;
 
-    if (!res) return NoVerifyToken;
-
-    return {
-        isVerified: true,
-        payload: res,
-    };
+        return {
+            isVerified: true,
+            payload: res,
+        };
+    } catch {
+        return NoVerifyToken;
+    }
 }
 
 /* -------------------------------------------------------------------------------------------------- */

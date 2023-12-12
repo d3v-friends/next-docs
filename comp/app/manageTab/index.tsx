@@ -16,6 +16,10 @@ export default function Comp({ activeName }: Props) {
                     name: "index",
                     href: "/manage/idx",
                 },
+                {
+                    name: "sync",
+                    href: "/manage/sync",
+                },
             ]}
         </Tab>
     );

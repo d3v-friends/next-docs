@@ -39,7 +39,10 @@
         "./comp/app/*"
       ],
       "@event/*": [
-        "./comp/event/*",
+        "./comp/event/*"
+      ],
+      "@form/*": [
+        "./comp/form/*"
       ]
     }
   },

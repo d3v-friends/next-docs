@@ -1,6 +1,7 @@
 "use server";
 import Block from "@block/index";
 import fnMD from "@fn/md";
+import fnMeta from "@fn/meta";
 import fnUrl from "@fn/url";
 import { Metadata } from "next";
 
@@ -10,7 +11,7 @@ export const generateMetadata = async ({ params: { paths } }: Props): Promise<Me
         url = url.slice(4, url.length);
     }
     return {
-        title: `Doc[${url}]`,
+        title: fnMeta.simple(url),
     };
 };
 
@@ -18,7 +19,6 @@ type Props = {
     params: {
         paths: string[];
     };
-    searchParams: {};
 };
 
 const { Markdown } = Block;
