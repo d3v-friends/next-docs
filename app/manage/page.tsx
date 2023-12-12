@@ -2,5 +2,5 @@
 import { redirect } from "next/navigation";
 
 export default async function Comp() {
-    redirect("/manage/git");
+    redirect("/manage/idx");
 }
