@@ -8,7 +8,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 type Props = {
-    params: {};
     searchParams: {
         filter?: string;
     };
