@@ -1,28 +1,35 @@
-import Blocks from "@block/index";
-import { getSession, readMD } from "@fn/action";
+"use server";
+import Block from "@block/index";
+import fnMD from "@fn/md";
 import fnUrl from "@fn/url";
-import { JSX } from "react";
+import { Metadata } from "next";
+
+export const generateMetadata = async ({ params: { paths } }: Props): Promise<Metadata> => {
+    let url = fnUrl.glue(...paths);
+    if (url.startsWith("/doc")) {
+        url = url.slice(4, url.length);
+    }
+    return {
+        title: `Doc[${url}]`,
+    };
+};
 
 type Props = {
     params: {
         paths: string[];
     };
+    searchParams: {};
 };
 
-const { Markdown } = Blocks;
+const { Markdown } = Block;
 
-export default async function Page({ params: { paths } }: Props): Promise<JSX.Element> {
-    const session = await getSession();
-
-    let filepath = fnUrl.glue(...paths);
-    if (!filepath.endsWith(".md")) {
-        filepath = fnUrl.glue(filepath, "index.md");
+export default async function Comp({ params: { paths } }: Props) {
+    let url = fnUrl.glue(...paths);
+    if (url.startsWith("/doc")) {
+        url = url.slice(4, url.length);
     }
 
-    try {
-        const content = await readMD(filepath);
-        return <Markdown>{content.content}</Markdown>;
-    } catch (e) {
-        return <div>not found document: {filepath}</div>;
-    }
+    const content = await fnMD.reader.read(url);
+
+    return <Markdown>{content.content}</Markdown>;
 }

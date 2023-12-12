@@ -1,0 +1,6 @@
+@import "@scss/color";
+
+p {
+  color: map-get($cContent, "normal");
+  font-size: 1rem;
+}

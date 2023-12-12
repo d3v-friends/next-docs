@@ -1,15 +1,16 @@
-import { getConfig } from "@fn/action";
-import { JSX, ReactNode } from "react";
+"use server";
+import { getSession } from "@fn/action";
+import { redirect } from "next/navigation";
+import { ReactNode } from "react";
 
 type Props = {
     children?: ReactNode;
+    params: {};
+    searchParams: {};
 };
 
-export default async function Layout({ children }: Props): Promise<JSX.Element> {
-    const config = await getConfig();
-    if (!config.signUp) {
-        return <>Sign up is not service. now</>;
-    }
-
+export default async function Comp({ children }: Props) {
+    const session = await getSession();
+    if (session.isSignIn) redirect("/");
     return <>{children}</>;
 }

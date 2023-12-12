@@ -1,0 +1,33 @@
+@import "@scss/color";
+
+button {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  border-width: 2px;
+  border-style: solid;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+button.primary {
+  color: map-get($cBackground, "normal");
+  background-color: map-get($cPrimary, "disabled");
+  border-color: map-get($cPrimary, "disabled");
+}
+
+button.primary:hover {
+  background-color: map-get($cPrimary, "active");
+  border-color: map-get($cPrimary, "active");
+}
+
+button.primary.outline {
+  color: map-get($cPrimary, "disabled");
+  background-color: map-get($cBackground, "normal");
+  border-color: map-get($cPrimary, "disabled");
+}
+
+button.primary.outline:hover {
+  color: map-get($cPrimary, "active");
+  border-color: map-get($cPrimary, "active");
+}

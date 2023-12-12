@@ -1,22 +1,24 @@
-import Tags from "@tag/index";
-import FormSignUp from "./formSignUp";
-import { JSX } from "react";
-import IconPack from "@block/icon/svg";
+"use server";
+import fnMeta from "@fn/meta";
+import { Metadata } from "next";
+import Form from "./formSignUp";
 
-const { H1, H6, Space, Link, Inline } = Tags;
-export default async function Page(): Promise<JSX.Element> {
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: fnMeta.simple("Sign up"),
+    };
+};
+
+type Props = {
+    params: {};
+    searchParams: {};
+};
+
+export default async function Comp({}: Props) {
     return (
         <>
-            <H1>SignUp</H1>
-            <Space height={"2rem"} />
-            <FormSignUp />
-
-            <Inline>
-                <H6>if you already has account?</H6>
-                <Link iconSrc={IconPack.Primary.SignIn} href={"/sign/in"}>
-                    Sign in
-                </Link>
-            </Inline>
+            <h3 className="mb-100">Sign up</h3>
+            <Form />
         </>
     );
 }

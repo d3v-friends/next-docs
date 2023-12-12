@@ -1,26 +1,25 @@
-import Tags from "@tag/index";
-import { ReactNode, JSX } from "react";
+"use client";
+import svg from "@svg/index";
 import Image from "next/image";
+import { ReactNode } from "react";
 import css from "./index.module.scss";
-import IconPack from "@block/icon/svg";
 
-interface Props {
-    onOff: Function;
+type Props = {
     children?: ReactNode;
-}
+    onClose?: Function;
+};
 
-const { Tooltip } = Tags;
-const { Secondary } = IconPack;
+export default function Comp({ children, onClose }: Props) {
+    const onClick = () => {
+        if (onClose) onClose();
+    };
 
-const Comp = ({ children, onOff }: Props): JSX.Element => (
-    <div className={css.cont}>
-        <div className={css.header}>{children}</div>
-        <div>
-            <Tooltip tooltip={"close"} loc={"left"}>
-                <Image className={css.close} src={Secondary.Close} alt={"close"} width={30} height={30} onClick={() => onOff()} />
-            </Tooltip>
+    return (
+        <div className={css.cont}>
+            <div className={css.children}>{children}</div>
+            <div className={css.close} onClick={() => onClick()}>
+                <Image className={css.img} src={svg.secondary.close} alt="close" width={20} height={20}></Image>
+            </div>
         </div>
-    </div>
-);
-
-export default Comp;
+    );
+}

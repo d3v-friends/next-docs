@@ -1,0 +1,19 @@
+@import "@scss/color";
+
+a {
+  text-decoration: none;
+  color: map-get($cLink, "normal");
+}
+
+a:hover {
+  color: map-get($cLink, "hover");
+}
+
+a:active {
+  color: map-get($cLink, "normal");
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  cursor: default;
+}

@@ -1,0 +1,19 @@
+@import "@scss/bp";
+
+html {
+  @include bp1 {
+    font-size: 16px;
+  }
+
+  @include bp2 {
+    font-size: 18px;
+  }
+
+  @include bp3 {
+    font-size: 22px;
+  }
+
+  @include bp4 {
+    font-size: 24px;
+  }
+}

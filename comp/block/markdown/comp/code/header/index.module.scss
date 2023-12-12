@@ -1,0 +1,36 @@
+@import "../../../../../scss/color";
+
+
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.language {
+  color: map-get($cPrimary, "active");
+  font-weight: 800;
+  flex-grow: 1;
+}
+
+.copy {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 0.8rem;
+  color: map-get($cContent, "disabled");
+
+  .img {
+    opacity: 50%;
+  }
+}
+
+
+.copy:hover {
+  color: map-get($cContent, "normal");
+
+  .img {
+    opacity: 100%;
+  }
+}

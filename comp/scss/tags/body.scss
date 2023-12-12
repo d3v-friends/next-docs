@@ -1,0 +1,9 @@
+@import "@scss/color";
+@import "@scss/zindex";
+
+body {
+  background-color: map-get($cBackground, "normal");
+  position: relative;
+  z-index: map-get($zIndex, "body");
+}
+

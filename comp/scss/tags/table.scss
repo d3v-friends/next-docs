@@ -1,0 +1,61 @@
+@import "../color";
+
+$padding: 0.4rem;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+
+  thead {
+    width: 100%;
+    border-bottom: 2px solid map-get($cContent, "hover");
+
+    tr {
+      width: 100%;
+
+      td, th {
+        padding: $padding;
+        color: map-get($cContent, "disabled");
+        font-weight: 500;
+
+        &.center {
+          text-align: center;
+        }
+
+        &.left {
+          text-align: left;
+        }
+
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid map-get($cContent, "disabled");
+
+      td, th {
+        padding: $padding;
+        color: map-get($cContent, "normal");
+        font-weight: 200;
+
+
+        &.center {
+          text-align: center;
+        }
+
+        &.left {
+          text-align: left;
+        }
+
+        &.right {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

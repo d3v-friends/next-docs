@@ -1,0 +1,102 @@
+@import "@scss/zindex";
+@import "@scss/bp";
+@import "@scss/color";
+
+.nav {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: map-get($zIndex, "nav");
+  backdrop-filter: blur(5px);
+
+  @include bp1 {
+    height: $nav1;
+  }
+  @include bp2 {
+    height: $nav2;
+  }
+  @include bp3 {
+    height: $nav3;
+  }
+  @include bp4 {
+    height: $nav4;
+  }
+}
+
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  @include bp1 {
+    width: 100%;
+  }
+  @include bp2 {
+    width: 100%;
+  }
+  @include bp3 {
+    width: $bp3;
+  }
+  @include bp4 {
+    width: $bp4;
+  }
+}
+
+.padding {
+  @include bp1 {
+    height: $navP1;
+  }
+  @include bp2 {
+    height: $navP2;
+  }
+  @include bp3 {
+    height: $navP3;
+  }
+  @include bp4 {
+    height: $navP4;
+  }
+}
+
+
+.children {
+  flex-grow: 1;
+  @include bp1 {
+    min-height: calc(100% - #{$nav1});
+  }
+  @include bp2 {
+    min-height: calc(100% - #{$nav2});
+  }
+  @include bp3 {
+    min-height: calc(100% - #{$nav3});
+  }
+  @include bp4 {
+    min-height: calc(100% - #{$nav4});
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: map-get($cPrimary, "active");
+  font-weight: 900;
+  height: 100%;
+  padding: 0.5rem;
+
+  @include bp1 {
+    display: inline-flex;
+  }
+  @include bp2 {
+    display: inline-flex;
+  }
+  @include bp3 {
+    width: $side3;
+  }
+  @include bp4 {
+    width: $side4;
+  }
+}

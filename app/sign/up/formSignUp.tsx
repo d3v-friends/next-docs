@@ -2,45 +2,33 @@
 import fnAct from "@fn/act";
 import { signUpAction } from "@fn/action";
 import { FormKey } from "@fn/type";
-import Tags from "@tag/index";
-import { JSX, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
-import Modal from "@block/modal";
+import FormModalMsg from "@app/formModalMsg";
 
-const { Input, Button, Hr, Form } = Tags;
 const { sign } = FormKey;
-
-export default function SignUp(): JSX.Element {
+export default function Comp() {
     const { pending } = useFormStatus();
-    const [state, onAction] = useFormState(signUpAction, fnAct.initAction());
-    const [show, onShow] = useState(false);
-
-    useEffect(() => {
-        if (state.status === 200) return;
-        onShow(true);
-    }, [state.responseAt]);
+    const [state, action] = useFormState(signUpAction, fnAct.initAction());
 
     return (
         <>
-            <Form onAction={onAction}>
-                <Input size={3} type="text" name={sign.username} label="username" />
-                <Input size={3} type="password" name={sign.password} label="password (1/2)" />
-                <Input size={3} type="password" name={sign.confirm} label="password (2/2)" />
-                <Hr />
+            <form action={action} aria-disabled={pending}>
+                <label htmlFor={sign.username}>username</label>
+                <input id={sign.username} name={sign.username} type="text" />
 
-                <Button size={3} type="submit" ariaDisabled={pending}>
-                    Sign Up
-                </Button>
-                <Button size={3} type="reset" style="outline" ariaDisabled={pending}>
-                    Reset
-                </Button>
-            </Form>
+                <label htmlFor={sign.password}>password (1/2)</label>
+                <input id={sign.password} name={sign.password} type="password" />
 
-            {show && (
-                <Modal header={"Error"} onOff={() => onShow(false)}>
-                    {state.message}
-                </Modal>
-            )}
+                <label htmlFor={sign.confirm}>password (2/2)</label>
+                <input id={sign.confirm} name={sign.confirm} type="password" />
+
+                <hr />
+                <button className="primary fill" type="submit">
+                    Sign up
+                </button>
+            </form>
+
+            <FormModalMsg state={state} />
         </>
     );
 }

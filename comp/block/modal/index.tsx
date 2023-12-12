@@ -1,21 +1,19 @@
-import { ReactNode, JSX } from "react";
-import css from "./index.module.scss";
+import { ReactNode } from "react";
 import Header from "./header";
+import css from "./index.module.scss";
 
-interface Props {
-    children?: ReactNode;
+type Props = {
     header?: ReactNode;
-    onOff: () => void;
-}
+    children?: ReactNode;
+    onClose?: Function;
+};
 
-export default function Comp({ children, header, onOff }: Props): JSX.Element {
+export default function Comp({ children, header, onClose }: Props) {
     return (
         <div className={css.cont}>
-            <div>
-                <div className={css.modal}>
-                    {header && <Header onOff={onOff}>{header}</Header>}
-                    <div className={css.children}>{children}</div>
-                </div>
+            <div className={css.modal}>
+                <Header onClose={onClose}>{header}</Header>
+                <div className={css.content}>{children}</div>
             </div>
         </div>
     );

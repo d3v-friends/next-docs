@@ -1,0 +1,32 @@
+@import "@scss/bp";
+@import "@scss/color";
+
+.pc {
+  @include bp1 {
+    display: none;
+  }
+  @include bp3 {
+    display: block;
+  }
+}
+
+.mobile {
+  @include bp1 {
+    display: block;
+  }
+  @include bp3 {
+    display: none;
+  }
+}
+
+.a {
+  color: map-get($cBackground, "normal");
+}
+
+.a:hover {
+  color: map-get($cBackground, "normal");
+}
+
+.a:active {
+  color: map-get($cBackground, "normal");
+}

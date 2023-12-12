@@ -1,0 +1,49 @@
+@import "@scss/color";
+@import "@scss/zindex";
+
+.cont {
+  display: inline-block;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cont:hover {
+  .tooltip {
+    visibility: visible;
+  }
+}
+
+$tooltipHeight: 1.6rem;
+.tooltip {
+  display: inline-block;
+  text-align: center;
+  height: $tooltipHeight;
+  padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+  position: absolute;
+  font-size: 0.8rem;
+  border-radius: 0.3rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: map-get($zIndex, "tooltip");
+  visibility: hidden;
+}
+
+.top {
+  bottom: 120%;
+}
+
+.bottom {
+  top: 120%;
+}
+
+.left {
+  top: calc((100% - #{$tooltipHeight}) / 2);
+  right: 130%;
+}
+
+.right {
+  top: calc((100% - #{$tooltipHeight}) / 2);
+  left: 130%;
+}
+

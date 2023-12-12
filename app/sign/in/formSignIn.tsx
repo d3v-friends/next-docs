@@ -2,44 +2,31 @@
 import fnAct from "@fn/act";
 import { signInAction } from "@fn/action";
 import { FormKey } from "@fn/type";
-import Tags from "@tag/index";
-import { JSX, useState, useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
-import Modal from "@block/modal";
+import FormModalMsg from "@app/formModalMsg";
 
-const { Hr, Form, Input, Button } = Tags;
-const {
-    sign: { username, password },
-} = FormKey;
+type Props = {};
 
-export default function SignIn(): JSX.Element {
+const { sign } = FormKey;
+
+export default function Comp({}: Props) {
     const { pending } = useFormStatus();
-    const [state, onAction] = useFormState(signInAction, fnAct.initAction());
-
-    const [show, onShow] = useState(false);
-
-    useEffect(() => {
-        if (state.status === 200) return;
-        onShow(true);
-    }, [state.responseAt]);
+    const [state, action] = useFormState(signInAction, fnAct.initAction());
 
     return (
         <>
-            <Form onAction={onAction}>
-                <Input size={3} type="text" name={username} label="username" />
-                <Input size={3} type="password" name={password} label="password" />
-                <Hr />
+            <form action={action} aria-disabled={pending}>
+                <label htmlFor="username">username</label>
+                <input id="username" type="text" name={sign.username} />
 
-                <Button size={3} type="submit" ariaDisabled={pending}>
-                    Sign In
-                </Button>
-            </Form>
-
-            {show && (
-                <Modal header={"Error"} onOff={() => onShow(false)}>
-                    {state.message}
-                </Modal>
-            )}
+                <label htmlFor="password">password</label>
+                <input id="password" type="password" name={sign.password} />
+                <hr />
+                <button className="primary fill" type="submit">
+                    Sign in
+                </button>
+            </form>
+            <FormModalMsg state={state} />
         </>
     );
 }

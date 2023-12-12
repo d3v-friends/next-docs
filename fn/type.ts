@@ -84,6 +84,12 @@ export const FormKey = {
         password: "password",
         confirm: "confirm",
     },
+    git: {
+        url: "url",
+        key: "key",
+        username: "username",
+        email: "email",
+    },
 };
 
 export type Nullable<T> = T | null | undefined;
@@ -121,3 +127,5 @@ export const getBool = (v?: Bool): Nullable<boolean> => {
     if (v === "true") return true;
     return null;
 };
+
+export type Language = "ko" | "en";

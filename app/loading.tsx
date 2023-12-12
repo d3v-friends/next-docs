@@ -1,5 +1,3 @@
-import { JSX } from "react";
-
-export default function Loading(): JSX.Element {
+export default function Comp() {
     return <>loading</>;
 }

@@ -3,17 +3,17 @@ import { Metadata } from "next";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
-        title: ``,
+        title: "title",
     };
 };
 
 type Props = {
     params: {};
     searchParams: {
-        word?: string;
+        filter?: string;
     };
 };
 
-export default async function Page({ searchParams }: Props) {
-    return <>Open soon</>;
+export default async function Comp({ searchParams: { filter } }: Props) {
+    return <></>;
 }

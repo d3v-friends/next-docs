@@ -23,32 +23,23 @@
       }
     ],
     "paths": {
-      "@app/*": [
-        "./comp/app/*"
-      ],
-      "@css": [
-        "./comp/global.scss"
-      ],
       "@fn/*": [
         "./fn/*"
       ],
-      "@cutil": [
-        "./comp/cutil.ts"
-      ],
-      "@event/*": [
-        "./comp/event/*"
+      "@scss/*": [
+        "./comp/scss/*"
       ],
       "@block/*": [
         "./comp/block/*"
       ],
-      "@tag/*": [
-        "./comp/tag/*"
+      "@svg/*": [
+        "./comp/svg/*"
       ],
-      "@style": [
-        "./comp/scss/index.scss"
+      "@app/*": [
+        "./comp/app/*"
       ],
-      "@style/*": [
-        "./comp/scss/*"
+      "@event/*": [
+        "./comp/event/*",
       ]
     }
   },

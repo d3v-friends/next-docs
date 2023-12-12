@@ -1,0 +1,76 @@
+@import "@scss/bp";
+
+
+.cont {
+  width: 100%;
+}
+
+.content {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+
+  @include bp1 {
+    width: 100%;
+    min-height: calc(100vh - $navP1);
+  }
+
+  @include bp2 {
+    width: 100%;
+    min-height: calc(100vh - $navP2);
+  }
+
+  @include bp3 {
+    width: $bp3;
+    min-height: calc(100vh - $navP3);
+  }
+
+  @include bp4 {
+    width: $bp4;
+    min-height: calc(100vh - $navP4);
+  }
+}
+
+.side {
+  @include bp1 {
+    display: none;
+  }
+
+  @include bp2 {
+    display: none;
+  }
+
+  @include bp3 {
+    width: $side3;
+    display: block;
+  }
+  @include bp4 {
+    width: $side4;
+    display: block;
+  }
+}
+
+.children {
+  height: 100%;
+
+  @include bp1 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+  }
+  @include bp2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+  }
+  @include bp3 {
+    padding-left: 1.5rem;
+    padding-right: 0;
+    width: calc(100% - #{$side3});
+  }
+  @include bp4 {
+    width: calc(100% - #{$side4});
+  }
+}
