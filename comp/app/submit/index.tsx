@@ -1,5 +1,7 @@
+"use client";
 import Loading from "@block/loading";
-import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { ReactNode, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 interface Props {
@@ -8,8 +10,16 @@ interface Props {
 }
 
 export default function Comp({ children, className }: Props) {
-    className = className || "";
+    const router = useRouter();
     const { pending } = useFormStatus();
+    const [init, setInit] = useState(false);
+
+    className = className || "";
+    useEffect(() => {
+        if (init) return;
+        if (!pending) return;
+        router.refresh();
+    }, [pending]);
     return (
         <>
             <button className={className} disabled={pending} aria-disabled={pending}>
