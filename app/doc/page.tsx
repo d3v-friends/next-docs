@@ -7,11 +7,11 @@ export const generateMetadata = async (): Promise<Metadata> => {
     };
 };
 
-type Props = {
+interface Props {
     searchParams: {
         filter?: string;
     };
-};
+}
 
 export default async function Comp({ searchParams: { filter } }: Props) {
     return <></>;

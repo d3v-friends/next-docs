@@ -2,9 +2,9 @@
 import Tab from "@app/manageTab";
 import { ReactNode } from "react";
 
-type Props = {
+interface Props {
     children?: ReactNode;
-};
+}
 
 export default async function Comp({ children }: Props) {
     return (

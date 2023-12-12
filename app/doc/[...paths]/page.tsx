@@ -15,11 +15,11 @@ export const generateMetadata = async ({ params: { paths } }: Props): Promise<Me
     };
 };
 
-type Props = {
+interface Props {
     params: {
         paths: string[];
     };
-};
+}
 
 const { Markdown } = Block;
 

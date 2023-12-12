@@ -2,9 +2,9 @@
 import { getSession } from "@fn/action";
 import { ReactNode } from "react";
 
-type Props = {
+interface Props {
     children?: ReactNode;
-};
+}
 
 export default async function Comp({ children }: Props) {
     const session = await getSession();

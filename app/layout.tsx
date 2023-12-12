@@ -2,9 +2,9 @@ import { ReactNode } from "react";
 import Layout from "@app/layout";
 import "@scss/global.scss";
 
-type Props = {
+interface Props {
     children?: ReactNode;
-};
+}
 
 export default async function Comp({ children }: Props) {
     return (

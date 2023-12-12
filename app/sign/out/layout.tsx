@@ -3,9 +3,9 @@ import fnMeta from "@fn/meta";
 import { Metadata } from "next";
 import { ReactNode } from "react";
 
-type Props = {
+interface Props {
     children?: ReactNode;
-};
+}
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
