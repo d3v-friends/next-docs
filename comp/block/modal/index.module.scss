@@ -2,22 +2,6 @@
 @import "@scss/color";
 
 
-.cont {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: map-get($zIndex, "modal");
-
-  backdrop-filter: blur(4px) grayscale(70%);
-}
-
-
 .modal {
   border-radius: 5px;
   background-color: map-get($cPanel, "active");

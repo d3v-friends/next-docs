@@ -1,11 +1,11 @@
-@import "../color";
+@import "@scss/color";
 
-$padding: 0.4rem;
+$padding: 0.6rem;
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8rem;
+  margin-bottom: 2rem;
 
   thead {
     width: 100%;

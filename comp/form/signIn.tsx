@@ -1,4 +1,5 @@
 "use client";
+import Submit from "@app/submit";
 import fnAct from "@fn/act";
 import { signInAction } from "@fn/action";
 import { FormKey } from "@fn/type";
@@ -22,9 +23,7 @@ export default function Comp({}: Props) {
                 <label htmlFor="password">password</label>
                 <input id="password" type="password" name={sign.password} />
                 <hr />
-                <button className="primary fill" type="submit">
-                    Sign in
-                </button>
+                <Submit className="primary fill">Sign in</Submit>
             </form>
             <FormModalMsg state={state} />
         </>

@@ -1,4 +1,5 @@
 "use client";
+import Submit from "@app/submit";
 import fnAct from "@fn/act";
 import { resetIndexAction } from "@fn/action";
 import { useFormState, useFormStatus } from "react-dom";
@@ -14,9 +15,7 @@ export default function Comp({}: Props) {
         <>
             <h5 className="mb-100">File index</h5>
             <form action={action} aria-disabled={pending}>
-                <button type="submit" disabled={pending} className="primary outline">
-                    reset
-                </button>
+                <Submit className="primary outline">Reset</Submit>
             </form>
             <Modal state={state} isSuccessMsg={true} />
         </>

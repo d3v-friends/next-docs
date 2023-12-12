@@ -2,18 +2,18 @@
 
 html {
   @include bp1 {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   @include bp2 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   @include bp3 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   @include bp4 {
-    font-size: 24px;
+    font-size: 20px;
   }
 }

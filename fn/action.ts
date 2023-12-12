@@ -137,7 +137,7 @@ export async function initGitAction(_: any, form: FormData) {
 export async function syncGitAction(_: any, form: FormData) {
     return fnAct.wrapAction(form, async data => {
         await fnGit.sync();
-
+        await fnMD.idx.create();
         return {
             message: "success",
         };

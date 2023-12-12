@@ -74,10 +74,7 @@ async function repo() {
 
 async function sync() {
     const opt = { cwd: getContentFp() };
-    execSync(`git add . --all`, opt);
-    execSync(`git commit -m "save: ${moment().format("yyMMDD-hh:mm")}"`, opt);
-    execSync(`git pull`, opt);
-    execSync(`git push --set-upstream origin main`, opt);
+    execSync(`git fetch`, opt);
 }
 
 const fnGit = {

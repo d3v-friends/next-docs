@@ -22,6 +22,7 @@ export default function Comp({ children, language }: Props) {
                     <>
                         <Header noCopy>{language}</Header>
                         <Mermaid>{children}</Mermaid>
+                        <div className="height-400" />
                     </>
                 );
         }
@@ -35,6 +36,7 @@ export default function Comp({ children, language }: Props) {
                     {children}
                 </Code>
             </div>
+            <div className="height-400" />
         </>
     );
 }

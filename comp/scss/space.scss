@@ -35,3 +35,21 @@ $pos: ("l": "left", "r": "right", "t": "top", "b": "bottom");
 }
 
 @include genHeight();
+
+// width percent
+@mixin genPercentWidth() {
+  @for $width from 0 through 100 {
+    .width-#{$width}per {
+      width: parsePer($width);
+    }
+  }
+}
+
+@function parsePer($value) {
+  @if ($value == 0) {
+    @return $value
+  }
+  @return $value * 1%;
+}
+
+@include genPercentWidth();

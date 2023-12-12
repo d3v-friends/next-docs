@@ -40,12 +40,12 @@ async function readWithOpt(opt: ReadOpt, ...truncates: boolean[]): Promise<Index
         idx = exceptByTag(idx, tags, isCorrect);
     }
 
-    removeEmptyIdx(idx)
+    removeEmptyIdx(idx);
     return idx;
 }
 
 function exceptByReadable(idx: IndexTree, readable: Readable): IndexTree {
-    idx.fileList = idx.fileList.filter(v => mdReader.isReadable(v.readable, readable));
+    idx.fileList = idx.fileList.filter(v => mdReader.isReadableArray(v.readable, readable));
     for (const key in idx.children) {
         idx.children[key] = exceptByReadable(idx.children[key], readable);
     }

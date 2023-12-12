@@ -1,3 +1,4 @@
+import blockUtil from "@block/blockUtil";
 import { Components } from "react-markdown";
 import css from "./index.module.scss";
 import Code from "./code";
@@ -31,11 +32,24 @@ const Comp: Components = {
         return <Li>{children}</Li>;
     },
     h1: ({ children }) => {
-        return <h1 className={css.h1}>{children}</h1>;
+        return <h1 className={blockUtil.merge(css.h1, "mb-100")}>{children}</h1>;
     },
     h2: ({ children }) => {
-        return <h2 className={css.h2}>{children}</h2>;
+        return <h2 className={blockUtil.merge(css.h2, "mb-100")}>{children}</h2>;
     },
+    h3: ({ children }) => {
+        return <h3 className="mb-50">{children}</h3>;
+    },
+    h4: ({ children }) => {
+        return <h4 className="mb-50">{children}</h4>;
+    },
+    h5: ({ children }) => {
+        return <h5 className="mb-50">{children}</h5>;
+    },
+    h6: ({ children }) => {
+        return <h6 className="mb-50">{children}</h6>;
+    },
+    hr: () => <hr className="mb-600"/>
 };
 
 const getLanguage = (str: string): string => {

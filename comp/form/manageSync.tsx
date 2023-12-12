@@ -1,24 +1,18 @@
 "use client";
 import fnAct from "@fn/act";
 import { syncGitAction } from "@fn/action";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import Modal from "@app/formModalMsg";
+import Submit from "@app/submit";
 
-type Props = {};
-
-export default function Comp({}: Props) {
-    const { pending } = useFormStatus();
+export default function Comp() {
     const [state, action] = useFormState(syncGitAction, fnAct.initAction());
 
     return (
         <>
-            <h5 className="mb-100">git sync</h5>
-            <form action={action} aria-disabled={pending}>
-                <button className="primary outline" disabled={pending} aria-disabled={pending}>
-                    Sync
-                </button>
+            <form className="width-100per" action={action}>
+                <Submit className="primary outline">Sync</Submit>
             </form>
-
             <Modal state={state} isSuccessMsg />
         </>
     );

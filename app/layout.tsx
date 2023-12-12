@@ -14,7 +14,7 @@ export default async function Comp({ children }: Props) {
                 <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
             <body>
-                <Layout logo={fnMeta.simple("")}>{children}</Layout>
+                <Layout logo={fnMeta.getTitle()}>{children}</Layout>
             </body>
         </html>
     );

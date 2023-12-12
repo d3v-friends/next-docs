@@ -86,7 +86,12 @@ const isReadableStr = (v: string): boolean => {
     return false;
 };
 
-const isReadable = (ls: Readable[], r: Readable): boolean => {
+const isReadableByMD = (md: MD, r: Readable): boolean => {
+    if (r === "admin") return true;
+    return isReadableArray(getReadable(md), r);
+};
+
+const isReadableArray = (ls: Readable[], r: Readable): boolean => {
     for (let item of ls) {
         if (item == r) return true;
     }
@@ -130,9 +135,10 @@ const mdReader = {
     getString,
     getCreate: (md: MD): Nullable<Date> => getDate(md, "create"),
     getUpdate: (md: MD): Nullable<Date> => getDate(md, "update"),
+    isReadableByMD,
+    isReadableArray,
     getTags,
     getReadable,
-    isReadable,
     isTags,
 };
 

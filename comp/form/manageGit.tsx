@@ -5,6 +5,7 @@ import { FormKey } from "@fn/type";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
+import Submit from "@app/submit";
 import Modal from "@app/formModalMsg";
 
 type Props = {};
@@ -36,9 +37,7 @@ export default function Comp({}: Props) {
                 <input type="email" name={git.email} id={git.email} />
 
                 <hr />
-                <button type="submit" className="primary outline" aria-disabled={pending}>
-                    reset
-                </button>
+                <Submit className="primary outline">Reset</Submit>
             </form>
             <Modal state={state} isSuccessMsg={true} />
         </>

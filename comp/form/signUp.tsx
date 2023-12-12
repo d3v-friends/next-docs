@@ -1,4 +1,5 @@
 "use client";
+import Submit from "@app/submit";
 import fnAct from "@fn/act";
 import { signUpAction } from "@fn/action";
 import { FormKey } from "@fn/type";
@@ -23,9 +24,7 @@ export default function Comp() {
                 <input id={sign.confirm} name={sign.confirm} type="password" />
 
                 <hr />
-                <button className="primary fill" type="submit">
-                    Sign up
-                </button>
+                <Submit className="primary fill">Sync up</Submit>
             </form>
 
             <FormModalMsg state={state} />

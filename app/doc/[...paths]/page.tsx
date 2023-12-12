@@ -32,7 +32,7 @@ export default async function Comp({ params: { paths } }: Props) {
 
     const content = await fnMD.reader.read(url);
     const session = await getSession();
-    if (!fnMD.reader.isReadable(fnMD.reader.getReadable(content), session.account.readable)) {
+    if (!fnMD.reader.isReadableByMD(content, session.account.readable)) {
         return <h5>not found</h5>;
     }
 
