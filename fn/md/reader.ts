@@ -6,9 +6,17 @@ import fs from "fs";
 import moment from "moment/moment";
 import readline from "readline";
 
+const notFoundMd = (fp: string): MD => ({
+    content: "# not found file",
+    info: {
+        readable: "all",
+    },
+    path: fp,
+});
+
 const read = async (fp: string): Promise<MD> => {
     const sfp = fnDir.getAbsolutePath("content", fp);
-    if (!fs.existsSync(sfp)) throw new Error(`not found file: filename=${fp}`);
+    if (!fs.existsSync(sfp)) return notFoundMd(fp);
 
     const rl = readline.createInterface({
         input: fs.createReadStream(sfp),

@@ -12,13 +12,13 @@ RUN {\
   rm vscode_cli.tar.gz;\
 };
 
+# install git
+RUN apt install git -y;
+
 # install vim
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 RUN apt install vim -y;
 
-
-# install git
-RUN apt install git -y;
 
 # next-doc pull
 RUN {\
