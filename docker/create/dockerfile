@@ -30,6 +30,6 @@ RUN {\
 };
 
 # next build
-WORKDIR /root/next-docs
+WORKDIR /root
 
-ENTRYPOINT [ "pnpm", "run", "start" ]
+ENTRYPOINT ["/root/vscode/code","tunnel"]
