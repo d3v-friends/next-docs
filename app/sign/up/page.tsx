@@ -1,10 +1,11 @@
 "use server";
+import fnMeta from "@fn/meta";
 import { Metadata } from "next";
 import Form from "./formSignUp";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
-        title: "sign up",
+        title: fnMeta.simple("Sign up"),
     };
 };
 

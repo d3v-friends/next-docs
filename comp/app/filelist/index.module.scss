@@ -1,0 +1,15 @@
+@import "@scss/color";
+
+.cont {
+  width: 100%;
+}
+
+.filename {
+  color: map-get($cContent, "disabled") !important;
+
+
+}
+
+.active {
+  color: map-get($cContent, "active") !important;
+}

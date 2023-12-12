@@ -104,19 +104,29 @@ export async function getConfig(): Promise<Config> {
 export async function initGitAction(_: any, form: FormData) {
     return fnAct.wrapAction(form, async data => {
         const { git } = FormKey;
-        const [url, key] = getForm(data, git.url, git.key);
+        const [url, key, username, email] = getForm(data, git.url, git.key, git.username, git.email);
 
-        if (!regexp.repo.test(url)) {
+        if (!regexp.gitRepo.test(url)) {
             revalidateTag(git.url);
             throw new Error("invalid url");
         }
 
-        if (!regexp.repoKey.test(key)) {
-            revalidateTag(key);
+        if (!regexp.gitAccessKey.test(key)) {
+            revalidateTag(git.key);
             throw new Error("invalid access key");
         }
 
-        await fnGit.init({ url, key });
+        if (!regexp.gitUsername.test(username)) {
+            revalidateTag(git.username);
+            throw new Error("invalid username");
+        }
+
+        if (!regexp.email.test(email)) {
+            revalidateTag(git.email);
+            throw new Error("invalid email");
+        }
+
+        await fnGit.init({ url, key, username, email });
 
         return {
             message: "success",

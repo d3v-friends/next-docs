@@ -4,7 +4,6 @@ import fs from "fs";
 
 export type Config = {
     initAt: Date;
-    git: boolean;
     signIn: boolean;
     signUp: boolean;
     reply: boolean;
@@ -42,7 +41,6 @@ async function init(): Promise<Config> {
 
     const config: Config = {
         initAt: new Date(),
-        git: false,
         signIn: true,
         signUp: true,
         reply: false,

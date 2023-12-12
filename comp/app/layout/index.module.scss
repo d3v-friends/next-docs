@@ -54,6 +54,7 @@
 
 .children {
   height: 100%;
+
   @include bp1 {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -65,7 +66,7 @@
     width: 100%;
   }
   @include bp3 {
-    padding-left: 1rem;
+    padding-left: 1.5rem;
     padding-right: 0;
     width: calc(100% - #{$side3});
   }

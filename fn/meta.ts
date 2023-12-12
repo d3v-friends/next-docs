@@ -1,14 +1,8 @@
 import fnEnv from "@fn/env";
-import { Metadata } from "next";
 
-function simple(...strs: string[]): Metadata {
-    let r = "";
-    for (const elem of strs) {
-        r += `${elem}`;
-    }
-    return {
-        title: `${fnEnv.string("MT_PREFIX", "next-docs")}:${r}`,
-    };
+function simple(v: string): string {
+    const title = fnEnv.string("MT_TITLE", "next-docs");
+    return `${title} :: ${v}`;
 }
 
 const fnMeta = {

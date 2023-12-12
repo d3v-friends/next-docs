@@ -1,10 +1,11 @@
 "use server";
+import fnMeta from "@fn/meta";
 import { Metadata } from "next";
+import Form from "@app/formIdx";
 
 export const generateMetadata = async (): Promise<Metadata> => {
     return {
-        title: "title",
-        description: "page",
+        title: fnMeta.simple("Manage - Index"),
     };
 };
 
@@ -14,5 +15,5 @@ type Props = {
 };
 
 export default async function Comp({}: Props) {
-    return <></>;
+    return <Form />;
 }

@@ -1,0 +1,45 @@
+@import "@scss/bp";
+@import "@scss/color";
+
+$height1: 40px;
+$height2: 45px;
+$height3: 50px;
+$height4: 55px;
+
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  border-bottom: 1px solid map-get($cPrimary, "disabled");
+
+  @include bp1 {
+    height: $height1;
+  }
+  @include bp2 {
+    height: $height2;
+  }
+  @include bp3 {
+    height: $height3;
+  }
+  @include bp4 {
+    height: $height4;
+  }
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem 0 1rem;
+  color: map-get($cContent, "disabled")
+}
+
+
+.link.active {
+  background-color: map-get($cPrimary, "active");
+  color: map-get($cBackground, "disabled");
+  font-weight: 500;
+}

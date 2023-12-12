@@ -3,7 +3,9 @@ import { ReactNode } from "react";
 
 type Props = {
     children?: ReactNode;
-    params: {};
+    params: {
+        paths: string[];
+    };
     searchParams: {};
 };
 

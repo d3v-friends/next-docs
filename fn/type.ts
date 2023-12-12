@@ -87,6 +87,8 @@ export const FormKey = {
     git: {
         url: "url",
         key: "key",
+        username: "username",
+        email: "email",
     },
 };
 

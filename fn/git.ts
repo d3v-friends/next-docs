@@ -2,6 +2,7 @@
 // 시스템에 미리 설치되어 있어야 한다
 
 import fnDir from "@fn/dir";
+import fnFile from "@fn/file";
 import fnJson from "@fn/json";
 import { execSync } from "child_process";
 import fs from "fs";
@@ -12,52 +13,54 @@ type Config = {
     key: string;
 };
 
+const getCredentialFp = () => fnDir.getAbsolutePath("config", ".git-credentials");
 const getContentFp = () => fnDir.getAbsolutePath("content");
 const getAuthFp = () => fnDir.getAbsolutePath("config", "github.json");
-
-type ICredentialFile = {
-    username: string;
-    accessKey: string;
-};
+const getCredentialContent = ({ username, key }: { username: string; key: string }) => `
+protocol=https
+host=https://github.com
+username=${username}
+password=${key}
+`;
 
 // force 를 true 로 설정하면, 기존에 있던 저장소를 삭제한다.
 type InitArgs = {
     url: string;
     key: string;
+    username: string;
+    email: string;
 };
 
-async function init({ url, key }: InitArgs) {
-    const fp = getContentFp();
-    const authFp = getAuthFp();
-    if (fs.existsSync(fp)) {
-        fs.rmSync(fp, {
-            force: true,
+async function init({ url, username, key, email }: InitArgs) {
+    const cwd = getContentFp();
+    if (fs.existsSync(cwd)) {
+        fs.rmSync(cwd, {
             recursive: true,
         });
     }
 
-    if (fs.existsSync(authFp)) {
-        fs.rmSync(authFp);
-    }
-
-    const config: Config = {
-        url,
-        key,
-    };
-
-    await fnJson.write(authFp, config);
-
-    execSync(`git clone ${getGitPath(config)} ${fp}`, {
-        cwd: __dirname,
-    });
+    initCredential({ username, email, key });
+    execSync(`git clone ${url} ${cwd}`);
 }
 
-async function pull() {
-    const fp = getContentFp();
-    const config = await fnJson.read<Config>(getAuthFp());
-    execSync(`git pull ${getGitPath(config)}`, {
-        cwd: fp,
-    });
+type InitCredentialArgs = {
+    username: string;
+    email: string;
+    key: string;
+};
+
+function initCredential({ username, key, email }: InitCredentialArgs) {
+    // prev credential remove
+    // execSync("git config --global --unset credential.helper");
+
+    // make credential file
+    const helperFp = getCredentialFp();
+    fnFile.write(helperFp, getCredentialContent({ username, key }));
+
+    // set username, email, credential by global
+    execSync(`git config --global user.name ${username}`);
+    execSync(`git config --global user.email ${email}`);
+    execSync(`git config --global credential.helper "store --file ${helperFp}"`);
 }
 
 async function repo() {
@@ -69,30 +72,16 @@ async function repo() {
     return info.url;
 }
 
-function getGitPath(c: Config): string {
-    let url = c.url;
-    if (url.startsWith("https://")) {
-        url = url.replace("https://", "");
-    }
-    return `https://${c.key}@${url}`;
-}
-
 async function sync() {
-    const config = await fnJson.read<Config>(getAuthFp());
-    const url = getGitPath(config);
-    const opt = {
-        cwd: getContentFp(),
-    };
-    execSync(`git add .`, opt);
+    const opt = { cwd: getContentFp() };
+    execSync(`git add . --all`, opt);
     execSync(`git commit -m "save: ${moment().format("yyMMDD-hh:mm")}"`, opt);
-    execSync(`git pull ${url}`, opt);
+    execSync(`git pull`, opt);
     execSync(`git push --set-upstream origin main`, opt);
 }
 
-async function initCredential() {}
 const fnGit = {
     init,
-    pull,
     repo,
     sync,
 };

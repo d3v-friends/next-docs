@@ -1,7 +1,5 @@
-@import "bp";
 @import "font";
 @import "color";
-@import "zindex";
 @import "space";
 @import "tags/a";
 @import "tags/h";
@@ -11,46 +9,7 @@
 @import "tags/hr";
 @import "tags/button";
 @import "tags/table";
-
-html {
-  @include bp1 {
-    font-size: 18px;
-  }
-
-  @include bp2 {
-    font-size: 20px;
-  }
-
-  @include bp3 {
-    font-size: 24px;
-  }
-
-  @include bp4 {
-    font-size: 26px;
-  }
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  color: map-get($cContent, "normal");
-  box-sizing: border-box;
-  user-select: none;
-  -webkit-user-drag: none;
-  font-family: ibm-flex, sans-serif;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-}
-
-*::-webkit-scrollbar {
-  display: none;
-}
-
-body {
-  background-color: map-get($cBackground, "normal");
-  position: relative;
-  z-index: map-get($zIndex, "body");
-}
+@import "tags/html";
+@import "tags/body";
+@import "tags/all";
 
