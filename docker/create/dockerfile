@@ -12,11 +12,11 @@ RUN {\
   rm vscode_cli.tar.gz;\
 };
 
-# install git
-RUN apt install git -y;
-
-# install vim
+# install oh-my-bash
 RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
+# install tools
+RUN apt install git -y;
 RUN apt install vim -y;
 
 
@@ -26,14 +26,10 @@ RUN {\
   npm i -g pnpm; \
   cd /root/next-docs; \
   pnpm install; \
+  pnpm run build; \
 };
 
 # next build
-WORKDIR $HOME/next-docs
-
-RUN {\
-  cd /root/next-docs; \
-  pnpm run build; \
-}
+WORKDIR /root/next-docs
 
 ENTRYPOINT [ "pnpm", "run", "start" ]
