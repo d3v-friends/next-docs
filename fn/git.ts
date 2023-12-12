@@ -74,7 +74,7 @@ async function repo() {
 
 async function sync() {
     const opt = { cwd: getContentFp() };
-    execSync(`git fetch`, opt);
+    execSync("git pull", opt);
 }
 
 const fnGit = {
