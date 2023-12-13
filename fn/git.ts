@@ -55,11 +55,15 @@ function initCredential({ username, key, email }: InitCredentialArgs) {
 
     // make credential file
     const helperFp = getCredentialFp();
+
     fnFile.write(helperFp, getCredentialContent({ username, key }));
 
     // set username, email, credential by global
     execSync(`git config --global user.name ${username}`);
     execSync(`git config --global user.email ${email}`);
+
+    const contentFp = getContentFp();
+    execSync(`git config --global --add safe.directory ${contentFp}`);
     execSync(`git config --global credential.helper "store --file ${helperFp}"`);
 }
 

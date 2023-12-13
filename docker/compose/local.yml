@@ -5,7 +5,11 @@ services:
     image: docker.stdlib.in/next-docs:latest
     container_name: next-docs
     ports:
-      - "10000:3000"
+      - "3000:3000"
+    volumes:
+      - "$HOME/next-docs/content:/root/content"
+      - "$HOME/next-docs/config:/root/config"
+      - "$HOME/next-docs/.env.production:/root/next-docs/.env.production"
     networks:
       - inner
     restart: always
