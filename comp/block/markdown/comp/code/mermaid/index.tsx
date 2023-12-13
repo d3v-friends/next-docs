@@ -1,5 +1,5 @@
 "use client";
-import { JSX, useEffect } from "react";
+import { JSX, useEffect, useRef } from "react";
 import mermaid from "mermaid";
 
 type Props = {
@@ -9,16 +9,23 @@ type Props = {
 mermaid.initialize({
     startOnLoad: false,
     darkMode: true,
-    theme: "neutral",
+    theme: "forest",
 });
 
-export default function Comp({ children }: Props): JSX.Element {
+export default function Comp({ children }: Props) {
+    const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
+        if (!ref) return;
+
         mermaid
             .run({
-                querySelector: ".mermaid",
+                querySelector: `.mermaid`,
             })
             .catch(res => console.log(`mermaid comp: ${JSON.stringify(res)}`));
-    }, []);
-    return <div className="mermaid">{children}</div>;
+    }, [ref]);
+    return (
+        <div className="mermaid" ref={ref}>
+            {children}
+        </div>
+    );
 }
