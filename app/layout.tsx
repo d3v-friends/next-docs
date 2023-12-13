@@ -10,12 +10,12 @@ interface Props {
 export default async function Comp({ children }: Props) {
     return (
         <html lang="ko">
-            <head>
-                <link rel="icon" href="/favicon.ico" sizes="any" />
-            </head>
-            <body>
-                <Layout logo={fnMeta.getTitle()}>{children}</Layout>
-            </body>
+        <head>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+        </head>
+        <body>
+        <Layout logo={fnMeta.getTitle()}>{children}</Layout>
+        </body>
         </html>
     );
 }

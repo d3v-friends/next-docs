@@ -1,5 +1,6 @@
 import Header from "@block/markdown/comp/code/header";
 import Code from "react-syntax-highlighter";
+import { v4 } from "uuid";
 import Mermaid from "./mermaid";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import css from "./index.module.scss";

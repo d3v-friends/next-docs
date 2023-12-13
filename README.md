@@ -2,6 +2,11 @@
 
 * simple documents manager with next.js and markdown
 
+# todo
+
+[ ] mermaid 깨지는것 디버깅
+[ ] 설치 및 운영 방법 최적화
+
 # style
 
 * break point 는 유튜브를 기준으로 잘랐다.
@@ -55,8 +60,8 @@ https://demo.bootstrapdash.com/corona/jquery/template/modern-vertical/index.html
 # 개발일지
 
 * 23-12-13
-  * 베타 시작
-    
+    * 베타 시작
+
 * 23-11-19
     - 전체 아키텍쳐 구상중
     - db 는 mongo db 사용. mongo-driver(official) 사용하기 vs Mongoose
