@@ -1,0 +1,10 @@
+@import "@scss/bp";
+
+.cont {
+  @include bp1 {
+    display: block;
+  }
+  @include bp3 {
+    display: none;
+  }
+}

@@ -1,14 +1,18 @@
 "use server";
-import FileList from "@app/filelist";
 import { getSession } from "@fn/action";
 import fnMD from "@fn/md";
-import Profile from "./profile";
-import css from "./index.module.scss";
+import fnMeta from "@fn/meta";
 import FormSync from "@form/manageSync";
+import { Metadata } from "next";
+import FileList from "@app/filelist";
 
-type Props = {};
+export const generateMetadata = async (): Promise<Metadata> => {
+    return {
+        title: fnMeta.simple("Menu"),
+    };
+};
 
-export default async function Comp({}: Props) {
+export default async function Page() {
     const session = await getSession();
     const fileList = await fnMD.idx.readWithOpt({
         readable: session.account.readable,
@@ -25,9 +29,7 @@ export default async function Comp({}: Props) {
     const isAdmin = session.account.readable === "admin";
 
     return (
-        <div className={css.cont}>
-            <Profile />
-            {isAdmin && <FormSync />}
+        <>
             <div className="mb-60" />
 
             <h5>contents</h5>
@@ -39,6 +41,9 @@ export default async function Comp({}: Props) {
             <h5>documents</h5>
             <div className="mb-30" />
             <FileList idx={fileList} />
-        </div>
+
+            <div className="mb-200" />
+            {isAdmin && <FormSync />}
+        </>
     );
 }

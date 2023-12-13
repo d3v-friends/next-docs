@@ -9,7 +9,7 @@ type Props = {
 mermaid.initialize({
     startOnLoad: false,
     darkMode: true,
-    theme: "forest",
+    theme: "neutral",
 });
 
 export default function Comp({ children }: Props): JSX.Element {
