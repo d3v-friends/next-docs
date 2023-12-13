@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "config": "tsc -p ./tsconfig.config.json",
-    "dev_mac": "NODE_OPTIONS='--inspect' next dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
