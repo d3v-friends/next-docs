@@ -6,8 +6,8 @@
   border: 0;
   color: map-get($cContent, "normal");
   box-sizing: border-box;
-  user-select: none;
-  -webkit-user-drag: none;
+  //user-select: none;
+  //-webkit-user-drag: none;
   font-family: ibm-flex, sans-serif;
   -ms-overflow-style: none;
   scrollbar-width: none;
