@@ -10,6 +10,13 @@ mermaid.initialize({
     startOnLoad: false,
     darkMode: true,
     theme: "forest",
+    themeVariables: {
+        fontFamily: "ibm-flex",
+        fontSize: "1rem",
+        textColor: "#6b9454",
+        lineColor: "#b4cbad",
+        secondaryBorderColor: "#fff"
+    }
 });
 
 export default function Comp({ children }: Props) {
