@@ -7,5 +7,5 @@ type Props = {
 };
 
 export default function Comp({ children }: Props) {
-    return <li className={blockUtil.merge(css.li, "mb-100")}>{children}</li>;
+    return <li className={blockUtil.merge(css.li)}>{children}</li>;
 }
